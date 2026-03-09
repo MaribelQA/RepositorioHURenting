@@ -17,3 +17,7 @@ Proceso de razonamiento (escenario/lluvia de ideas/cadena de pensamientos, etc.)
 Refinamiento iterativo:
 "Critica tu respuesta"
 "Crea 3 causas que compitan y define cual es la mejor, y solo entregame la seleccionada"
+
+El resultado ponlo en el canvan/workpad para cocrear.
+
+El formato de salida debe ser en Markdown como tabla que contiene las columnas (Title,	Step Action,	Stept Expected Result)
