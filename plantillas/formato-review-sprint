@@ -1,42 +1,31 @@
-Plantilla ejemplo, debes generar la page del sprint 113 
+La siguiente page es un ejemplo de como se espera el resultado, genera el resultado en un formato igual, debes generar la page del sprint 113 
 
 <br>
 
-<center> <h1 style="color:#02BF6F;"> 📌 SPRINT 112 — Célula de operaciones </h1> </center>
+<center> <h1 style="color:#02BF6F;"> 📌 SPRINT XXX — Célula de operaciones </h1> </center>
 <center> 📅 11 febrero - 24 febrero </center>
 
 
 
-## 1. **Objetivo del Sprint 112**
+## 1. **Objetivo del Sprint XXX**
 >Se continua con el compromiso de implementar las soluciones de las HU y Tareas asignadas a cada miembro del equipo
 
 
-## 2. **HU compromentidas a implementar**
+## 2. **HU compromentidas a implementar por Desarrollador**
 
 ---
 
 **Hernan Romero**
-
 #123898
-#142179
-#142181
-#142180
-
 ---
 
 **Andres Almanzar**
 
 #129581
-#137315
-#140008
-#130309
 
 ## 3. **Temas transversales y de seguimiento**
 #141774 [Sergio Castro]
-#141773 [Sergio Castro]
-#141289 [Sergio Castro]
 #144760 [Miguel Velasquez]
-#143809
 
 ## 4. **Work Orden Comprometidos**
 
@@ -44,24 +33,18 @@ Plantilla ejemplo, debes generar la page del sprint 113
 
 **Miguel Velasquez**
 #143528
-#143533
-#143555
-#143551
-#143553
+
 
 Adicionales al compomiso
 #143331
-#143339
-#143329
-#143332
 
 
 ## 5. **Incidentes Gestión Flota Compromentidos**
 
 **Sergio Castro**
 #143885
-#143985
-#144193
-#144194
-#144543
 
+---
+
+**Miguel Velasquez**
+#143528
