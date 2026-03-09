@@ -1,1 +1,51 @@
-dddd
+PLANTILLA A GENERAR (encabezados fijos)
+# Resumen Sprint {{SPRINT_NOMBRE}} ({{FECHA_INICIO}} a {{FECHA_FIN}})
+
+## Objetivo del sprint
+(1-2 líneas)
+
+## Alcance comprometido (HU)
+- ...
+
+## Resultado del sprint
+### Completado
+- ...
+
+### Parcial / En progreso
+- ...
+
+### No completado
+- ...
+
+## Calidad y pruebas
+- Tipos de pruebas ejecutadas (funcionales, regresión, smoke, etc.)
+- Evidencias (si hay enlaces)
+- Defectos relevantes (si hay IDs): impacto y estado
+
+## Riesgos, bloqueos y decisiones
+- ...
+
+## Próximos pasos
+- ...
+
+ENTRADAS (rellenadas por el usuario)
+Sprint:
+- Nombre: {{SPRINT_NOMBRE}}
+- Fechas: {{FECHA_INICIO}} - {{FECHA_FIN}}
+- Objetivo (si existe): {{OBJETIVO_SPRINT}}
+
+Historias de Usuario comprometidas (lista):
+{{LISTA_HU}}
+
+Estado y notas por HU (si aplica):
+{{DETALLE_HU}}
+
+Bugs/incidencias relevantes:
+{{LISTA_BUGS}}
+
+Métricas (si las tienes):
+- # HU comprometidas: {{NUM_HU_COMPROMETIDAS}}
+- # HU completadas: {{NUM_HU_COMPLETADAS}}
+- # bugs encontrados: {{NUM_BUGS}}
+- % ejecución de pruebas (si aplica): {{PORC_EJECUCION_PRUEBAS}}
+- Otros: {{OTRAS_METRICAS}}
