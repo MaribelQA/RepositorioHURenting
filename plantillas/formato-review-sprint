@@ -1,51 +1,67 @@
-PLANTILLA A GENERAR (encabezados fijos)
-# Resumen Sprint {{SPRINT_NOMBRE}} ({{FECHA_INICIO}} a {{FECHA_FIN}})
+Plantilla ejemplo, debes generar la page del sprint 113 
 
-## Objetivo del sprint
-(1-2 líneas)
+<br>
 
-## Alcance comprometido (HU)
-- ...
+<center> <h1 style="color:#02BF6F;"> 📌 SPRINT 112 — Célula de operaciones </h1> </center>
+<center> 📅 11 febrero - 24 febrero </center>
 
-## Resultado del sprint
-### Completado
-- ...
 
-### Parcial / En progreso
-- ...
 
-### No completado
-- ...
+## 1. **Objetivo del Sprint 112**
+>Se continua con el compromiso de implementar las soluciones de las HU y Tareas asignadas a cada miembro del equipo
 
-## Calidad y pruebas
-- Tipos de pruebas ejecutadas (funcionales, regresión, smoke, etc.)
-- Evidencias (si hay enlaces)
-- Defectos relevantes (si hay IDs): impacto y estado
 
-## Riesgos, bloqueos y decisiones
-- ...
+## 2. **HU compromentidas a implementar**
 
-## Próximos pasos
-- ...
+---
 
-ENTRADAS (rellenadas por el usuario)
-Sprint:
-- Nombre: {{SPRINT_NOMBRE}}
-- Fechas: {{FECHA_INICIO}} - {{FECHA_FIN}}
-- Objetivo (si existe): {{OBJETIVO_SPRINT}}
+**Hernan Romero**
 
-Historias de Usuario comprometidas (lista):
-{{LISTA_HU}}
+#123898
+#142179
+#142181
+#142180
 
-Estado y notas por HU (si aplica):
-{{DETALLE_HU}}
+---
 
-Bugs/incidencias relevantes:
-{{LISTA_BUGS}}
+**Andres Almanzar**
 
-Métricas (si las tienes):
-- # HU comprometidas: {{NUM_HU_COMPROMETIDAS}}
-- # HU completadas: {{NUM_HU_COMPLETADAS}}
-- # bugs encontrados: {{NUM_BUGS}}
-- % ejecución de pruebas (si aplica): {{PORC_EJECUCION_PRUEBAS}}
-- Otros: {{OTRAS_METRICAS}}
+#129581
+#137315
+#140008
+#130309
+
+## 3. **Temas transversales y de seguimiento**
+#141774 [Sergio Castro]
+#141773 [Sergio Castro]
+#141289 [Sergio Castro]
+#144760 [Miguel Velasquez]
+#143809
+
+## 4. **Work Orden Comprometidos**
+
+---
+
+**Miguel Velasquez**
+#143528
+#143533
+#143555
+#143551
+#143553
+
+Adicionales al compomiso
+#143331
+#143339
+#143329
+#143332
+
+
+## 5. **Incidentes Gestión Flota Compromentidos**
+
+**Sergio Castro**
+#143885
+#143985
+#144193
+#144194
+#144543
+
