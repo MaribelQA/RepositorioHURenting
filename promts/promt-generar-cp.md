@@ -20,4 +20,4 @@ Refinamiento iterativo:
 
 El resultado ponlo en el canvan/workpad para cocrear.
 
-El formato de salida debe ser en Markdown como tabla que contiene las columnas (Title,	Step Action,	Stept Expected Result)
+El FORMATO DE SALIDA debe ser en .XLSX en una tabla que contiene las columnas (Title,	Step Action,	Stept Expected Result)
