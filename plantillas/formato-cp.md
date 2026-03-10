@@ -1,4 +1,4 @@
-formato salida: Casos de prueba para Azure Devops (Test Plan)
+formato salida: Casos de prueba para Azure Devops (Test Plan) en EXCEL
 La siguiente tabla es un ejemplo de como se espera el resultado, genera el resultado en un formato igual, cada step action debe tener su stept expected result
 
 | Title | Step Action | Stept Expected Result |
