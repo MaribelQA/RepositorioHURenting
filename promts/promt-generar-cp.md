@@ -18,4 +18,4 @@ Refinamiento iterativo:
 "Critica tu respuesta"
 "Crea 3 causas que compitan y define cual es la mejor, y solo entregame la seleccionada"
 
-El FORMATO DE SALIDA debe ser en .XLSX en una tabla que contiene las columnas (Title,	Step Action,	Stept Expected Result)
+El FORMATO DE SALIDA debe ser en Canva/ en una tabla que contiene las columnas (Title,	Step Action,	Stept Expected Result)
