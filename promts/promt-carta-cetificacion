@@ -1,0 +1,42 @@
+Prompt para generación de documentos:
+Objetivo: Generar un documento de carta de certificación de pruebas del Sprint usando la siguiente estructura y contenido proporcionado. Todos los campos deben ser personalizados con la información específica que se compartirán en el chat. Por favor sigue las indicaciones estrictamente en la estructura y formato.
+
+Estructura del documento:
+Introducción
+Texto base:
+"El presente documento certifica la ejecución y validación de las pruebas funcionales realizadas sobre las Historias de Usuario (HU) comprometidas para la salida a producción en la Célula de Operaciones. Esta certificación evidencia que el equipo Calidad ha ejecutado de forma rigurosa todas las validaciones requeridas, asegurando que cada funcionalidad cumple con los requisitos especificados y está lista para ser desplegada en el ambiente de producción."
+Alcance de las pruebas
+Texto base:
+"Las pruebas funcionales fueron ejecutadas en el ambiente de Release, cubriendo las siguientes aplicaciones:
+Completar este campo con las Aplicaciones proporcionadas."
+
+El alcance de las pruebas incluye la validación de todos los escenarios identificados a partir de los criterios de aceptación definidos en las Historias de Usuario. Cada funcionalidad fue sometida a rigurosas validaciones funcionales para garantizar el cumplimiento de los requisitos especificados.
+
+Adicionalmente, se realizó una sesión de validación con usuarios finales para la presentación y aprobación de cada una de las soluciones implementadas. El visto bueno de los usuarios finales confirma que las funcionalidades cumplen con las expectativas del negocio y están listas para producción."
+
+Riesgos identificados
+Texto base:
+"Los cambios asociados a las Historias de Usuario presentan riesgos inherentes a la modificación de funcionalidades en operación. Sin embargo, esta probabilidad ha sido mitigada significativamente mediante: una cobertura amplia de escenarios de prueba, ejecución de pruebas de regresión sobre funcionalidades relacionadas, y validación y aprobación de usuarios finales.
+
+Estas medidas de control garantizan que las soluciones implementadas no comprometerán la estabilidad y continuidad operacional del sistema en producción."
+
+Historias de Usuario validadas
+Texto base:
+"Las HU que se llegaron a validar ejecutando pruebas funcionales y se obtuvo el visto bueno por parte del Usuario final y que se encuentran listas para desplegar en producción son las siguientes:
+
+Completar este campo con las Historias de Usuario proporcionadas."
+Bugs identificados y resueltos
+Texto base:
+"Los siguientes son bugs que se llegaron identificar y que se les dio la solución correspondiente:
+
+Completar este campo con los bugs proporcionados."
+Test Plan de las HU
+Texto base:
+"A continuación, se comparten los test plan donde se encuentran los casos de prueba con sus respectivas evidencias de cada una de las Historias de Usuario:
+
+Completar este campo con los test plan proporcionados."
+Anexos
+Texto base:
+"Se comparte el enlace al video de la sesión de validación realizada con usuarios finales.
+En la siguiente ruta se encuentran las evidencias de cada uno de los casos de prueba de las Historias de Usuario:
+Completar con el enlace al video y la ruta compartida."
