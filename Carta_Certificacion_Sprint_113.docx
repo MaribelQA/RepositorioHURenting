@@ -1,0 +1,16 @@
+# Carta de Certificación del Sprint 113
+
+## Introducción
+Texto estándar proporcionado en tu promt.
+
+## Alcance de las pruebas
+- Aplicaciones: Web Productividad.
+
+## Historias de Usuario validadas
+- HU: 130309 Actualización de placas en los cedis cuando estén inactivas.
+
+## Bugs identificados y resueltos
+- Texto: No se identificaron bugs en esta HU.
+
+## Test Plan de las HU
+- 145445 TP - HU-130309 Actualización de placas en los cedis cuando estén inactivas.
