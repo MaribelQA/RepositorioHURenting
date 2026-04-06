@@ -1,18 +1,144 @@
-"Quiero que tomes el rol de un Especialista de QA Senior con experiencia en metodologías ágiles, responsable de garantizar que las Historias de Usuario (HU) cuenten con criterios de aceptación claros, medibles y orientados a la calidad. Recibirás una descripción inicial de una historia de usuario y deberás seguir estos pasos:
+# Test Case Creation Principles
 
-Analizar el contexto: Identificar cualquier ambigüedad en la descripción y requerir mayor detalle si es necesario (por ejemplo, ¿cuál es el objetivo del usuario con esta funcionalidad?).
+## 📌 Objective
 
-Refinar objetivos: Traducir la idea general de la HU en criterios medibles bajo el enfoque de "Definición de Hecho" (Definition of Done o DoD).
+Generate high-quality, structured, and comprehensive test cases that ensure full validation of system behavior, covering functional correctness, edge cases, and failure scenarios.
 
-Crear un conjunto de criterios de aceptación claros: Los criterios de aceptación deben redactarse en el formato GIVEN-WHEN-THEN, asegurando que cada criterio sea:
+---
 
-Específico y sin ambigüedad.
-Verificable (se puede probar).
-Priorizado según su impacto en los objetivos de negocio y el usuario final.
-Validar las prioridades: Proponer preguntas a los interesados (Product Owner u otros equipos) para asegurar que los criterios prioricen las funcionalidades de mayor valor.
+## 🧠 General Principles
 
-Apoyar en estrategias de validación: Sugerir herramientas o tipos de pruebas automatizadas o manuales para cada criterio (pruebas funcionales, de regresión, de carga, etc.).
+* Each test case must validate ONLY ONE behavior
+* Test cases must be atomic, independent, and reusable
+* Avoid redundancy while ensuring full coverage
+* Use clear, precise, and unambiguous language
+* Focus on user behavior and system response
+* Ensure test cases are reproducible
 
-Responde de manera iterativa: solicita más detalles si la información inicial no está completa y utiliza ejemplos claros para mostrar el resultado de los criterios refinados."
+---
 
-TU RESPUESTA LA NECESITO EN CANVAN PARA COCREAR
+## 🎯 Coverage Requirements
+
+For every requirement, ALWAYS include:
+
+### ✅ Positive Scenarios
+
+* Valid inputs
+* Expected user flows
+* Standard system behavior
+
+### ❌ Negative Scenarios
+
+* Invalid inputs
+* Incorrect credentials
+* Missing required fields
+* Unauthorized access
+
+### ⚠️ Edge Cases
+
+* Boundary values
+* Empty inputs
+* Maximum/minimum limits
+* Unexpected user behavior
+
+---
+
+## 🔍 Test Design Techniques
+
+Apply the following techniques when relevant:
+
+* Equivalence Partitioning
+* Boundary Value Analysis
+* Decision Table Testing
+* State Transition Testing
+* Error Guessing
+
+---
+
+## 🧩 Test Case Structure Rules
+
+* Follow the provided template STRICTLY
+* Do not skip any sections
+* Maintain consistent naming for Test Case IDs
+* Titles must clearly describe:
+
+  * Action
+  * Expected result
+  * Condition
+
+---
+
+## 🔢 Test Steps Rules
+
+* MUST be written as a table with:
+  Step | Action | Expected Result
+* Each step must represent a single user/system action
+* Each step must include a clearly verifiable expected result
+* Steps must be logically ordered
+* Avoid combining multiple actions in one step
+
+---
+
+## 📊 Test Data Guidelines
+
+* Use realistic and meaningful data
+* Clearly define inputs and expected outputs
+* Include valid and invalid data sets where applicable
+
+---
+
+## 🔀 Test Classification
+
+Each test case must include:
+
+* Test Type:
+
+  * Functional
+  * Negative
+  * Edge
+  * Regression
+  * Smoke
+
+* Priority:
+
+  * High → Critical functionality
+  * Medium → Important but not critical
+  * Low → Minor scenarios
+
+---
+
+## 🌍 Environment Awareness
+
+* Assume execution in QA or Staging unless specified
+* Consider environment dependencies when relevant
+
+---
+
+## 🚫 What to Avoid
+
+* Vague or generic test cases
+* Missing expected results
+* Multiple validations in one test case
+* Ambiguous steps
+* Repetitive or duplicate scenarios
+
+---
+
+## 🧪 Quality Criteria Checklist
+
+Each test case MUST:
+
+* Be clear and easy to understand
+* Be executable without additional clarification
+* Have deterministic expected results
+* Be independent from other test cases
+* Provide value in defect detection
+
+---
+
+## ⚡ Output Requirements
+
+* Output MUST follow the test-case-template.md strictly
+* Output MUST be in Spanish
+* Maintain consistent formatting (Markdown)
+* Ensure readability and professional structure
