@@ -1,0 +1,609 @@
+========================================================
+CASOS DE PRUEBA - SISTEMA DE RENTING
+HU-001: Reserva de Vehículo
+Formato: Azure TestPlan
+========================================================
+
+Proyecto      : Sistema de Renting
+HU de origen  : HU-001 – Reserva de Vehículo
+Elaborado por : Equipo QA
+Fecha         : 2026-03-08
+Versión       : 1.0
+
+--------------------------------------------------------
+FORMATO DE CADA CASO DE PRUEBA:
+ID              Identificador único del caso de prueba
+Título          Nombre descriptivo del caso
+CA              Criterio de aceptación que valida
+Descripción     Objetivo del caso de prueba
+Precondiciones  Estado previo requerido para ejecutar el caso
+Pasos           Acciones a ejecutar paso a paso
+Resultado Esp.  Comportamiento esperado del sistema
+Tipo de Prueba  Funcional / No Funcional / Negativo / Regresión
+Prioridad       Alta / Media / Baja
+Estado          Activo / Inactivo
+========================================================
+
+
+
+========================================================
+CA-001: Búsqueda de vehículos disponibles
+========================================================
+
+CP-001
+Título         : Búsqueda exitosa con parámetros válidos
+CA             : CA-001
+Descripción    : Verificar que el sistema devuelve vehículos disponibles
+                 cuando se ingresan fecha de inicio, fecha de fin y ciudad válidas.
+Precondiciones : - El usuario está autenticado en el sistema.
+                 - Existen vehículos registrados y disponibles en la ciudad "Bogotá"
+                   para las fechas 2026-04-01 al 2026-04-05.
+Pasos          :
+  1. Ingresar a la página principal del sistema de Renting.
+  2. Seleccionar la ciudad de recogida: "Bogotá".
+  3. Ingresar fecha de inicio: 2026-04-01.
+  4. Ingresar fecha de fin: 2026-04-05.
+  5. Hacer clic en el botón "Buscar".
+Resultado Esp. : El sistema muestra una lista de vehículos disponibles para las
+                 fechas y ciudad indicadas.
+                 Cada resultado incluye: nombre del vehículo, categoría y precio por día.
+Tipo de Prueba : Funcional
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-002
+Título         : Búsqueda sin resultados disponibles
+CA             : CA-001
+Descripción    : Verificar que el sistema muestra mensaje informativo cuando no hay
+                 vehículos disponibles para los parámetros ingresados.
+Precondiciones : - El usuario está autenticado.
+                 - No existen vehículos disponibles en "Medellín" para las
+                   fechas 2026-12-24 al 2026-12-31 (todos ocupados o bloqueados).
+Pasos          :
+  1. Seleccionar ciudad de recogida: "Medellín".
+  2. Ingresar fecha de inicio: 2026-12-24.
+  3. Ingresar fecha de fin: 2026-12-31.
+  4. Hacer clic en el botón "Buscar".
+Resultado Esp. : El sistema muestra el mensaje:
+                 "No hay vehículos disponibles para las fechas y ciudad seleccionadas."
+                 No se muestran tarjetas de vehículos.
+Tipo de Prueba : Funcional / Negativo
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-003
+Título         : Búsqueda con campos obligatorios vacíos
+CA             : CA-001
+Descripción    : Verificar que el sistema impide la búsqueda cuando uno o más campos
+                 requeridos están vacíos.
+Precondiciones : - El usuario está autenticado.
+                 - El formulario de búsqueda está en estado inicial (vacío).
+Pasos          :
+  1. Dejar todos los campos de búsqueda vacíos.
+  2. Hacer clic en el botón "Buscar".
+Resultado Esp. : El sistema no realiza la búsqueda y muestra mensajes de validación
+                 indicando los campos requeridos: "Ciudad es obligatoria",
+                 "Fecha de inicio es obligatoria", "Fecha de fin es obligatoria".
+Tipo de Prueba : Negativo
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-004
+Título         : Búsqueda con fecha de inicio igual a la fecha actual
+CA             : CA-001
+Descripción    : Verificar que el sistema acepta búsquedas con fecha de inicio
+                 igual al día actual.
+Precondiciones : - El usuario está autenticado.
+                 - Existen vehículos disponibles en "Cali" desde la fecha actual.
+Pasos          :
+  1. Seleccionar ciudad de recogida: "Cali".
+  2. Ingresar fecha de inicio: fecha actual del sistema.
+  3. Ingresar fecha de fin: fecha actual + 3 días.
+  4. Hacer clic en el botón "Buscar".
+Resultado Esp. : El sistema ejecuta la búsqueda y muestra los vehículos disponibles.
+Tipo de Prueba : Funcional
+Prioridad      : Media
+Estado         : Activo
+
+
+========================================================
+CA-002: Filtrado de resultados de búsqueda
+========================================================
+
+CP-005
+Título         : Filtrar resultados por categoría de vehículo
+CA             : CA-002
+Descripción    : Verificar que al aplicar el filtro por categoría, solo se muestran
+                 vehículos de la categoría seleccionada.
+Precondiciones : - El usuario realizó una búsqueda que devolvió resultados con al
+                   menos dos categorías distintas (Económico y SUV).
+Pasos          :
+  1. En la pantalla de resultados, seleccionar el filtro "Categoría: SUV".
+Resultado Esp. : La lista se actualiza en tiempo real mostrando únicamente vehículos
+                 de categoría SUV. Los demás vehículos quedan ocultos.
+                 No se recarga la página.
+Tipo de Prueba : Funcional
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-006
+Título         : Filtrar resultados por precio ascendente
+CA             : CA-002
+Descripción    : Verificar que el sistema ordena los vehículos de menor a mayor
+                 precio al aplicar el filtro de precio ascendente.
+Precondiciones : - El usuario realizó una búsqueda que devolvió al menos 3 resultados
+                   con precios diferentes.
+Pasos          :
+  1. En la pantalla de resultados, seleccionar el filtro "Precio: Menor a Mayor".
+Resultado Esp. : Los vehículos se reordenan de forma que el primer resultado tiene
+                 el precio por día más bajo y el último el más alto.
+                 El reordenamiento ocurre sin recargar la página.
+Tipo de Prueba : Funcional
+Prioridad      : Media
+Estado         : Activo
+
+---
+
+CP-007
+Título         : Filtrar resultados por transmisión automática
+CA             : CA-002
+Descripción    : Verificar que el filtro por transmisión muestra únicamente vehículos
+                 con transmisión automática.
+Precondiciones : - El usuario realizó una búsqueda con vehículos de transmisión
+                   manual y automática en los resultados.
+Pasos          :
+  1. En la pantalla de resultados, seleccionar el filtro "Transmisión: Automático".
+Resultado Esp. : Solo se muestran vehículos con transmisión automática.
+                 Vehículos con transmisión manual quedan ocultos.
+                 El cambio se aplica en tiempo real sin recargar la página.
+Tipo de Prueba : Funcional
+Prioridad      : Media
+Estado         : Activo
+
+---
+
+CP-008
+Título         : Combinación de múltiples filtros simultáneos
+CA             : CA-002
+Descripción    : Verificar que el sistema aplica correctamente múltiples filtros
+                 de forma simultánea.
+Precondiciones : - El usuario realizó una búsqueda que devolvió resultados de
+                   múltiples categorías y tipos de transmisión.
+Pasos          :
+  1. Seleccionar el filtro "Categoría: Económico".
+  2. Seleccionar el filtro "Transmisión: Manual".
+  3. Seleccionar el filtro "Precio: Menor a Mayor".
+Resultado Esp. : La lista muestra únicamente vehículos económicos, con transmisión
+                 manual, ordenados de menor a mayor precio.
+                 Los cambios se reflejan en tiempo real sin recargar la página.
+Tipo de Prueba : Funcional
+Prioridad      : Alta
+Estado         : Activo
+
+
+========================================================
+CA-003: Visualización del detalle del vehículo
+========================================================
+
+CP-009
+Título         : Ver detalle completo de un vehículo
+CA             : CA-003
+Descripción    : Verificar que al seleccionar un vehículo de los resultados, se
+                 muestra toda la información requerida en el detalle.
+Precondiciones : - El usuario realizó una búsqueda y visualiza una lista de resultados.
+Pasos          :
+  1. En la lista de resultados, hacer clic sobre la tarjeta o nombre de un vehículo.
+Resultado Esp. : La pantalla de detalle muestra:
+                 - Nombre del modelo y año.
+                 - Categoría del vehículo.
+                 - Precio por día.
+                 - Capacidad de pasajeros.
+                 - Tipo de transmisión.
+                 - Al menos 3 fotografías del vehículo.
+                 - Política de cancelación.
+Tipo de Prueba : Funcional
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-010
+Título         : Regresar a la lista manteniendo los filtros aplicados
+CA             : CA-003
+Descripción    : Verificar que al regresar desde el detalle del vehículo, los filtros
+                 previamente aplicados se conservan en la lista de resultados.
+Precondiciones : - El usuario aplicó el filtro "Categoría: SUV" y "Precio: Menor a Mayor",
+                   luego ingresó al detalle de un vehículo.
+Pasos          :
+  1. En la pantalla de detalle del vehículo, hacer clic en "Regresar" o
+     en el botón de retroceso del navegador.
+Resultado Esp. : La lista de resultados se muestra nuevamente con los filtros
+                 aplicados anteriormente (Categoría: SUV, Precio: Menor a Mayor)
+                 sin necesidad de volver a aplicarlos.
+Tipo de Prueba : Funcional
+Prioridad      : Media
+Estado         : Activo
+
+---
+
+CP-011
+Título         : Verificar galería de imágenes del vehículo
+CA             : CA-003
+Descripción    : Verificar que el detalle del vehículo incluye mínimo 3 fotografías
+                 navegables.
+Precondiciones : - El usuario se encuentra en la pantalla de detalle de un vehículo.
+Pasos          :
+  1. Observar la sección de galería de imágenes.
+  2. Navegar entre las imágenes utilizando los controles de la galería (siguiente / anterior).
+Resultado Esp. : Se visualizan al menos 3 fotografías del vehículo.
+                 Los controles de navegación permiten avanzar y retroceder entre imágenes.
+Tipo de Prueba : Funcional
+Prioridad      : Media
+Estado         : Activo
+
+
+========================================================
+CA-004: Selección y confirmación de reserva
+========================================================
+
+CP-012
+Título         : Realizar reserva completa con datos válidos
+CA             : CA-004
+Descripción    : Verificar que el cliente puede completar una reserva proporcionando
+                 todos los datos requeridos y que el sistema muestra el costo total.
+Precondiciones : - El usuario está autenticado y en la pantalla de detalle de un vehículo disponible.
+Pasos          :
+  1. Hacer clic en el botón "Reservar".
+  2. Seleccionar fecha y hora de recogida: 2026-04-01 10:00.
+  3. Seleccionar fecha y hora de devolución: 2026-04-05 10:00.
+  4. Seleccionar lugar de recogida: "Sucursal Centro Bogotá".
+  5. Seleccionar lugar de devolución: "Sucursal Centro Bogotá".
+  6. Revisar el costo total calculado por el sistema.
+  7. Hacer clic en "Confirmar Reserva".
+Resultado Esp. : El sistema calcula y muestra el costo total (precio/día × número de días).
+                 Al confirmar, el sistema procesa la reserva exitosamente y redirige
+                 a la pantalla de confirmación.
+Tipo de Prueba : Funcional
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-013
+Título         : Verificar cálculo correcto del costo total de la reserva
+CA             : CA-004
+Descripción    : Verificar que el costo total calculado corresponde al precio por día
+                 multiplicado por el número de días de reserva.
+Precondiciones : - El usuario seleccionó un vehículo con precio de $150.000 por día.
+Pasos          :
+  1. Seleccionar fecha de recogida: 2026-05-01.
+  2. Seleccionar fecha de devolución: 2026-05-04 (3 días).
+  3. Observar el costo total mostrado en pantalla.
+Resultado Esp. : El sistema muestra el costo total de $450.000 (3 días × $150.000/día).
+Tipo de Prueba : Funcional
+Prioridad      : Alta
+Estado         : Activo
+
+
+========================================================
+CA-005: Validación de datos de reserva
+========================================================
+
+CP-014
+Título         : Validación de fecha de inicio anterior a la fecha actual
+CA             : CA-005
+Descripción    : Verificar que el sistema rechaza una reserva cuya fecha de inicio
+                 es anterior a la fecha actual.
+Precondiciones : - El usuario se encuentra en el formulario de reserva de un vehículo.
+Pasos          :
+  1. Ingresar fecha de recogida: 2025-01-01 (fecha pasada).
+  2. Ingresar fecha de devolución: 2025-01-05.
+  3. Hacer clic en "Confirmar Reserva".
+Resultado Esp. : El sistema muestra un mensaje de error junto al campo de fecha de inicio:
+                 "La fecha de recogida no puede ser anterior a la fecha actual."
+                 La reserva no se procesa.
+Tipo de Prueba : Negativo
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-015
+Título         : Validación de fecha de fin anterior o igual a la fecha de inicio
+CA             : CA-005
+Descripción    : Verificar que el sistema rechaza una reserva cuando la fecha de fin
+                 es igual o anterior a la fecha de inicio.
+Precondiciones : - El usuario se encuentra en el formulario de reserva.
+Pasos          :
+  1. Ingresar fecha de recogida: 2026-04-10.
+  2. Ingresar fecha de devolución: 2026-04-08 (anterior a la fecha de inicio).
+  3. Hacer clic en "Confirmar Reserva".
+Resultado Esp. : El sistema muestra el mensaje de error:
+                 "La fecha de devolución debe ser posterior a la fecha de recogida."
+                 La reserva no se procesa.
+Tipo de Prueba : Negativo
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-016
+Título         : Validación de campos obligatorios vacíos en el formulario de reserva
+CA             : CA-005
+Descripción    : Verificar que el sistema valida y muestra mensajes de error cuando
+                 los campos obligatorios del formulario de reserva están vacíos.
+Precondiciones : - El usuario se encuentra en el formulario de reserva con todos
+                   los campos vacíos.
+Pasos          :
+  1. Dejar todos los campos del formulario de reserva vacíos.
+  2. Hacer clic en "Confirmar Reserva".
+Resultado Esp. : El sistema muestra mensajes de error descriptivos junto a cada campo
+                 obligatorio vacío. La reserva no se procesa.
+Tipo de Prueba : Negativo
+Prioridad      : Alta
+Estado         : Activo
+
+
+========================================================
+CA-006: Confirmación y notificación de reserva
+========================================================
+
+CP-017
+Título         : Verificar generación de número de confirmación único
+CA             : CA-006
+Descripción    : Verificar que al confirmar una reserva, el sistema genera un número
+                 de confirmación único.
+Precondiciones : - El usuario completó y confirmó una reserva correctamente.
+Pasos          :
+  1. Completar el flujo de reserva con datos válidos.
+  2. Hacer clic en "Confirmar Reserva".
+  3. Observar la pantalla de confirmación.
+Resultado Esp. : La pantalla muestra un número de confirmación único generado por el sistema.
+                 El número es diferente al de otras reservas previas.
+Tipo de Prueba : Funcional
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-018
+Título         : Verificar resumen completo en pantalla de confirmación
+CA             : CA-006
+Descripción    : Verificar que la pantalla de confirmación muestra todos los datos
+                 requeridos de la reserva.
+Precondiciones : - El usuario acaba de confirmar una reserva exitosamente.
+Pasos          :
+  1. Observar la pantalla de confirmación mostrada tras confirmar la reserva.
+Resultado Esp. : La pantalla muestra:
+                 - Nombre del vehículo reservado.
+                 - Fechas de recogida y devolución.
+                 - Lugar de recogida y devolución.
+                 - Costo total de la reserva.
+                 - Número de confirmación único.
+Tipo de Prueba : Funcional
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-019
+Título         : Verificar envío de correo de confirmación en tiempo máximo de 5 minutos
+CA             : CA-006
+Descripción    : Verificar que el cliente recibe un correo electrónico de confirmación
+                 con todos los detalles de la reserva en un máximo de 5 minutos.
+Precondiciones : - El usuario tiene un correo electrónico válido registrado.
+                 - El usuario confirmó una reserva exitosamente.
+Pasos          :
+  1. Confirmar una reserva con datos válidos.
+  2. Esperar hasta 5 minutos.
+  3. Revisar la bandeja de entrada del correo registrado.
+Resultado Esp. : El cliente recibe un correo electrónico dentro de los 5 minutos
+                 posteriores a la confirmación, con los detalles completos de la reserva:
+                 vehículo, fechas, lugar, costo total y número de confirmación.
+Tipo de Prueba : Funcional
+Prioridad      : Alta
+Estado         : Activo
+
+
+========================================================
+CA-007: Consulta de reservas activas
+========================================================
+
+CP-020
+Título         : Consultar lista de reservas activas del cliente
+CA             : CA-007
+Descripción    : Verificar que el cliente puede consultar todas sus reservas activas
+                 desde su perfil, con la información requerida.
+Precondiciones : - El cliente tiene al menos 2 reservas en estado "Confirmada".
+                 - El usuario está autenticado.
+Pasos          :
+  1. Acceder al perfil del usuario.
+  2. Seleccionar la sección "Mis Reservas".
+Resultado Esp. : Se muestran todas las reservas activas del cliente, cada una con:
+                 - Número de confirmación.
+                 - Nombre del vehículo reservado.
+                 - Fechas de la reserva.
+                 - Estado de la reserva (Pendiente / Confirmada / En curso / Finalizada / Cancelada).
+                 - Costo total.
+Tipo de Prueba : Funcional
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-021
+Título         : Verificar visualización de diferentes estados de reserva
+CA             : CA-007
+Descripción    : Verificar que el sistema muestra correctamente los diferentes estados
+                 de las reservas del cliente.
+Precondiciones : - El cliente tiene reservas en los estados: Confirmada, En curso y Cancelada.
+Pasos          :
+  1. Acceder al perfil del usuario.
+  2. Seleccionar la sección "Mis Reservas".
+  3. Observar el estado indicado para cada reserva.
+Resultado Esp. : Cada reserva muestra su estado real:
+                 - Reserva futura: "Confirmada".
+                 - Reserva en fecha actual: "En curso".
+                 - Reserva cancelada: "Cancelada".
+Tipo de Prueba : Funcional
+Prioridad      : Media
+Estado         : Activo
+
+---
+
+CP-022
+Título         : Consultar reservas cuando no se tienen reservas registradas
+CA             : CA-007
+Descripción    : Verificar el comportamiento del sistema cuando el cliente no tiene
+                 reservas registradas.
+Precondiciones : - El cliente autenticado no tiene ninguna reserva registrada.
+Pasos          :
+  1. Acceder al perfil del usuario.
+  2. Seleccionar la sección "Mis Reservas".
+Resultado Esp. : El sistema muestra un mensaje indicando que no hay reservas registradas,
+                 por ejemplo: "No tienes reservas registradas aún."
+Tipo de Prueba : Funcional / Negativo
+Prioridad      : Media
+Estado         : Activo
+
+
+========================================================
+CA-008: Cancelación de reserva
+========================================================
+
+CP-023
+Título         : Cancelar una reserva con más de 24 horas de anticipación
+CA             : CA-008
+Descripción    : Verificar que el cliente puede cancelar una reserva con anticipación
+                 mayor a 24 horas y que el sistema actualiza el estado correctamente.
+Precondiciones : - El cliente tiene una reserva "Confirmada" con fecha de recogida
+                   en más de 24 horas.
+                 - El usuario está autenticado.
+Pasos          :
+  1. Acceder a "Mis Reservas" en el perfil.
+  2. Seleccionar la reserva a cancelar.
+  3. Hacer clic en "Cancelar Reserva".
+  4. Leer la política de cancelación mostrada.
+  5. Confirmar la cancelación.
+Resultado Esp. : - Se muestra la política de cancelación antes de confirmar.
+                 - El estado de la reserva cambia a "Cancelada".
+                 - El vehículo queda disponible para nuevas reservas.
+                 - Se envía un correo de confirmación de cancelación al cliente.
+Tipo de Prueba : Funcional
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-024
+Título         : Intentar cancelar reserva con menos de 24 horas de anticipación
+CA             : CA-008
+Descripción    : Verificar que el sistema impide la cancelación cuando faltan menos
+                 de 24 horas para la fecha de recogida.
+Precondiciones : - El cliente tiene una reserva "Confirmada" cuya fecha de recogida
+                   es en menos de 24 horas.
+Pasos          :
+  1. Acceder a "Mis Reservas" en el perfil.
+  2. Seleccionar la reserva con fecha de recogida próxima.
+  3. Hacer clic en "Cancelar Reserva".
+Resultado Esp. : El sistema muestra un mensaje indicando que no es posible cancelar
+                 la reserva:
+                 "No es posible cancelar la reserva con menos de 24 horas de anticipación.
+                 Por favor comuníquese con nuestro servicio al cliente."
+                 La reserva permanece en estado "Confirmada".
+Tipo de Prueba : Negativo
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-025
+Título         : Verificar política de cancelación antes de confirmar la cancelación
+CA             : CA-008
+Descripción    : Verificar que el sistema muestra la política de cancelación al
+                 cliente antes de que confirme la cancelación de su reserva.
+Precondiciones : - El cliente tiene una reserva cancelable (más de 24 horas de anticipación).
+Pasos          :
+  1. Acceder a "Mis Reservas" en el perfil.
+  2. Seleccionar la reserva y hacer clic en "Cancelar Reserva".
+  3. Observar la información mostrada en pantalla antes de confirmar.
+Resultado Esp. : El sistema muestra claramente la política de cancelación aplicable
+                 (términos y condiciones de reembolso/penalidad) antes de mostrar
+                 el botón de confirmación.
+Tipo de Prueba : Funcional
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-026
+Título         : Verificar disponibilidad del vehículo tras cancelación
+CA             : CA-008
+Descripción    : Verificar que después de cancelar una reserva, el vehículo queda
+                 disponible para ser reservado por otro cliente en las mismas fechas.
+Precondiciones : - Se canceló exitosamente una reserva del vehículo "Modelo X"
+                   para las fechas 2026-06-01 al 2026-06-05 en Bogotá.
+Pasos          :
+  1. Con un usuario diferente (o sesión nueva), realizar una búsqueda para las
+     fechas 2026-06-01 al 2026-06-05 en Bogotá.
+  2. Verificar si el "Modelo X" aparece en los resultados.
+Resultado Esp. : El vehículo "Modelo X" aparece como disponible en los resultados
+                 de búsqueda para las fechas previamente canceladas.
+Tipo de Prueba : Funcional / Integración
+Prioridad      : Alta
+Estado         : Activo
+
+---
+
+CP-027
+Título         : Verificar envío de correo de confirmación de cancelación
+CA             : CA-008
+Descripción    : Verificar que el cliente recibe un correo electrónico confirmando
+                 la cancelación de su reserva.
+Precondiciones : - El cliente tiene un correo válido registrado.
+                 - El cliente canceló una reserva exitosamente.
+Pasos          :
+  1. Realizar la cancelación exitosa de una reserva.
+  2. Revisar la bandeja de entrada del correo registrado.
+Resultado Esp. : El cliente recibe un correo electrónico confirmando la cancelación,
+                 con los detalles de la reserva cancelada (número de confirmación,
+                 vehículo, fechas originales).
+Tipo de Prueba : Funcional
+Prioridad      : Media
+Estado         : Activo
+
+
+========================================================
+RESUMEN DE CASOS DE PRUEBA
+========================================================
+
+Total de Casos de Prueba : 27
+Distribución por CA      :
+  CA-001 (Búsqueda)        : CP-001 a CP-004  (4 casos)
+  CA-002 (Filtrado)        : CP-005 a CP-008  (4 casos)
+  CA-003 (Detalle)         : CP-009 a CP-011  (3 casos)
+  CA-004 (Selección)       : CP-012 a CP-013  (2 casos)
+  CA-005 (Validación)      : CP-014 a CP-016  (3 casos)
+  CA-006 (Confirmación)    : CP-017 a CP-019  (3 casos)
+  CA-007 (Consulta)        : CP-020 a CP-022  (3 casos)
+  CA-008 (Cancelación)     : CP-023 a CP-027  (5 casos)
+
+Distribución por Tipo    :
+  Funcional                : 19 casos
+  Negativo                 : 6 casos
+  Integración              : 1 caso
+  Funcional / Negativo     : 2 casos
+
+Distribución por Prioridad:
+  Alta                     : 20 casos
+  Media                    : 7 casos
+
+========================================================

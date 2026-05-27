@@ -1,0 +1,99 @@
+========================================
+HISTORIA DE USUARIO - SISTEMA DE RENTING
+========================================
+
+ID: HU-001
+Módulo: Reserva de Vehículo
+Épica: Gestión de Rentas
+
+<descripcion>
+Como cliente registrado en el sistema de Renting,
+quiero poder buscar vehículos disponibles, seleccionar uno
+y realizar una reserva en línea,
+para asegurar la disponibilidad del vehículo en las fechas y
+lugar que necesito sin tener que acudir presencialmente a una sucursal.
+</descripcion>
+
+Prioridad: Alta
+Estimación: 8 Story Points
+Sprint: 2
+
+----------------------------------------
+CRITERIOS DE ACEPTACIÓN
+----------------------------------------
+
+<CA>
+CA-001: Búsqueda de vehículos disponibles
+El sistema debe permitir al cliente ingresar fecha de inicio, fecha de fin
+y ciudad de recogida para buscar vehículos disponibles.
+Solo se deben mostrar vehículos con disponibilidad en el rango de fechas indicado.
+Si no hay vehículos disponibles, el sistema debe mostrar el mensaje:
+"No hay vehículos disponibles para las fechas y ciudad seleccionadas."
+
+CA-002: Filtrado de resultados de búsqueda
+El cliente debe poder filtrar los resultados de búsqueda por:
+categoría de vehículo (Económico, Estándar, SUV, Lujo),
+precio por día (ascendente / descendente),
+y transmisión (Manual / Automático).
+Los filtros deben actualizarse en tiempo real sin recargar la página.
+
+CA-003: Visualización del detalle del vehículo
+Al seleccionar un vehículo, el sistema debe mostrar:
+nombre del modelo, año, categoría, precio por día, capacidad de pasajeros,
+tipo de transmisión, fotos del vehículo (mínimo 3), y política de cancelación.
+El cliente debe poder regresar a la lista de resultados sin perder los filtros aplicados.
+
+CA-004: Selección y confirmación de reserva
+El cliente debe poder seleccionar un vehículo disponible y proceder
+con la reserva proporcionando:
+fecha y hora de recogida, fecha y hora de devolución, lugar de recogida
+(sucursal o aeropuerto), y lugar de devolución.
+El sistema debe calcular y mostrar el costo total antes de confirmar.
+
+CA-005: Validación de datos de reserva
+El sistema debe validar que:
+la fecha de inicio no sea anterior a la fecha actual,
+la fecha de fin sea posterior a la fecha de inicio,
+los campos obligatorios no estén vacíos.
+En caso de error, debe mostrar mensajes descriptivos junto a cada campo inválido.
+
+CA-006: Confirmación y notificación de reserva
+Una vez confirmada la reserva, el sistema debe:
+generar un número de confirmación único,
+mostrar en pantalla el resumen de la reserva (vehículo, fechas, costo total,
+número de confirmación),
+enviar un correo electrónico de confirmación al cliente con todos los detalles
+en un máximo de 5 minutos.
+
+CA-007: Consulta de reservas activas
+El cliente debe poder consultar todas sus reservas activas desde su perfil,
+visualizando: número de confirmación, vehículo reservado, fechas, estado
+(Pendiente / Confirmada / En curso / Finalizada / Cancelada) y costo total.
+
+CA-008: Cancelación de reserva
+El cliente debe poder cancelar una reserva con al menos 24 horas de anticipación
+a la fecha de recogida.
+El sistema debe mostrar la política de cancelación antes de confirmar.
+Al cancelar, el estado de la reserva debe cambiar a "Cancelada" y el
+vehículo debe quedar disponible nuevamente.
+Se debe enviar confirmación de cancelación al correo del cliente.
+</CA>
+
+----------------------------------------
+REGLAS DE NEGOCIO
+----------------------------------------
+
+RN-001: Un cliente solo puede tener hasta 3 reservas activas simultáneamente.
+RN-002: La reserva mínima es de 1 día y la máxima de 30 días continuos.
+RN-003: El cliente debe tener mínimo 18 años y licencia de conducir vigente.
+RN-004: El pago se realiza al momento de recoger el vehículo en sucursal.
+
+----------------------------------------
+NOTAS ADICIONALES
+----------------------------------------
+
+- Los vehículos mostrados deben corresponder a la sucursal de recogida seleccionada.
+- El sistema debe funcionar correctamente en Chrome, Firefox, Safari y Edge.
+- El tiempo de respuesta de búsqueda no debe superar los 3 segundos.
+
+========================================
