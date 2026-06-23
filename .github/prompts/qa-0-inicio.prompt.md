@@ -20,9 +20,9 @@ cada una, te diré cuál sigue —no tienes que recordar nada—:
 
 | Paso | Comando | Qué hace | Resultado |
 | --- | --- | --- | --- |
-| 1️⃣ | `/qa-clarificar` | Entiende tu HU, arma la **Matriz de Ambigüedades** y te pregunta lo que no está claro | HU refinada + matriz |
+| 1️⃣ | `/qa-clarificar` | Entiende tu HU, arma la **Matriz de hallazgos** y te pregunta lo que no está claro | Reporte de Clarificación |
 | 2️⃣ | `/qa-gaps` | Compara el código contra la HU y detecta vacíos | Reporte de gaps |
-| 3️⃣ | `/qa-casos` | Diseña los casos de prueba a partir de la HU refinada | Casos de prueba |
+| 3️⃣ | `/qa-casos` | Diseña los casos de prueba a partir de la HU y su clarificación | Casos de prueba |
 | 4️⃣ | `/qa-registrar` | Registra los casos como Test Case en Azure DevOps | Work Items en ADO |
 
 **Para empezar ahora (en un solo mensaje):**

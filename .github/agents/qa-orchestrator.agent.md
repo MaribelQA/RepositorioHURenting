@@ -18,15 +18,15 @@ una entrada válida y produzca una salida con su bloque de hand-off.
 ## Pipeline que coordinas
 
 ```
-@qa-refinement  ──►  @qa-gap-analysis  ──►  @qa-test-design  ──►  @qa-ado-registration
-   (HU refinada)      (reporte gaps)         (casos prueba)         (Work Items ADO)
+@qa-refinement       ──►  @qa-gap-analysis  ──►  @qa-test-design  ──►  @qa-ado-registration
+(Reporte Clarificación)    (reporte gaps)         (casos prueba)         (Work Items ADO)
 ```
 
 | Etapa | Agente | Entrada | Salida |
 | --- | --- | --- | --- |
-| 1. Refinamiento | `@qa-refinement` | HU pegada o adjunta en el chat | HU refinada en el chat (opcional: `hu-directory/HU-*_refinement.md`) |
-| 2. Análisis de Gaps | `@qa-gap-analysis` | HU refinada + código | `reportes-gaps/HU-*_gaps.md` |
-| 3. Diseño de Casos | `@qa-test-design` | HU refinada (+ gaps) | `casos-prueba/HU-*_casos.md` |
+| 1. Clarificación | `@qa-refinement` | HU pegada o adjunta en el chat | Reporte de Clarificación en el chat (opcional: `hu-directory/HU-*_clarificacion.md`). NO reescribe la HU |
+| 2. Análisis de Gaps | `@qa-gap-analysis` | HU original + Reporte de Clarificación + código | `reportes-gaps/HU-*_gaps.md` |
+| 3. Diseño de Casos | `@qa-test-design` | HU original + Reporte de Clarificación (+ gaps) | `casos-prueba/HU-*_casos.md` |
 | 4. Registro ADO | `@qa-ado-registration` | Casos de prueba | Work Items (Test Case) en ADO |
 
 ## Flujo de trabajo
@@ -61,7 +61,7 @@ Al finalizar cada interacción, muestra una tabla:
 
 | Etapa | Agente | Artefacto | Estado |
 | --- | --- | --- | --- |
-| 1. Refinamiento | qa-refinement | `...` | ✅ / 🟡 / ⏳ Pendiente |
+| 1. Clarificación | qa-refinement | `...` | ✅ / 🟡 / ⏳ Pendiente |
 | 2. Gaps | qa-gap-analysis | `...` | ... |
 | 3. Diseño de casos | qa-test-design | `...` | ... |
 | 4. Registro ADO | qa-ado-registration | `...` | ... |

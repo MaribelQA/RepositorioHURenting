@@ -38,7 +38,7 @@ un contrato de hand-off común (ver sección 5).
 
 | Carpeta | Contenido | Producido por |
 | --- | --- | --- |
-| `hu-directory/` | HU refinadas (`*_refinement.md`) cuando el usuario pide guardarlas | Agente de Refinamiento (la HU de entrada se pega/adjunta en el chat, no requiere archivo) |
+| `hu-directory/` | Reportes de Clarificación (`*_clarificacion.md`) cuando el usuario pide guardarlos | Agente de Clarificación (la HU de entrada se pega/adjunta en el chat; la HU original NO se reescribe) |
 | `casos-prueba/` | Casos de prueba diseñados (formato plantilla y/o ADO) | Agente de Diseño de Casos |
 | `reportes-gaps/` | Reportes de análisis Código vs HU | Agente de Análisis de Gaps |
 | `plantillas/` | Plantillas oficiales (NO modificar sin acuerdo del equipo) | Equipo QA |
@@ -59,24 +59,24 @@ Todos los agentes viven en `.github/agents/` y usan la nomenclatura `qa-<rol>`.
 | # | Agente (archivo) | Invocación | Rol | Estado |
 | --- | --- | --- | --- | --- |
 | 0 | `qa-orchestrator.agent.md` | `@qa-orchestrator` | **Orquestador**: enruta el flujo, valida artefactos y delega en los demás | ✅ Activo |
-| 1 | `qa-refinement.agent.md` | `@qa-refinement` | **Refinamiento de HU**: análisis estático ISTQB, preguntas de aclaración y HU refinada | ✅ Activo |
-| 2 | `qa-test-design.agent.md` | `@qa-test-design` | **Diseño de Casos**: genera casos de prueba desde la HU refinada | 🟡 Esqueleto (a refinar) |
+| 1 | `qa-refinement.agent.md` | `@qa-refinement` | **Análisis y Clarificación de HU**: análisis estático ISTQB, preguntas de aclaración y Reporte de Clarificación (NO reescribe la HU) | ✅ Activo |
+| 2 | `qa-test-design.agent.md` | `@qa-test-design` | **Diseño de Casos**: genera casos desde la HU original + Reporte de Clarificación | 🟡 Esqueleto (a refinar) |
 | 3 | `qa-gap-analysis.agent.md` | `@qa-gap-analysis` | **Análisis de Gaps**: compara código vs HU y detecta vacíos | 🟡 Esqueleto (a refinar) |
 | 4 | `qa-ado-registration.agent.md` | `@qa-ado-registration` | **Registro en ADO**: crea Work Items (Test Case) en Azure DevOps | 🟡 Esqueleto (a refinar) |
 
 **Flujo por defecto:**
 
 ```
-@qa-refinement  ──►  @qa-gap-analysis  ──►  @qa-test-design  ──►  @qa-ado-registration
-   (HU refinada)      (reporte gaps)         (casos prueba)         (Work Items ADO)
+@qa-refinement       ──►  @qa-gap-analysis  ──►  @qa-test-design  ──►  @qa-ado-registration
+(Reporte Clarificación)    (reporte gaps)         (casos prueba)         (Work Items ADO)
         ▲                                                                  
-        └──────────────── @qa-orchestrator coordina y valida ─────────────┘
+        └──────────────────── @qa-orchestrator coordina y valida ─────────────────┘
 ```
 
 El usuario puede invocar a un agente directamente o pedirle al orquestador que
 conduzca el flujo completo de principio a fin.
 
-### Flujo guiado por comandos (estilo Spec-Kit)
+### Flujo guiado por comandos (pasos `/`)
 
 Además de los agentes, hay **prompt files** en `.github/prompts/` que funcionan como
 **comandos `/`** y guían el proceso paso a paso, encadenándose entre sí (cada comando
@@ -85,7 +85,7 @@ termina recomendando el siguiente):
 | Comando | Paso | Detrás está el agente |
 | --- | --- | --- |
 | `/qa-inicio` | Muestra el roadmap y cómo empezar | — |
-| `/qa-clarificar` | 1. Matriz de Ambigüedades + preguntas + HU refinada | `qa-refinement` |
+| `/qa-clarificar` | 1. Matriz de hallazgos + preguntas + Reporte de Clarificación | `qa-refinement` |
 | `/qa-gaps` | 2. Análisis código vs HU | `qa-gap-analysis` |
 | `/qa-casos` | 3. Diseño de casos de prueba | `qa-test-design` |
 | `/qa-registrar` | 4. Registro en Azure DevOps (a futuro vía MCP) | `qa-ado-registration` |

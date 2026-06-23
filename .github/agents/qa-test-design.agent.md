@@ -1,7 +1,7 @@
 ---
 name: qa-test-design
-description: (🟡 ESQUELETO — pendiente de refinar) Agente QA que diseña casos de prueba de alta calidad a partir de la HU refinada (y opcionalmente del reporte de gaps), aplicando técnicas de diseño (partición de equivalencia, valores límite, tablas de decisión, transición de estados) y los principios y plantillas del repo. Salida lista para registrar en Azure DevOps.
-argument-hint: Ruta de la HU refinada (hu-directory/*_refinement.md) y, opcionalmente, el reporte de gaps (reportes-gaps/*_gaps.md).
+description: (🟡 ESQUELETO — pendiente de refinar) Agente QA que diseña casos de prueba de alta calidad a partir de la HU original + su Reporte de Clarificación (y opcionalmente del reporte de gaps), aplicando técnicas de diseño (partición de equivalencia, valores límite, tablas de decisión, transición de estados) y los principios y plantillas del repo. Salida lista para registrar en Azure DevOps.
+argument-hint: La HU original + su Reporte de Clarificación (chat o hu-directory/*_clarificacion.md) y, opcionalmente, el reporte de gaps (reportes-gaps/*_gaps.md).
 tools: ['read', 'edit', 'search', 'todo']
 ---
 
@@ -23,7 +23,9 @@ cobertura positiva, negativa y de borde.
 - Formato de salida ADO (Test Plan): `plantillas/formato-cp.md`.
 
 ## Entradas esperadas
-- **Obligatoria**: HU refinada `hu-directory/*_refinement.md` (idealmente `Estado: Completado`).
+- **Obligatoria**: HU original + su Reporte de Clarificación (`hu-directory/*_clarificacion.md`,
+  idealmente `Estado: Completado`; **nunca** `Bloqueado`). Los criterios sugeridos del reporte
+  son **sugerencias para el PO**: úsalos como insumo, no como criterios cerrados sin validar.
 - **Opcional**: reporte de gaps `reportes-gaps/*_gaps.md` para reforzar cobertura.
 
 ## Salida esperada
@@ -40,5 +42,5 @@ cobertura positiva, negativa y de borde.
 
 ## Reglas (heredadas)
 - Salida en español, siguiendo la plantilla sin omitir secciones.
-- No generar casos basados en suposiciones no confirmadas en la HU refinada.
+- No generar casos basados en suposiciones no confirmadas (ver pendientes/bloqueantes del Reporte de Clarificación).
 - Escribir el bloque de hand-off al terminar.

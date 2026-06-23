@@ -1,6 +1,6 @@
 ---
 mode: agent
-description: '(🟡 Esqueleto) Paso 2 del flujo QA: compara el código fuente contra la HU refinada y detecta vacíos en ambas direcciones. Produce un reporte de gaps.'
+description: '(🟡 Esqueleto) Paso 2 del flujo QA: compara el código fuente contra la HU original + su Reporte de Clarificación y detecta vacíos en ambas direcciones. Produce un reporte de gaps.'
 tools: ['read', 'search', 'todo']
 ---
 
@@ -11,10 +11,11 @@ Adopta el rol y sigue las instrucciones del agente
 Respeta `.github/copilot-instructions.md`.
 
 ## Entrada
-- La **HU refinada** del paso 1 (pegada en el chat, o en `hu-directory/*_refinement.md` si se guardó).
+- La **HU original + su Reporte de Clarificación** del paso 1 (en el chat, o en
+  `hu-directory/*_clarificacion.md` si se guardó). No avances si el reporte está `Bloqueado`.
 - Opcional: rutas/módulos del código a inspeccionar.
 
-Si no hay HU refinada disponible, pídela o sugiere volver a `/qa-clarificar`.
+Si no hay Reporte de Clarificación disponible, pídelo o sugiere volver a `/qa-clarificar`.
 
 ## Qué debes hacer
 1. Mapear cada criterio de aceptación de la HU contra evidencia en el código.

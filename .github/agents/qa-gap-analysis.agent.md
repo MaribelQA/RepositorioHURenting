@@ -1,7 +1,7 @@
 ---
 name: qa-gap-analysis
-description: (🟡 ESQUELETO — pendiente de refinar) Agente QA que compara el código fuente contra la HU refinada para detectar vacíos, comportamientos no documentados y criterios sin respaldo en el código. Produce un reporte de gaps que enriquece el refinamiento y el diseño de casos.
-argument-hint: Ruta de la HU refinada (hu-directory/*_refinement.md) y, opcionalmente, rutas/módulos del código a inspeccionar.
+description: (🟡 ESQUELETO — pendiente de refinar) Agente QA que compara el código fuente contra la HU original + su Reporte de Clarificación para detectar vacíos, comportamientos no documentados y criterios sin respaldo en el código. Produce un reporte de gaps que enriquece el diseño de casos.
+argument-hint: La HU original + su Reporte de Clarificación (chat o hu-directory/*_clarificacion.md) y, opcionalmente, rutas/módulos del código a inspeccionar.
 tools: ['read', 'search', 'execute', 'todo']
 ---
 
@@ -19,12 +19,12 @@ vacíos en ambas direcciones: criterios de la HU sin implementación visible, y
 comportamientos del código no contemplados en la HU.
 
 ## Objetivo
-- Leer la **HU refinada** (`hu-directory/*_refinement.md`) y su hand-off.
+- Leer la **HU original + el Reporte de Clarificación** (`hu-directory/*_clarificacion.md`) y su hand-off.
 - Inspeccionar el **código fuente** relevante.
 - Producir un **reporte de gaps** en `reportes-gaps/[HU]_gaps.md`.
 
 ## Entradas esperadas
-- **Obligatoria**: HU refinada en `hu-directory/*_refinement.md` con `Estado: Completado` o `Parcial`.
+- **Obligatoria**: HU original + Reporte de Clarificación (`hu-directory/*_clarificacion.md`) con `Estado: Completado` o `Parcial` (NO `Bloqueado`).
 - **Opcional**: rutas, módulos, endpoints o repositorios de código a analizar.
 
 ## Salida esperada
