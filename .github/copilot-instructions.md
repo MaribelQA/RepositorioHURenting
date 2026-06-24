@@ -1,134 +1,106 @@
-# Instrucciones del repositorio — Suite de Agentes QA Renting
+# Constitución — Suite de Agentes QA Renting
 
-> Este archivo es la **constitución compartida** del repositorio. GitHub Copilot lo
-> inyecta automáticamente en **todos** los chats y agentes. Define el lenguaje,
-> las convenciones de nombres, la estructura de carpetas y el contrato de
-> orquestación que **todos** los agentes QA deben respetar.
->
-> No describe el comportamiento detallado de cada agente: eso vive en
-> `.github/agents/*.agent.md`. Aquí está lo que es común a todos.
+> Copilot inyecta este archivo en **todos** los chats. Define lo común a todos los agentes:
+> idioma, estructura de artefactos, contrato de hand-off y principios. El comportamiento
+> detallado de cada agente vive en `.github/agents/*.agent.md`. Mantenlo breve.
 
----
-
-## 1. Contexto del proyecto
-
-Repositorio de QA para el producto **Renting**. Su propósito es procesar Historias
-de Usuario (HU) con IA para: refinarlas, diseñar casos de prueba, detectar vacíos
-entre el código y la HU, y registrar los casos en **Azure DevOps (Test Plan)**.
-
-El trabajo se realiza mediante una **suite de agentes especializados de Copilot**
-coordinados por un **orquestador**. Cada agente hace una sola cosa muy bien y se
-comunica con los demás a través de **artefactos en disco** (archivos Markdown) con
-un contrato de hand-off común (ver sección 5).
-
----
+## 1. Propósito
+Procesar Historias de Usuario (HU) del producto **Renting**: clarificarlas, analizar gaps
+código↔HU, diseñar casos de prueba y registrarlos en **Azure DevOps (Test Plan)**. El trabajo
+lo hace una suite de agentes especializados que se comunican por **artefactos en disco**.
 
 ## 2. Idioma y estilo
+- Conversación con el usuario: **español**, claro y profesional.
+- Artefactos: en el idioma del origen; si es ambiguo, **español**.
+- Respuestas directas: encabezados, viñetas y tablas. Sin relleno.
+- No inventar. Falta un dato → preguntar (solo si es 100% requerido) o marcar `Pendiente de validación`.
 
-- **Toda interacción conversacional con el usuario es en español** (claro y profesional).
-- **Los artefactos generados se redactan en el mismo idioma que el documento de origen.**
-  Si el idioma del origen es ambiguo o mezcla idiomas, usar **español**.
-- Usar encabezados, listas con viñetas y tablas. Respuestas directas y accionables.
-- No inventar información. Cuando falte un dato crítico, **preguntar** o marcarlo
-  explícitamente como `Pendiente de validación`.
+## 3. Artefactos en disco (contrato de ubicaciones)
+Toda salida vive en `resultado/HU-<id>/`, donde `<id>` es el **número de work item de Azure**
+(p. ej. `resultado/HU-202368/`). Nombres **canónicos**, con prefijo numérico que marca el orden:
 
----
+| Orden | Archivo | Contenido | Etapa |
+| --- | --- | --- | --- |
+| `00` | `00-estado-HU-<id>.md` | Índice y panel de estado: en qué va cada paso, pendientes, bloqueantes, enlaces. **Punto de entrada al retomar.** | Todas |
+| `01` | `01-HU-<id>.md` | Copia **literal** de la HU (backup; nunca se reescribe). | 1 |
+| `02` | `02-reporte-clarificacion-HU-<id>.md` | Matriz de hallazgos + bitácora Q&A + pendientes/bloqueantes. | 1 |
+| `03` | `03-reportes-gaps-HU-<id>.md` | Gaps código vs HU, presentable a la PO. | 2 |
+| `04` | `04-casos-prueba-HU-<id>.md` | Casos de prueba (plantilla y/o formato ADO). | 3 |
+| `05` | `05-registro-ado-HU-<id>.md` | IDs/enlaces de Work Items creados en ADO. | 4 |
 
-## 3. Estructura de carpetas (contrato de ubicaciones)
+Cada etapa **parte de su plantilla** en `plantillas/resultado/<archivo>.template.md`, la copia
+al destino y la rellena (el `01` no tiene plantilla). Referencias para casos:
+`plantillas/test-case-template.md`, `plantillas/formato-cp.md`, `promts/test-case-creation-principles.md`.
 
-| Carpeta | Contenido | Producido por |
-| --- | --- | --- |
-| `hu-directory/` | Reportes de Clarificación (`*_clarificacion.md`) cuando el usuario pide guardarlos | Agente de Clarificación (la HU de entrada se pega/adjunta en el chat; la HU original NO se reescribe) |
-| `casos-prueba/` | Casos de prueba diseñados (formato plantilla y/o ADO) | Agente de Diseño de Casos |
-| `reportes-gaps/` | Reportes de análisis Código vs HU | Agente de Análisis de Gaps |
-| `plantillas/` | Plantillas oficiales (NO modificar sin acuerdo del equipo) | Equipo QA |
-| `promts/` | Principios y prompts de referencia | Equipo QA |
-| `.github/agents/` | Definiciones de los agentes Copilot | Equipo QA |
+**Contexto de dominio (consulta on-demand, no se auto-carga):** ante términos, estados o reglas
+de negocio de Renting, consulta `docs/glosario-renting.md` y `docs/lineamientos-qa.md`. No los
+leas completos por defecto; ábrelos solo cuando la HU use un término o regla que necesites aclarar.
 
-Plantillas y referencias clave:
-- `plantillas/test-case-template.md` — estructura estándar de un caso de prueba.
-- `plantillas/formato-cp.md` — formato de salida para Azure DevOps (Test Plan).
-- `promts/test-case-creation-principles.md` — principios de diseño de casos.
+### 3.1 Identificación de la HU
+El agente del Paso 1 **extrae** `<id>` del texto de la HU ("Work Item 202368", "#202368", "HU 202368").
+Si no aparece, esa es la única pregunta obligatoria al inicio: *"¿Cuál es el número de work item?"*.
 
----
+### 3.2 Persistencia (contexto en disco, no en el chat)
+- Cada etapa **escribe su artefacto automáticamente** (sin pedir permiso) y **actualiza `00-estado`**.
+- Cada etapa **lee primero `00-estado` y los artefactos previos** del folder antes de actuar; así el
+  flujo se retoma en otra sesión sin depender de la memoria del chat.
+- Destino inexistente → indicar qué falta y qué paso lo produce; no inventar.
+- Destino con contenido → actualizar preservando lo válido; avisar ante cambios destructivos.
 
-## 4. La suite de agentes (mapa)
+### 3.3 Bloqueo mínimo
+Bloquear **solo** ante dudas 100% requeridas (sin ellas el artefacto sería inútil o incorrecto, no
+solo incompleto). El resto: avanzar, marcar `Pendiente de validación` y entregar artefacto **Parcial**.
 
-Todos los agentes viven en `.github/agents/` y usan la nomenclatura `qa-<rol>`.
+## 4. Agentes y comandos
+Agentes en `.github/agents/` (`@nombre`); comandos `/` en `.github/prompts/` (el nombre del comando
+es el campo `name:` del prompt, no el del archivo). Cada comando ejecuta su agente vía `agent:`.
 
-| # | Agente (archivo) | Invocación | Rol | Estado |
-| --- | --- | --- | --- | --- |
-| 0 | `qa-orchestrator.agent.md` | `@qa-orchestrator` | **Orquestador**: enruta el flujo, valida artefactos y delega en los demás | ✅ Activo |
-| 1 | `qa-refinement.agent.md` | `@qa-refinement` | **Análisis y Clarificación de HU**: análisis estático ISTQB, preguntas de aclaración y Reporte de Clarificación (NO reescribe la HU) | ✅ Activo |
-| 2 | `qa-test-design.agent.md` | `@qa-test-design` | **Diseño de Casos**: genera casos desde la HU original + Reporte de Clarificación | 🟡 Esqueleto (a refinar) |
-| 3 | `qa-gap-analysis.agent.md` | `@qa-gap-analysis` | **Análisis de Gaps**: compara código vs HU y detecta vacíos | 🟡 Esqueleto (a refinar) |
-| 4 | `qa-ado-registration.agent.md` | `@qa-ado-registration` | **Registro en ADO**: crea Work Items (Test Case) en Azure DevOps | 🟡 Esqueleto (a refinar) |
+| Paso | Comando | Agente | Produce | Modelo (prioridad → fallback) | Estado |
+| --- | --- | --- | --- | --- | --- |
+| — | `/qa-inicio` | — (display) | Roadmap del flujo | `ask` (sin modelo) | ✅ |
+| 1 | `/qa-clarificar` | `@qa-refinement` | `01`, `02`, `00` | `Claude Opus 4.8` → `Claude Opus 4.6` → `Claude Sonnet 4.6` | ✅ |
+| 2 | `/qa-gaps` | `@qa-gap-analysis` | `03` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | 🟡 |
+| 3 | `/qa-casos` | `@qa-test-design` | `04` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | 🟡 |
+| 4 | `/qa-registrar` | `@qa-ado-registration` | `05` + Work Items ADO | `Claude Haiku 4.5` → `Claude Sonnet 4.6` | 🟡 |
+| 0 | — | `@qa-orchestrator` | Coordina y valida la cadena | `Claude Sonnet 4.6` → `GPT-5.4` | ✅ |
 
-**Flujo por defecto:**
+Flujo: `@qa-refinement → @qa-gap-analysis → @qa-test-design → @qa-ado-registration`, con
+`@qa-orchestrator` validando cada hand-off. `/qa-gaps` es opcional: se puede ir de `/qa-clarificar`
+directo a `/qa-casos`.
 
-```
-@qa-refinement       ──►  @qa-gap-analysis  ──►  @qa-test-design  ──►  @qa-ado-registration
-(Reporte Clarificación)    (reporte gaps)         (casos prueba)         (Work Items ADO)
-        ▲                                                                  
-        └──────────────────── @qa-orchestrator coordina y valida ─────────────────┘
-```
+> **Modelos**: lista priorizada; Copilot usa el primero disponible en tu plan. Lógica: razonamiento
+> alto (clarificación) → modelo más capaz; tareas mecánicas (registro ADO) → modelo más económico.
+> Ajusta los nombres a los modelos habilitados en tu organización. Verifica también que los nombres
+> de `tools:` existan en tu versión de Copilot.
 
-El usuario puede invocar a un agente directamente o pedirle al orquestador que
-conduzca el flujo completo de principio a fin.
-
-### Flujo guiado por comandos (pasos `/`)
-
-Además de los agentes, hay **prompt files** en `.github/prompts/` que funcionan como
-**comandos `/`** y guían el proceso paso a paso, encadenándose entre sí (cada comando
-termina recomendando el siguiente):
-
-| Comando | Paso | Detrás está el agente |
-| --- | --- | --- |
-| `/qa-inicio` | Muestra el roadmap y cómo empezar | — |
-| `/qa-clarificar` | 1. Matriz de hallazgos + preguntas + Reporte de Clarificación | `qa-refinement` |
-| `/qa-gaps` | 2. Análisis código vs HU | `qa-gap-analysis` |
-| `/qa-casos` | 3. Diseño de casos de prueba | `qa-test-design` |
-| `/qa-registrar` | 4. Registro en Azure DevOps (a futuro vía MCP) | `qa-ado-registration` |
-
-**Cómo empezar:** pega la HU en el chat y ejecuta `/qa-inicio` (o directamente `/qa-clarificar`).
-Los prompt files son la "barra de navegación" del flujo; los agentes aportan el comportamiento experto.
-
----
-
-## 5. Contrato de hand-off entre agentes
-
-Para que los agentes "se hablen entre sí" sin perder contexto, **cada artefacto
-generado termina con un bloque de hand-off estandarizado**. Todos los agentes
-deben **escribirlo** al producir su salida y **leerlo** al recibir una entrada.
+## 5. Contrato de hand-off
+Cada artefacto **termina** con este bloque; cada agente lo **escribe** al producir y lo **lee** al recibir:
 
 ```markdown
 ---
 ## 🔗 Hand-off
-- **Artefacto**: <ruta relativa del archivo>
-- **Producido por**: <nombre del agente, p.ej. qa-refinement>
-- **Estado**: Completado | Parcial (bloqueos pendientes) | Bloqueado
+- **Artefacto**: <ruta relativa>
+- **Producido por**: <agente>
+- **Estado**: Completado | Parcial | Bloqueado
 - **Pendientes de validación**: <lista o "ninguno">
-- **Siguiente agente sugerido**: <p.ej. @qa-gap-analysis>
-- **Notas para el siguiente agente**: <contexto relevante en 1-3 líneas>
+- **Siguiente agente sugerido**: <@agente>
+- **Notas para el siguiente agente**: <1-3 líneas>
 ---
 ```
 
-Reglas:
-- Un agente **no debe avanzar** si el artefacto de entrada tiene `Estado: Bloqueado`
-  o pendientes que invaliden su trabajo: debe avisar al usuario y/o devolver al
-  orquestador.
-- El orquestador es el responsable de validar la cadena y decidir el siguiente paso.
+Un agente **no avanza** si su entrada está `Bloqueado`. El orquestador valida la cadena.
 
----
+## 6. Principios QA
+- **Análisis estático ISTQB**: detectar ambigüedad, omisión, inconsistencia, no testabilidad y
+  escenarios no contemplados antes de toda prueba dinámica.
+- **Sin suposiciones silenciosas**: todo supuesto se marca `Pendiente de validación`.
+- **Testabilidad**: cada criterio debe ser observable, medible y verificable.
+- **Trazabilidad**: valor de negocio → HU → criterios → casos → Work Item ADO.
+- **Preservar lo correcto**: conservar el texto de origen claro; tocar solo lo ambiguo o incompleto.
 
-## 6. Principios QA transversales (aplican a todos los agentes)
-
-- **Pruebas estáticas (ISTQB Foundation Level):** detectar defectos temprano en los
-  requisitos (ambigüedad, omisión, inconsistencia, no testabilidad, escenarios no
-  contemplados) antes de cualquier prueba dinámica.
-- **No suposiciones silenciosas:** todo supuesto se hace explícito y se marca como
-  `Pendiente de validación`.
-- **Testabilidad:** todo criterio de aceptación debe ser observable, medible y verificable.
-- **Trazabilidad:** del valor de negocio → HU → criterios → casos de prueba → Work Item ADO.
-- **Preservar lo correcto:** conservar literalmente el texto de origen que sea claro
-  y correcto; reescribir solo lo ambiguo, incompleto o inconsistente.
+## 7. Eficiencia (disciplina de tokens)
+- Leer **solo lo necesario**: usar `00-estado` como índice; no releer artefactos ya resumidos ahí
+  ni escanear el repo completo. El análisis de gaps acota el código a los módulos relevantes.
+- La HU llega **pegada/adjunta en el chat**: no buscarla en el repo.
+- No repetir en el chat el contenido que ya quedó en disco; resumir y enlazar.
+- Una etapa por invocación; respuestas concisas.

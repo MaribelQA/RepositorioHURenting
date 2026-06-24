@@ -1,8 +1,10 @@
 ---
 name: qa-orchestrator
 description: Orquestador de la suite QA Renting. Coordina el flujo de extremo a extremo (refinamiento de HU, análisis de gaps código vs HU, diseño de casos de prueba y registro en Azure DevOps), valida los artefactos de cada etapa mediante el bloque de hand-off y delega en el agente especializado correcto. Úsalo cuando quieras conducir el proceso completo o no sepas qué agente invocar.
-argument-hint: Una HU en hu-directory/ o una instrucción de alto nivel (p.ej. "refina y diseña casos para HU-145877").
-tools: ['read', 'search', 'agent', 'todo', 'edit']
+argument-hint: La HU pegada/adjunta o una instrucción de alto nivel (p.ej. "refina y diseña casos para HU-145877"). Los artefactos viven en resultado/HU-<id>/.
+tools: ['search', 'edit', 'runSubagent']
+agents: ['qa-refinement', 'qa-gap-analysis', 'qa-test-design', 'qa-ado-registration']
+model: ['Claude Sonnet 4.6', 'GPT-5.4']
 ---
 
 # Agente 0 — Orquestador QA (qa-orchestrator)
@@ -22,18 +24,23 @@ una entrada válida y produzca una salida con su bloque de hand-off.
 (Reporte Clarificación)    (reporte gaps)         (casos prueba)         (Work Items ADO)
 ```
 
+> Todos los artefactos viven en `resultado/HU-<id>/` (ver constitución, sección 3).
+
 | Etapa | Agente | Entrada | Salida |
 | --- | --- | --- | --- |
-| 1. Clarificación | `@qa-refinement` | HU pegada o adjunta en el chat | Reporte de Clarificación en el chat (opcional: `hu-directory/HU-*_clarificacion.md`). NO reescribe la HU |
-| 2. Análisis de Gaps | `@qa-gap-analysis` | HU original + Reporte de Clarificación + código | `reportes-gaps/HU-*_gaps.md` |
-| 3. Diseño de Casos | `@qa-test-design` | HU original + Reporte de Clarificación (+ gaps) | `casos-prueba/HU-*_casos.md` |
-| 4. Registro ADO | `@qa-ado-registration` | Casos de prueba | Work Items (Test Case) en ADO |
+| 1. Clarificación | `@qa-refinement` | HU pegada o adjunta en el chat | `resultado/HU-<id>/01-HU-<id>.md` (copia literal) + `02-reporte-clarificacion-HU-<id>.md`. NO reescribe la HU |
+| 2. Análisis de Gaps | `@qa-gap-analysis` | HU original + Reporte de Clarificación + código | `resultado/HU-<id>/03-reportes-gaps-HU-<id>.md` |
+| 3. Diseño de Casos | `@qa-test-design` | HU original + Reporte de Clarificación (+ gaps) | `resultado/HU-<id>/04-casos-prueba-HU-<id>.md` |
+| 4. Registro ADO | `@qa-ado-registration` | Casos de prueba | Work Items (Test Case) en ADO + `resultado/HU-<id>/05-registro-ado-HU-<id>.md` |
+
+En cada etapa, además, se actualiza el panel `resultado/HU-<id>/00-estado-HU-<id>.md`.
 
 ## Flujo de trabajo
 1. **Entender la petición.** Identifica qué HU y qué etapas pide el usuario. Si no lo
    indica, propón ejecutar el pipeline completo desde el refinamiento.
-2. **Localizar artefactos.** Busca en `hu-directory/`, `reportes-gaps/` y `casos-prueba/`
-   qué etapas ya están hechas (por la existencia de archivos y su bloque de hand-off).
+2. **Localizar artefactos.** Abre `resultado/HU-<id>/` y lee primero `00-estado-HU-<id>.md`
+   (panel de estado) para saber qué etapas ya están hechas; confírmalo con la existencia de
+   los archivos `01`–`05` y su bloque de hand-off.
 3. **Validar la entrada de la etapa.** Antes de delegar, lee el bloque de hand-off del
    artefacto de entrada:
    - `Estado: Bloqueado` o pendientes que invaliden la etapa → **no avanzar**; informar

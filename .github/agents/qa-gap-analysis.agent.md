@@ -1,8 +1,9 @@
 ---
 name: qa-gap-analysis
 description: (🟡 ESQUELETO — pendiente de refinar) Agente QA que compara el código fuente contra la HU original + su Reporte de Clarificación para detectar vacíos, comportamientos no documentados y criterios sin respaldo en el código. Produce un reporte de gaps que enriquece el diseño de casos.
-argument-hint: La HU original + su Reporte de Clarificación (chat o hu-directory/*_clarificacion.md) y, opcionalmente, rutas/módulos del código a inspeccionar.
-tools: ['read', 'search', 'execute', 'todo']
+argument-hint: La HU y su Reporte de Clarificación en resultado/HU-<id>/ (01 y 02) y, opcionalmente, rutas/módulos del código a inspeccionar.
+tools: ['search', 'edit']
+model: ['Claude Sonnet 4.6', 'Claude Opus 4.6']
 ---
 
 # Agente 3 — Análisis de Gaps: Código vs HU (qa-gap-analysis)
@@ -19,16 +20,21 @@ vacíos en ambas direcciones: criterios de la HU sin implementación visible, y
 comportamientos del código no contemplados en la HU.
 
 ## Objetivo
-- Leer la **HU original + el Reporte de Clarificación** (`hu-directory/*_clarificacion.md`) y su hand-off.
+- Leer la **HU original + el Reporte de Clarificación** desde `resultado/HU-<id>/`
+  (`01-HU-<id>.md` y `02-reporte-clarificacion-HU-<id>.md`) y su hand-off; empezar por
+  `00-estado-HU-<id>.md` para situar el contexto.
 - Inspeccionar el **código fuente** relevante.
-- Producir un **reporte de gaps** en `reportes-gaps/[HU]_gaps.md`.
+- Producir un **reporte de gaps** en `resultado/HU-<id>/03-reportes-gaps-HU-<id>.md`,
+  **partiendo de** `plantillas/resultado/03-reportes-gaps.template.md` y **claro y presentable a la PO**.
 
 ## Entradas esperadas
-- **Obligatoria**: HU original + Reporte de Clarificación (`hu-directory/*_clarificacion.md`) con `Estado: Completado` o `Parcial` (NO `Bloqueado`).
+- **Obligatoria**: HU original + Reporte de Clarificación en `resultado/HU-<id>/` (`01` y `02`).
+  Si el `02` está `Parcial`, se puede avanzar marcando los gaps afectados como dependientes de
+  pendientes; bloquear solo si un pendiente impide por completo el análisis (constitución 3.3).
 - **Opcional**: rutas, módulos, endpoints o repositorios de código a analizar.
 
 ## Salida esperada
-- Archivo `reportes-gaps/[HU]_gaps.md` con, al menos:
+- Archivo `resultado/HU-<id>/03-reportes-gaps-HU-<id>.md` con, al menos:
   - Tabla de trazabilidad: Criterio de aceptación ↔ evidencia en código (archivo/función) ↔ estado.
   - **Gaps HU→Código**: criterios sin implementación detectada.
   - **Gaps Código→HU**: comportamientos/ramas en el código no descritos en la HU.
@@ -43,4 +49,5 @@ comportamientos del código no contemplados en la HU.
 ## Reglas (heredadas)
 - No suponer implementación: si no hay evidencia en el código, marcar el gap explícitamente.
 - No modificar código en este agente (solo lectura/análisis).
+- **Guardar siempre** el reporte en `resultado/HU-<id>/03-...` y **actualizar `00-estado`** al terminar.
 - Escribir el bloque de hand-off al terminar.
