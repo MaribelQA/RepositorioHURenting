@@ -13,3 +13,5 @@ La siguiente tabla es un ejemplo de como se espera el resultado, genera el resul
 
 
 PRUEBA1
+
+prueba2
