@@ -50,7 +50,7 @@ La HU llega pegada o adjunta en el chat (opcional: contexto de negocio adicional
    100% requerida: la carpeta depende de ella). Ver constitución 3.1.
 5. **Crear la carpeta `resultado/HU-<id>/` y guardar el backup** `01-HU-<id>.md` con la
    **copia LITERAL** de la HU recibida (tal cual, sin reescribir ni reorganizar). Crear también
-   `00-estado-HU-<id>.md` **a partir de** `plantillas/resultado/00-estado.template.md`, marcando
+   `00-estado-HU-<id>.md` **a partir de** `plantillas/artefactos/00-estado.template.md`, marcando
    el Paso 1 como "en progreso". Ver constitución 3.2.
 
 ### Paso 2 — Escaneo estructurado de cobertura y ambigüedad
@@ -155,7 +155,7 @@ para el PO**, claramente marcadas como sugerencias (no como criterios cerrados).
 - **Mostrar el Reporte de Clarificación en el chat**, con el **bloque de Hand-off**
   (ver constitución, sección 5) al final.
 - **Guardar siempre, sin preguntar**, en `resultado/HU-<id>/02-reporte-clarificacion-HU-<id>.md`,
-  **partiendo de la plantilla** `plantillas/resultado/02-reporte-clarificacion.template.md`
+  **partiendo de la plantilla** `plantillas/artefactos/02-reporte-clarificacion.template.md`
   (el disco es la fuente de contexto entre sesiones; ver constitución 3.2).
   - Si el archivo ya existe con contenido, **actualízalo preservando** la bitácora y respuestas
     previas (no se pierde trabajo); añade las nuevas respuestas a la sesión actual.
@@ -226,3 +226,4 @@ Al terminar, entrega:
 - Bloqueos persistentes tras las rondas → informar que **no se debe avanzar** sin resolverlos,
   entregar la lista priorizada de bloqueantes y guardar un **Reporte de Clarificación parcial**
   marcando claramente lo `Pendiente de validación` y los bloqueantes (Estado de hand-off: `Bloqueado`).
+

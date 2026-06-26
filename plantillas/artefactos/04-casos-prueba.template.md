@@ -2,7 +2,7 @@
 TEMPLATE — Casos de prueba (Paso 3, agente qa-test-design).
 Cópialo a `resultado/HU-<id>/04-casos-prueba-HU-<id>.md` y reemplaza los <placeholders>.
 Cada caso valida UN SOLO comportamiento. Sigue:
-- Principios: `promts/test-case-creation-principles.md`
+- Lineamientos QA: `docs/lineamientos-qa.md`
 - Plantilla de caso: `plantillas/test-case-template.md`
 - Formato ADO (Test Plan): `plantillas/formato-cp.md`
 Incluye cobertura positiva, negativa y de borde. Salida en español.
