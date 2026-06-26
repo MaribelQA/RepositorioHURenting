@@ -72,3 +72,6 @@ Al finalizar cada interacción, muestra una tabla:
 | 2. Gaps | qa-gap-analysis | `...` | ... |
 | 3. Diseño de casos | qa-test-design | `...` | ... |
 | 4. Registro ADO | qa-ado-registration | `...` | ... |
+
+## 🔗 Conexiones
+- Coordina (en orden): [[qa-refinement.agent|qa-refinement]] → [[qa-gap-analysis.agent|qa-gap-analysis]] → [[qa-test-design.agent|qa-test-design]] → [[qa-ado-registration.agent|qa-ado-registration]]

@@ -38,3 +38,6 @@
 - Test Plan / Suite por defecto: <valor>.
 - Prioridad por defecto: <Alta/Media/Baja>.
 - <convención de vínculo HU ↔ Test Case>
+
+## 🔗 Conexiones
+- Formato de casos para ADO: [[formato-cp]]

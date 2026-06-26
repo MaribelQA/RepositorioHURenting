@@ -226,3 +226,7 @@ Al terminar, entrega:
 - Bloqueos persistentes tras las rondas → informar que **no se debe avanzar** sin resolverlos,
   entregar la lista priorizada de bloqueantes y guardar un **Reporte de Clarificación parcial**
   marcando claramente lo `Pendiente de validación` y los bloqueantes (Estado de hand-off: `Bloqueado`).
+
+## 🔗 Conexiones
+- Rellena: [[02-reporte-clarificacion.template]]
+- Siguiente agente: [[qa-gap-analysis.agent|qa-gap-analysis]]

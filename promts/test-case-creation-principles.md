@@ -142,3 +142,8 @@ Each test case MUST:
 * Output MUST be in Spanish
 * Maintain consistent formatting (Markdown)
 * Ensure readability and professional structure
+
+---
+
+## 🔗 Conexiones
+- Plantilla de caso: [[test-case-template]]

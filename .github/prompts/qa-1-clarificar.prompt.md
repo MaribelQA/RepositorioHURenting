@@ -2,6 +2,7 @@
 name: qa-clarificar
 agent: qa-refinement
 description: 'Paso 1: clarifica la HU pegada en el chat (matriz de hallazgos + preguntas). No reescribe la HU.'
+argument-hint: Pega aquí tu HU (texto o adjunto). Si no trae número de work item, te lo pregunto.
 ---
 
 # Paso 1 — Clarificar la HU
@@ -16,3 +17,7 @@ Sin HU disponible, pídela y detente. Sigue tu definición de agente y la consti
 
 **Siguiente:** sin bloqueantes → `/qa-gaps` o directo a `/qa-casos`. Los pendientes no bloqueantes
 no detienen el flujo.
+
+## 🔗 Conexiones
+- Ejecuta: [[qa-refinement.agent|qa-refinement]]
+- Siguiente paso: [[qa-2-gaps.prompt|/qa-gaps]]

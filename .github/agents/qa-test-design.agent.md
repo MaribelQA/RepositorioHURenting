@@ -50,3 +50,8 @@ cobertura positiva, negativa y de borde.
 - No generar casos basados en suposiciones no confirmadas (ver pendientes/bloqueantes del Reporte de Clarificación).
 - **Guardar siempre** los casos en `resultado/HU-<id>/04-...` y **actualizar `00-estado`** al terminar.
 - Escribir el bloque de hand-off al terminar.
+
+## 🔗 Conexiones
+- Rellena: [[04-casos-prueba.template]]
+- Diseña según: [[test-case-creation-principles]]
+- Siguiente agente: [[qa-ado-registration.agent|qa-ado-registration]]

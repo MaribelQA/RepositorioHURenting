@@ -30,3 +30,7 @@ Una carpeta por HU: `resultado/HU-<id>/`, con archivos numerados por orden del p
 - `promts/` — principios de diseño de casos.
 - `docs/` — contexto de dominio para QA: `glosario-renting.md` y `lineamientos-qa.md` (complétalos con tu equipo).
 - `resultado/` — salidas por HU.
+
+## 🔗 Conexiones
+- 🧠 Grafo completo del repo: [[mapa-qa|Mapa de la Suite QA]]
+- Reglas comunes: [[copilot-instructions|Constitución]]
