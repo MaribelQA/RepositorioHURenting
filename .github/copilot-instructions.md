@@ -4,10 +4,19 @@
 > idioma, estructura de artefactos, contrato de hand-off y principios. El comportamiento
 > detallado de cada agente vive en `.github/agents/*.agent.md`. Mantenlo breve.
 
+## 0. Configuración del proyecto (léela primero)
+Esta suite es **reutilizable para cualquier proyecto**. Lo específico del proyecto (nombre,
+repos de código, datos de Azure DevOps, servidor MCP, contexto de dominio) vive en
+**`proyecto.config.md`** en la raíz — el **único** archivo que se edita al clonar. Antes de
+actuar, lee de ahí lo que necesites (org/proyecto/Test Plan de ADO, repos para gaps, nombre
+del producto). Si `estado_setup: pendiente`, indica al usuario que ejecute **`/qa-setup`**.
+No repreguntes en el chat lo que ya está en ese archivo (§3.2).
+
 ## 1. Propósito
-Procesar Historias de Usuario (HU) del producto **Renting**: clarificarlas, analizar gaps
-código↔HU, diseñar casos de prueba y registrarlos en **Azure DevOps (Test Plan)**. El trabajo
-lo hace una suite de agentes especializados que se comunican por **artefactos en disco**.
+Procesar Historias de Usuario (HU) del producto configurado en `proyecto.config.md`:
+clarificarlas, analizar gaps código↔HU, diseñar casos de prueba y registrarlos en
+**Azure DevOps (Test Plan)**. El trabajo lo hace una suite de agentes especializados que se
+comunican por **artefactos en disco**.
 
 ## 2. Idioma y estilo
 - Conversación con el usuario: **español**, claro y profesional.
@@ -36,9 +45,16 @@ al destino y la rellena (el `01` no tiene plantilla). Referencias para casos:
 de negocio de Renting, consulta `docs/glosario-renting.md` y `docs/lineamientos-qa.md`. No los
 leas completos por defecto; ábrelos solo cuando la HU use un término o regla que necesites aclarar.
 
-### 3.1 Identificación de la HU
-El agente del Paso 1 **extrae** `<id>` del texto de la HU ("Work Item 202368", "#202368", "HU 202368").
-Si no aparece, esa es la única pregunta obligatoria al inicio: *"¿Cuál es el número de work item?"*.
+### 3.1 Identificación y origen de la HU
+La HU entra por **una de dos vías** (ver `proyecto.config.md` → `mcp.servidor_ado`):
+- **Pegada/adjunta en el chat** (vía por defecto): el agente del Paso 1 **extrae** `<id>` del
+  texto ("Work Item 202368", "#202368", "HU 202368"). Si no aparece, esa es la única pregunta
+  obligatoria al inicio: *"¿Cuál es el número de work item?"*.
+- **Traída por ID vía MCP de ADO** (si hay servidor MCP configurado): el usuario da solo el
+  número de work item; el agente del Paso 1 usa el MCP de Azure DevOps para recuperar la HU.
+  El `<id>` es ese número.
+
+En ambos casos, la copia literal recuperada se guarda como backup en `01-HU-<id>.md`.
 
 ### 3.2 Persistencia (contexto en disco, no en el chat)
 - Cada etapa **escribe su artefacto automáticamente** (sin pedir permiso) y **actualiza `00-estado`**.
@@ -57,6 +73,7 @@ es el campo `name:` del prompt, no el del archivo). Cada comando ejecuta su agen
 
 | Paso | Comando | Agente | Produce | Modelo (prioridad → fallback) | Estado |
 | --- | --- | --- | --- | --- | --- |
+| — | `/qa-setup` | `@qa-setup` | `proyecto.config.md` (config del proyecto) | `Claude Haiku 4.5` → `Claude Sonnet 4.6` | ✅ |
 | — | `/qa-inicio` | — (display) | Roadmap del flujo | `ask` (sin modelo) | ✅ |
 | 1 | `/qa-clarificar` | `@qa-refinement` | `01`, `02`, `00` | `Claude Opus 4.8` → `Claude Opus 4.6` → `Claude Sonnet 4.6` | ✅ |
 | 2 | `/qa-gaps` | `@qa-gap-analysis` | `03` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | 🟡 |

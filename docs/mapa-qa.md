@@ -20,7 +20,11 @@ Nodo central del repositorio para visualizar el **grafo** de todos los `.md` en
 
 Coordinado y validado por [[qa-orchestrator.agent|qa-orchestrator]] (Agente 0).
 
+## Configuración
+- [[proyecto.config]] — datos del proyecto (nombre, repos, ADO, MCP); único archivo a editar al clonar
+
 ## Comandos (`/`)
+- [[qa-setup.prompt|/qa-setup]] → ejecuta [[qa-setup.agent|qa-setup]] (configura el proyecto)
 - [[qa-0-inicio.prompt|/qa-inicio]] — roadmap y bienvenida
 - [[qa-1-clarificar.prompt|/qa-clarificar]] → ejecuta [[qa-refinement.agent|qa-refinement]]
 - [[qa-2-gaps.prompt|/qa-gaps]] → ejecuta [[qa-gap-analysis.agent|qa-gap-analysis]]
@@ -28,6 +32,7 @@ Coordinado y validado por [[qa-orchestrator.agent|qa-orchestrator]] (Agente 0).
 - [[qa-4-registrar.prompt|/qa-registrar]] → ejecuta [[qa-ado-registration.agent|qa-ado-registration]]
 
 ## Agentes
+- [[qa-setup.agent|qa-setup]] — configura el proyecto (Paso 0)
 - [[qa-orchestrator.agent|qa-orchestrator]] — director del proceso
 - [[qa-refinement.agent|qa-refinement]] — clarifica la HU (Paso 1)
 - [[qa-gap-analysis.agent|qa-gap-analysis]] — gaps código vs HU (Paso 2)

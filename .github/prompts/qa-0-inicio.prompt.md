@@ -11,6 +11,9 @@ versión inicial hasta sus casos registrados en Azure DevOps. Son **4 pasos** y,
 cada uno, te indico el siguiente. Todo queda en `resultado/HU-<id>/`, así puedes retomar
 en otra sesión sin perder el hilo.
 
+> **¿Primera vez en este proyecto?** Ejecuta primero **`/qa-setup`** para configurar nombre,
+> repos, Azure DevOps y MCP (una sola vez; queda en `proyecto.config.md`).
+
 | Paso | Comando | Qué hace | Resultado |
 | --- | --- | --- | --- |
 | 1 | `/qa-clarificar «pega tu HU»` | Matriz de hallazgos + preguntas | Reporte de Clarificación |

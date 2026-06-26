@@ -6,8 +6,10 @@ clarificarlas, analizar gaps código↔HU, diseñar casos de prueba y registrarl
 trabajo se retoma en otra sesión sin depender del chat.
 
 ## Empezar
-En Copilot Chat, escribe `/qa-clarificar` y, en el mismo mensaje, pega tu HU.
-Cada paso te indica el siguiente.
+1. **Primera vez en el proyecto:** ejecuta `/qa-setup` para configurar nombre, repos,
+   Azure DevOps y MCP. Queda en `proyecto.config.md` (una sola vez por clon).
+2. Luego, en Copilot Chat, escribe `/qa-clarificar` y pega tu HU —o, si configuraste el
+   MCP de Azure DevOps, da solo el número de work item. Cada paso te indica el siguiente.
 
 | Paso | Comando | Resultado |
 | --- | --- | --- |
@@ -23,6 +25,7 @@ Una carpeta por HU: `resultado/HU-<id>/`, con archivos numerados por orden del p
 (`00-estado`, `01-HU`, `02-clarificacion`, `03-gaps`, `04-casos`, `05-registro-ado`).
 
 ## Estructura del repo
+- `proyecto.config.md` — **configuración del proyecto** (único archivo a editar al clonar; lo llena `/qa-setup`).
 - `.github/copilot-instructions.md` — constitución (reglas comunes; léela primero).
 - `.github/agents/` — agentes especializados (`qa-*`).
 - `.github/prompts/` — comandos `/` del flujo.
