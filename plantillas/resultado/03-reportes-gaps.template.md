@@ -49,3 +49,6 @@ No suponer implementación: si no hay evidencia en el código, marca el gap expl
 - **Siguiente agente sugerido**: @qa-test-design
 - **Notas para el siguiente agente**: <gaps que deben reforzar la cobertura de casos>
 ---
+
+## 🔗 Conexiones
+- Siguiente artefacto: [[04-casos-prueba.template]]

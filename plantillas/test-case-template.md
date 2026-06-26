@@ -51,6 +51,11 @@
 **Environment**
 * [QA | Staging | Production | Local]
 
+---
+
+## 🔗 Conexiones
+- Formato de salida para ADO: [[formato-cp]]
+
 
 **Notes (Optional)**
 * [Any additional context or assumptions]

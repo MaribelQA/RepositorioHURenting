@@ -39,3 +39,7 @@ No borres las secciones; marca lo no aplicable como "—".
 
 ## Bitácora de sesiones
 - **<AAAA-MM-DD>**: <qué se avanzó en esta sesión, qué quedó abierto>
+
+---
+## 🔗 Conexiones
+- Indexa los artefactos: [[02-reporte-clarificacion.template]] · [[03-reportes-gaps.template]] · [[04-casos-prueba.template]] · [[05-registro-ado.template]]

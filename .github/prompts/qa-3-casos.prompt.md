@@ -2,6 +2,7 @@
 name: qa-casos
 agent: qa-test-design
 description: '(🟡) Paso 3: diseña casos de prueba desde la HU + clarificación (+ gaps). Salida lista para ADO.'
+argument-hint: (opcional) enfoque o alcance. Sin esto, diseño desde la clarificación (y gaps) del folder de la HU.
 ---
 
 # Paso 3 — Diseño de Casos de Prueba
@@ -15,3 +16,7 @@ Sin `02` disponible, vuelve a `/qa-clarificar`. Un `02` Parcial no bloquea: dise
 marca la cobertura pendiente. No generes casos sobre supuestos sin validar.
 
 **Siguiente:** `/qa-registrar`.
+
+## 🔗 Conexiones
+- Ejecuta: [[qa-test-design.agent|qa-test-design]]
+- Siguiente paso: [[qa-4-registrar.prompt|/qa-registrar]]

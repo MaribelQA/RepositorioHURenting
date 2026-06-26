@@ -51,3 +51,7 @@ comportamientos del código no contemplados en la HU.
 - No modificar código en este agente (solo lectura/análisis).
 - **Guardar siempre** el reporte en `resultado/HU-<id>/03-...` y **actualizar `00-estado`** al terminar.
 - Escribir el bloque de hand-off al terminar.
+
+## 🔗 Conexiones
+- Rellena: [[03-reportes-gaps.template]]
+- Siguiente agente: [[qa-test-design.agent|qa-test-design]]

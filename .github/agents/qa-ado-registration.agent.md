@@ -45,3 +45,6 @@ preservando pasos, datos, prioridad y trazabilidad con la HU.
   muestra un resumen de lo que se va a crear y pide confirmación explícita.
 - No registrar casos provenientes de un artefacto con `Estado: Bloqueado`.
 - Reportar fielmente errores y casos no registrados.
+
+## 🔗 Conexiones
+- Rellena: [[05-registro-ado.template]]

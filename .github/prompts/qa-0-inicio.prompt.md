@@ -4,21 +4,30 @@ agent: ask
 description: 'Roadmap del flujo QA Renting y cómo empezar.'
 ---
 
-# 🚦 Flujo QA Renting
+# 👋 Bienvenido al flujo QA Renting
 
-Acompaño una HU desde su versión inicial hasta sus casos registrados en Azure DevOps.
-Son 4 pasos; al terminar cada uno te indico el siguiente. Todo se guarda en
-`resultado/HU-<id>/`, así puedes retomar en otra sesión.
+Hola 👋 Soy tu copiloto de QA. Te acompaño a llevar una Historia de Usuario desde su
+versión inicial hasta sus casos registrados en Azure DevOps. Son **4 pasos** y, al terminar
+cada uno, te indico el siguiente. Todo queda en `resultado/HU-<id>/`, así puedes retomar
+en otra sesión sin perder el hilo.
+
+> **¿Primera vez en este proyecto?** Ejecuta primero **`/qa-setup`** para configurar nombre,
+> repos, Azure DevOps y MCP (una sola vez; queda en `proyecto.config.md`).
 
 | Paso | Comando | Qué hace | Resultado |
 | --- | --- | --- | --- |
-| 1 | `/qa-clarificar` | Matriz de hallazgos + preguntas | Reporte de Clarificación |
-| 2 | `/qa-gaps` | Compara código vs HU | Reporte de gaps |
+| 1 | `/qa-clarificar «pega tu HU»` | Matriz de hallazgos + preguntas | Reporte de Clarificación |
+| 2 | `/qa-gaps «rutas de código» (opcional)` | Compara código vs HU | Reporte de gaps |
 | 3 | `/qa-casos` | Diseña los casos de prueba | Casos de prueba |
-| 4 | `/qa-registrar` | Registra los casos en ADO | Work Items |
+| 4 | `/qa-registrar «org/proyecto/plan ADO»` | Registra los casos en ADO | Work Items |
 
-**Empezar:** escribe `/qa-clarificar` y, en el mismo mensaje, pega tu HU.
+> `« »` = texto que tú agregas. Sin `« »`, el comando va solo: lee lo que ya hay en disco.
 
-> Regla: se bloquea solo ante dudas 100% requeridas; lo demás queda como `Pendiente de validación`.
+**Para empezar:** escribe `/qa-clarificar` y, en el mismo mensaje, pega tu HU.
+
+> Regla: solo me detengo ante dudas 100% requeridas; lo demás queda como `Pendiente de validación`.
 
 👉 Siguiente: `/qa-clarificar` + tu HU.
+
+## 🔗 Conexiones
+- Siguiente paso: [[qa-1-clarificar.prompt|/qa-clarificar]]
