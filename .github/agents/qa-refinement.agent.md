@@ -97,7 +97,7 @@ antes de empezar a preguntar. Es el artefacto central de la clarificación:
 Construye internamente una cola priorizada de **máximo 5 preguntas**. Restricciones:
 - Máximo **5 preguntas** en toda la sesión.
 - Cada pregunta debe responderse con **opción múltiple (2–5 opciones mutuamente excluyentes)**
-  o con **respuesta corta** (constrúyela como: "Responde en ≤5 palabras").
+  o con **respuesta corta** (constrúyela como: "Responde en ≤ 50 palabras").
 - Incluye solo preguntas cuyas respuestas impacten **arquitectura, modelo de datos,
   diseño de pruebas, comportamiento UX, preparación operativa o cumplimiento**.
 - Prioriza las categorías no resueltas de **mayor impacto** (heurística Impacto × Incertidumbre).
