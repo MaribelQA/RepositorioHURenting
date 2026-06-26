@@ -9,4 +9,3 @@ La siguiente tabla es un ejemplo de como se espera el resultado, genera el resul
 |   | paso 2: Ingresar a la web antes de ejecutar el SP de eliminar las placas de las clasificaciones | resultado paso 2:  se debe visualizar la placa asociada a una clasificación del cliente |
 |   | paso 3: Consultar el SP y visualizar la placa a eliminar, a continuación lanzar el SP | resultado paso 3: se debe eliminar la placa de las clasificaciones del cliente |
 |   | paso 4: ingresar a la web y filtrar por el CLIENTE y desplegar las clasificaciones | resultado paso 4: no debe mostrar las placas que se encuentran en estado Fin renting |
-
