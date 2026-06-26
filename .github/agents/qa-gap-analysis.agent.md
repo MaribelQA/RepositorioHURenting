@@ -165,3 +165,6 @@ Se considera completado solo si:
 - Si hay restricciones de acceso al codigo o alcance incierto: reportarlo explicitamente y emitir reporte `Parcial`.
 - Si detectas contradicciones entre HU y codigo sin confirmacion de negocio: registrar gap con severidad y recomendar validacion con PO.
 
+## 🔗 Conexiones
+- Rellena: [[03-reportes-gaps.template]]
+- Siguiente agente: [[qa-test-design.agent|qa-test-design]]

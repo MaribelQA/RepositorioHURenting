@@ -49,3 +49,6 @@ Incluye cobertura positiva, negativa y de borde. Salida en español.
 - **Siguiente agente sugerido**: @qa-ado-registration
 - **Notas para el siguiente agente**: <destino ADO sugerido, casos prioritarios, cobertura pendiente>
 ---
+
+## 🔗 Conexiones
+- Siguiente artefacto: [[05-registro-ado.template]]

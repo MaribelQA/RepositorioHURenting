@@ -257,3 +257,7 @@ Se considera completado solo si:
 - Si falta informacion critica de negocio o tecnica: lista preguntas priorizadas y deja el estado en `Bloqueado` solo si la ausencia invalida materialmente la suite.
 - Si hay pendientes no bloqueantes: genera salida `Parcial`, marca `Cobertura pendiente` y permite continuar el flujo.
 
+## 🔗 Conexiones
+- Rellena: [[04-casos-prueba.template]]
+- Diseña según: [[test-case-creation-principles]]
+- Siguiente agente: [[qa-ado-registration.agent|qa-ado-registration]]

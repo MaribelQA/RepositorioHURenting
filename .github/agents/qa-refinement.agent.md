@@ -32,14 +32,21 @@ Revisión de la HU **sin ejecutar software**, para detectar temprano:
 ---
 
 ## Flujo obligatorio
-La HU llega pegada o adjunta en el chat (opcional: contexto de negocio adicional).
+La HU entra por una de dos vías (constitución §3.1; consulta `proyecto.config.md` →
+`mcp.servidor_ado`): **pegada/adjunta en el chat**, o **traída por ID vía MCP de ADO**.
+Opcional: contexto de negocio adicional.
 
 ### Paso 1 — Capturar la HU, identificar el work item y crear el backup en disco
-1. Tomar el contenido de la HU de la sesión: el **texto pegado** y/o el **archivo adjunto**.
-   - Si hay archivo adjunto, usar su contenido como HU; si además hay texto en el mensaje,
-     tratarlo como contexto adicional (salvo que el usuario indique lo contrario).
-   - Si no llega ningún contenido, responder: *"Pega el texto de la HU o adjunta el
-     archivo en el chat para refinarla."* y detenerte.
+1. Obtener el contenido de la HU según la vía:
+   - **Pegada/adjunta**: usar el **texto pegado** y/o el **archivo adjunto**. Si hay adjunto,
+     ese es la HU; el texto del mensaje es contexto adicional (salvo indicación contraria).
+   - **Por ID vía MCP**: si el usuario da solo un número de work item (o lo pide
+     explícitamente) y `proyecto.config.md` tiene `mcp.servidor_ado` configurado, recuperar
+     la HU con la herramienta MCP de Azure DevOps usando org/proyecto del config. Confirma
+     qué se trajo.
+   - Si **no** llega contenido y **no** hay MCP configurado: responder *"Pega el texto de la
+     HU o adjunta el archivo en el chat para refinarla."* y detenerte. Si hay MCP pero falta
+     el ID: pedir el número de work item y detenerte.
 2. Confirmar brevemente qué se recibió (p.ej. *"Recibí la HU pegada"* / *"Recibí el adjunto X"*).
 3. Si el contenido **no es una HU identificable** (vacío, sin rol/acción/beneficio, u otro
    tipo de documento): informar qué se encontró, listar los elementos mínimos esperados
@@ -227,3 +234,6 @@ Al terminar, entrega:
   entregar la lista priorizada de bloqueantes y guardar un **Reporte de Clarificación parcial**
   marcando claramente lo `Pendiente de validación` y los bloqueantes (Estado de hand-off: `Bloqueado`).
 
+## 🔗 Conexiones
+- Rellena: [[02-reporte-clarificacion.template]]
+- Siguiente agente: [[qa-gap-analysis.agent|qa-gap-analysis]]

@@ -2,6 +2,7 @@
 name: qa-registrar
 agent: qa-ado-registration
 description: '(🟡) Paso 4: registra los casos como Test Case en Azure DevOps. Acción externa: confirma antes de escribir.'
+argument-hint: Destino ADO — organización/proyecto/Test Plan/Suite. Te pido confirmación antes de crear nada.
 ---
 
 # Paso 4 — Registrar Test Cases en Azure DevOps
@@ -15,3 +16,6 @@ Ejecuta el agente `qa-ado-registration`.
 explícita** antes de escribir. No registres casos de un artefacto `Bloqueado`.
 
 **Siguiente:** fin del flujo.
+
+## 🔗 Conexiones
+- Ejecuta: [[qa-ado-registration.agent|qa-ado-registration]]

@@ -42,3 +42,6 @@
 | ADO | Azure DevOps |
 | SP | Stored Procedure (procedimiento almacenado) `(borrador)` |
 | <sigla> | <significado> |
+
+## 🔗 Conexiones
+- Documento hermano: [[lineamientos-qa]]

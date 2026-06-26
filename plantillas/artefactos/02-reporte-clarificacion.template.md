@@ -49,3 +49,6 @@ intacta en `01-HU-<id>.md`. Mantén las secciones; usa "ninguno"/"—" donde no 
 - **Siguiente agente sugerido**: @qa-gap-analysis (o @qa-test-design)
 - **Notas para el siguiente agente**: <contexto relevante en 1-3 líneas>
 ---
+
+## 🔗 Conexiones
+- Siguiente artefacto: [[03-reportes-gaps.template]]
