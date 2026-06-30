@@ -47,7 +47,7 @@ Coordinado y validado por [[qa-orchestrator.agent|qa-orchestrator]] (Agente 0).
 - [[05-registro-ado.template]] — Registro en ADO
 
 ## Referencias de diseño de casos
-- [[test-case-creation-principles]] — principios ISTQB
+- [[lineamientos-qa]] — principios ISTQB y convenciones del equipo QA
 - [[04-casos-prueba.template]] — plantilla de caso y formato ADO (Work Item Test Case)
 
 ## Contexto de dominio (on-demand)

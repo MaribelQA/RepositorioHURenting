@@ -255,5 +255,5 @@ Se considera completado solo si:
 
 ## 🔗 Conexiones
 - Rellena: [[04-casos-prueba.template]]
-- Principios de diseño: [[test-case-creation-principles]]
+- Principios de diseño: [[lineamientos-qa]]
 - Siguiente agente: [[qa-ado-registration.agent|qa-ado-registration]]
