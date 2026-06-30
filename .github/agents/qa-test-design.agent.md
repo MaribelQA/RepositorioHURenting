@@ -27,9 +27,7 @@ Respeta la constitucion del repo en `.github/copilot-instructions.md`. Tu salida
 
 ## Referencias obligatorias del repo
 - Lineamientos QA: `docs/lineamientos-qa.md`.
-- Plantilla de caso: `plantillas/test-case-template.md`.
-- Formato de salida ADO (Test Plan): `plantillas/formato-cp.md`.
-- Plantilla del artefacto final: `plantillas/artefactos/04-casos-prueba.template.md`.
+- Plantilla del artefacto final (incluye formato ADO): `plantillas/artefactos/04-casos-prueba.template.md`.
 - Consulta de dominio solo si hace falta: `docs/glosario-renting.md` y `docs/lineamientos-qa.md`.
 
 ## Entradas esperadas
@@ -38,8 +36,6 @@ Respeta la constitucion del repo en `.github/copilot-instructions.md`. Tu salida
   - `resultado/HU-<id>/01-HU-<id>.md`
   - `resultado/HU-<id>/02-reporte-clarificacion-HU-<id>.md`
   - `plantillas/artefactos/04-casos-prueba.template.md`
-  - `plantillas/test-case-template.md`
-  - `plantillas/formato-cp.md`
 - **Opcional**:
   - `resultado/HU-<id>/03-reportes-gaps-HU-<id>.md`
 - **Contexto complementario opcional**:
@@ -51,7 +47,7 @@ Respeta la constitucion del repo en `.github/copilot-instructions.md`. Tu salida
 
 ## Reglas de entrada y bloqueo
 - Empieza siempre leyendo `00-estado` para situarte y retomar el flujo sin depender del chat.
-- Verifica que existan y puedan leerse `01`, `02`, `plantillas/artefactos/04-casos-prueba.template.md`, `plantillas/test-case-template.md` y `plantillas/formato-cp.md`.
+- Verifica que existan y puedan leerse `01`, `02`, `plantillas/artefactos/04-casos-prueba.template.md`.
 - Si falta un archivo obligatorio o no puede leerse:
   - informa el error con precision
   - no inventes contenido
@@ -67,7 +63,7 @@ Respeta la constitucion del repo en `.github/copilot-instructions.md`. Tu salida
 
 ### Paso 1 - Validacion de insumos y estado
 1. Leer `00-estado-HU-<id>.md` para conocer artefactos disponibles, pendientes y bloqueantes.
-2. Confirmar existencia y lectura de `01`, `02`, `plantillas/artefactos/04-casos-prueba.template.md`, `plantillas/test-case-template.md` y `plantillas/formato-cp.md`.
+2. Confirmar existencia y lectura de `01`, `02`, `plantillas/artefactos/04-casos-prueba.template.md`.
 3. Si existe `03`, leerlo para reforzar cobertura y detectar riesgos funcionales no explicitos en la HU.
 4. Determinar si el flujo puede avanzar con estado `Completado`, `Parcial` o `Bloqueado`.
 
@@ -253,11 +249,11 @@ Se considera completado solo si:
 
 ## Manejo de errores
 - Si `01` o `02` no existen o no pueden leerse: informa el archivo faltante o ilegible, no inventes contenido y detente.
-- Si falta `plantillas/artefactos/04-casos-prueba.template.md`, `plantillas/test-case-template.md` o `plantillas/formato-cp.md`: informa el error preciso, solicita corregir la ruta o restaurar el archivo y no generes casos sin plantilla.
+- Si falta `plantillas/artefactos/04-casos-prueba.template.md`: informa el error preciso, solicita corregir la ruta o restaurar el archivo y no generes casos sin plantilla.
 - Si falta informacion critica de negocio o tecnica: lista preguntas priorizadas y deja el estado en `Bloqueado` solo si la ausencia invalida materialmente la suite.
 - Si hay pendientes no bloqueantes: genera salida `Parcial`, marca `Cobertura pendiente` y permite continuar el flujo.
 
 ## 🔗 Conexiones
 - Rellena: [[04-casos-prueba.template]]
-- Diseña según: [[test-case-creation-principles]]
+- Principios de diseño: [[test-case-creation-principles]]
 - Siguiente agente: [[qa-ado-registration.agent|qa-ado-registration]]

@@ -20,7 +20,7 @@
 - Un caso valida **un solo comportamiento**.
 - Cobertura mínima por criterio: <positivo + negativo + borde>.
 - Naming del título: `[Acción] debería [resultado] cuando [condición]`.
-- Cada `Step Action` debe tener su `Stept Expected Result` (formato ADO, ver `plantillas/formato-cp.md`).
+- Cada `Step Action` debe tener su `Stept Expected Result` (formato ADO, ver `plantillas/artefactos/04-casos-prueba.template.md`).
 - <otra convención del equipo>
 
 ## Definición de Hecho (DoD) de una HU lista para casos
@@ -40,4 +40,4 @@
 - <convención de vínculo HU ↔ Test Case>
 
 ## 🔗 Conexiones
-- Formato de casos para ADO: [[formato-cp]]
+- Formato de casos para ADO: [[04-casos-prueba.template]]

@@ -39,7 +39,7 @@ Toda salida vive en `resultado/HU-<id>/`, donde `<id>` es el **número de work i
 
 Cada etapa **parte de su plantilla** en `plantillas/artefactos/<archivo>.template.md`, la copia
 al destino y la rellena (el `01` no tiene plantilla). Referencias para casos:
-`plantillas/test-case-template.md`, `plantillas/formato-cp.md`, `docs/lineamientos-qa.md`.
+`plantillas/artefactos/04-casos-prueba.template.md`, `docs/lineamientos-qa.md`.
 
 **Contexto de dominio (consulta on-demand, no se auto-carga):** ante términos, estados o reglas
 de negocio de Renting, consulta `docs/glosario-renting.md` y `docs/lineamientos-qa.md`. No los
