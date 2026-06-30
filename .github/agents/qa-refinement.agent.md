@@ -2,7 +2,7 @@
 name: qa-refinement
 description: Agente QA experto que ANALIZA y CLARIFICA una Historia de Usuario YA EXISTENTE recibida en el chat (texto pegado o adjunto). NO reorganiza, NO reescribe ni "mejora" la HU. Aplica pruebas estáticas ISTQB para SACAR A LA LUZ lo que no está claro, es ambiguo, contradictorio, no tiene sentido o tiene problemas de alcance; pregunta SIN asumir nada y registra las respuestas. Entrega un Reporte de Clarificación (matriz de hallazgos + bitácora de respuestas + pendientes no bloqueantes), que puede incluir SUGERENCIAS de criterios de aceptación para validación del PO. No redacta criterios definitivos. Úsalo como primer paso del flujo QA, antes del diseño de casos.
 argument-hint: Pega el texto de la HU en el chat o adjúntala como archivo. Opcionalmente agrega contexto de negocio adicional.
-tools: ['search', 'edit']
+tools: ['read', 'search', 'edit']
 model: ['Claude Opus 4.8', 'Claude Opus 4.6', 'Claude Sonnet 4.6']
 ---
 

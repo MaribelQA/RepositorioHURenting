@@ -8,80 +8,58 @@ Incluye cobertura positiva, negativa y de borde. Salida en español.
 
 # Casos de prueba — HU-<id>
 
-## 1. Resumen de cobertura
+## 1. Resumen de análisis de la HU
+- **HU**: <id> — <título>
+- **Actor / rol principal**: <actor>
+- **Objetivo funcional**: <objetivo>
+- **Reglas relevantes**: <reglas o "ninguna adicional">
+- **Veredicto de diseño**: <Completado | Parcial | Bloqueado>
+
+## 2. Preguntas de aclaración pendientes
+- <pregunta o "ninguna">
+
+## 3. Matrices de diseño
+
+### 3.1 Partición de equivalencia
+| Regla / criterio | Partición válida | Partición inválida | Impacto funcional |
+| --- | --- | --- | --- |
+| <criterio> | <datos/condición válida> | <datos/condición inválida> | <impacto> |
+
+### 3.2 Valores límite
+| Regla / campo | Mínimo | Máximo | Límites cercanos | Justificación |
+| --- | --- | --- | --- | --- |
+| <regla/campo> | <mínimo> | <máximo> | <valores cercanos> | <por qué importa> |
+
+### 3.3 Tabla de decisión
+| Condiciones | Combinación | Acción esperada |
+| --- | --- | --- |
+| <condición o "No aplica"> | <combinación o "No aplica"> | <acción o justificación> |
+
+## 4. Resumen de cobertura
 - **HU**: <id> — <título>
 - **Total de casos**: <n>  (Positivos: <n> · Negativos: <n> · Borde: <n>)
 - **Insumos usados**: clarificación (`02`)<, gaps (`03`) si aplica>
 - **Técnicas aplicadas**: <partición de equivalencia / valores límite / tabla de decisión / transición de estados / error guessing>
 
-## 2. Trazabilidad criterio ↔ caso
-| Criterio de aceptación | Casos que lo cubren |
-| --- | --- |
-| <criterio> | <IDs de caso> |
+## 5. Casos (formato Azure DevOps — Work Item Test Case)
+> Cada `Step Action` ejecutable debe tener su `Stept Expected Result`. La fila `@Precondiciones` puede dejarlo vacío.
 
-## 3. Casos (formato Azure DevOps — Work Item Test Case)
-> Cada `Step Action` debe tener su `Stept Expected Result`. EXCEPTO el paso 1 que es la Precondición, este no tiene `Stept Expected Result`.
+| Title | Step Action | Stept Expected Result |
+| --- | --- | --- |
+| TC-01-HU-<id> - [Acción] debe [resultado] cuando [condición] | Clasificación: Happy Path / Alterno / Negativo / Borde. Criterio cubierto: <criterio>. Técnica ISTQB: <técnica>. Datos de prueba: <datos>. | <resultado esperado general del caso> |
+|  | @Precondiciones: <estado/datos requeridos antes de ejecutar> |  |
+|  | paso 1: <acción del usuario/sistema> | resultado paso 1: <comportamiento esperado> |
+|  | paso 2: <acción> | resultado paso 2: <resultado> |
+| TC-02-HU-<id> - [Acción] debe [resultado] cuando [condición] | Clasificación: Happy Path / Alterno / Negativo / Borde. Criterio cubierto: <criterio>. Técnica ISTQB: <técnica>. Datos de prueba: <datos>. | <resultado esperado general del caso> |
+|  | @Precondiciones: <estado/datos requeridos antes de ejecutar> |  |
+|  | paso 1: <acción> | resultado paso 1: <resultado> |
 
-## 🆔 Test Case Identification
+## 6. Matriz de trazabilidad final
+| Criterio de aceptación | Casos que lo cubren | Estado de cobertura |
+| --- | --- | --- |
+| <criterio> | <IDs de caso> | Completo / Parcial |
 
-**Test Case ID**: TC_[MODULE]*[FEATURE]*[###]
-**Title**: [Action] should [expected outcome] when [condition]
-
-## 🔢 Test Steps
-
-| Step | Action                                                                                                      | Expected Result            |
-| ---- | -------- |
-| 1    | @Preconditions: * [System state required before] * [User must be logged in / data exists / etc.]           |                            |
-| 2    | [Describe the action performed by the user]                                                                 | [Expected system behavior after this step] |
-| 3    | [Next action]                                                                                               | [Expected result]          |
-| N    | [...]                                                                                                       | [...]                      |
-
-
-## 📝 Description
-
-[Brief explanation of what is being validated and why]
-
-
----
-
-**Notes (Optional)**
-* [Any additional context or assumptions]
-
----
----
-
-## 🧩 Example (Reference Only - Do NOT reuse)
-
-**Test Case ID**: TC_AUTH_LOGIN_001
-**Title**: User should log in successfully when valid credentials are provided
-
-**Test Steps**:
-
-| Step | Action | Expected Result |
-| ---- | ---- | ----|
-| 1    | @Preconditions: * User account exists |  |
-| 2    | Navigate to login page         | Login page is displayed         |
-| 3    | Enter valid email and password | Credentials are accepted        |
-| 4    | Click login button             | User is redirected to dashboard |
-
-
-**Description**: Validate that a registered user can log in with valid credentials
-
-**Test Data**:
-* Input: [valid_user@test.com](mailto:valid_user@test.com) / Password123
-* Output: login exitoso
-
-**Test Type**:
-* Functional
-
-**Priority**:
-* High
-
-**Environment**:
-* QA
-
-
-## 4. Cobertura pendiente
+## 7. Cobertura pendiente
 > Criterios que NO se cubrieron por depender de pendientes/bloqueantes de la clarificación
 > (sugerencias del PO sin validar, datos faltantes, etc.). No inventar casos sobre supuestos.
 

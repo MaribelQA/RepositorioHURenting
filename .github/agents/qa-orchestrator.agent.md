@@ -2,7 +2,7 @@
 name: qa-orchestrator
 description: Orquestador de la suite QA Renting. Coordina el flujo de extremo a extremo (refinamiento de HU, análisis de gaps código vs HU, diseño de casos de prueba y registro en Azure DevOps), valida los artefactos de cada etapa mediante el bloque de hand-off y delega en el agente especializado correcto. Úsalo cuando quieras conducir el proceso completo o no sepas qué agente invocar.
 argument-hint: La HU pegada/adjunta o una instrucción de alto nivel (p.ej. "refina y diseña casos para HU-145877"). Los artefactos viven en resultado/HU-<id>/.
-tools: ['search', 'edit', 'runSubagent']
+tools: ['read', 'search', 'agent']
 agents: ['qa-refinement', 'qa-gap-analysis', 'qa-test-design', 'qa-ado-registration']
 model: ['Claude Sonnet 4.6', 'GPT-5.4']
 ---

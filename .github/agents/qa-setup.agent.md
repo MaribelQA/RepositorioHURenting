@@ -2,7 +2,7 @@
 name: qa-setup
 description: Configura la suite QA para un proyecto nuevo. Pregunta UNA sola vez los datos del proyecto (nombre, repos de código, Azure DevOps, servidor MCP) y los escribe en proyecto.config.md, que el resto de agentes lee como contexto persistente. Idempotente — si la configuración ya está completa, no vuelve a preguntar. Úsalo justo después de clonar el repo, o cuando cambien los datos del proyecto.
 argument-hint: Sin argumentos. Te hago las preguntas de configuración una a una. Para reconfigurar, indícalo (p.ej. "reconfigurar").
-tools: ['search', 'edit']
+tools: ['read', 'search', 'edit']
 model: ['Claude Haiku 4.5', 'Claude Sonnet 4.6']
 ---
 

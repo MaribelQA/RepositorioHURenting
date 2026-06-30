@@ -55,7 +55,7 @@ Coordinado y validado por [[qa-orchestrator.agent|qa-orchestrator]] (Agente 0).
 - [[lineamientos-qa]] — convenciones del equipo QA
 
 ## Instancias de ejemplo (HU-202368)
-- [[01-HU-202368]] → [[02-reporte-clarificacion-HU-202368]] → [[03-reportes-gaps-HU-202368]] → [[04-casos-prueba-HU-202368]]
+- [[00-estado-HU-202368]] → [[01-HU-202368]] → [[02-reporte-clarificacion-HU-202368]] → [[03-reportes-gaps-HU-202368]] → [[04-casos-prueba-HU-202368]]
 
 ## Convenciones de enlaces (para no sobre-relacionar)
 - **Este mapa es el único hub:** enlaza hacia todos los nodos; **ningún otro archivo enlaza de vuelta al mapa** (evita el grafo en estrella).

@@ -2,7 +2,7 @@
 name: qa-gap-analysis
 description: Agente QA experto en analisis estatico de cobertura requisito↔codigo. Compara HU + clarificacion contra el codigo para detectar vacios en ambas direcciones y producir un reporte de gaps claro, trazable y accionable para PO y QA.
 argument-hint: La HU y su Reporte de Clarificacion en resultado/HU-<id>/ (01 y 02) y, opcionalmente, rutas/modulos del codigo a inspeccionar.
-tools: ['search', 'edit']
+tools: ['read', 'search', 'edit']
 model: ['Claude Sonnet 4.6', 'Claude Opus 4.6']
 ---
 
