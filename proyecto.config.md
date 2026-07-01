@@ -5,13 +5,12 @@ repos:
   - nombre: "<repo principal>"
     ubicacion: "<url remota o ruta local del código>"
 azure_devops:
-  organizacion: "<org de Azure DevOps>"
-  proyecto: "<proyecto de Azure DevOps>"
-  test_plan: "<id o nombre del Test Plan por defecto>"
-  test_suite: "<id o nombre de la Suite por defecto>"
+  organizacion: "https://rentingcolombia.visualstudio.com/"
+  proyecto: "CentroDeInteligencia"
+  work_item_type: "Test Case"
   prioridad_defecto: "Media"
 mcp:
-  servidor_ado: "<nombre del server MCP de Azure DevOps registrado en el entorno, o vacío>"
+  servidor_ado: ""   # sin MCP configurado — registro en ADO es manual
 contexto:
   glosario: "docs/glosario-renting.md"
   lineamientos: "docs/lineamientos-qa.md"
@@ -36,9 +35,9 @@ estado_setup: "pendiente"   # pendiente | completo
 
 ## Azure DevOps
 > Para el registro de casos (Paso 4) y, si usas MCP, para **traer la HU por ID**.
-- **Organización**: <…>
-- **Proyecto**: <…>
-- **Test Plan / Suite por defecto**: <…>
+- **Organización**: https://rentingcolombia.visualstudio.com/
+- **Proyecto**: CentroDeInteligencia
+- **Tipo de Work Item**: Test Case (registro directo, sin Test Plan ni Test Suite)
 - **Prioridad por defecto**: <Alta / Media / Baja>
 
 ## MCP (servidores del entorno)

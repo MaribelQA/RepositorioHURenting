@@ -14,52 +14,49 @@ Incluye cobertura positiva, negativa y de borde. Salida en español.
 - **Objetivo funcional**: <objetivo>
 - **Reglas relevantes**: <reglas o "ninguna adicional">
 - **Veredicto de diseño**: <Completado | Parcial | Bloqueado>
-
-## 2. Preguntas de aclaración pendientes
-- <pregunta o "ninguna">
+- **Preguntas de aclaración pendientes**: <preguntas o "ninguna" — ver `02-reporte-clarificacion-HU-<id>.md`>
 
 ## 2. Matrices de diseño
 
-### 3.1 Partición de equivalencia
+### 2.1 Partición de equivalencia
 | Regla / criterio | Partición válida | Partición inválida | Impacto funcional |
 | --- | --- | --- | --- |
 | <criterio> | <datos/condición válida> | <datos/condición inválida> | <impacto> |
 
-### 3.2 Valores límite
+### 2.2 Valores límite
 | Regla / campo | Mínimo | Máximo | Límites cercanos | Justificación |
 | --- | --- | --- | --- | --- |
 | <regla/campo> | <mínimo> | <máximo> | <valores cercanos> | <por qué importa> |
 
-### 3.3 Tabla de decisión
+### 2.3 Tabla de decisión
 | Condiciones | Combinación | Acción esperada |
 | --- | --- | --- |
 | <condición o "No aplica"> | <combinación o "No aplica"> | <acción o justificación> |
 
-## 4. Resumen de cobertura
+## 3. Resumen de cobertura
 - **HU**: <id> — <título>
 - **Total de casos**: <n>  (Positivos: <n> · Negativos: <n> · Borde: <n>)
-- **Insumos usados**: clarificación (`02`)<, gaps (`03`) si aplica>
+- **Prioridad**: <Alta | Media | Baja>
+- **Insumos usados**: clarificación (`02`), gaps (`03`) si aplica
 - **Técnicas aplicadas**: <partición de equivalencia / valores límite / tabla de decisión / transición de estados / error guessing>
 
-## 5. Casos (formato Azure DevOps — Work Item Test Case)
-> Cada `Step Action` ejecutable debe tener su `Stept Expected Result`. La fila `@Precondiciones` puede dejarlo vacío.
+## 4. Casos (formato Azure DevOps — Work Item Test Case)
+> Cada `Step Action` ejecutable debe tener su `Stept Expected Result`. La fila `Precondiciones` puede dejarlo vacío.
 
 | Title | Step Action | Stept Expected Result |
 | --- | --- | --- |
-| TC-01-HU-<id> - [Acción] debe [resultado] cuando [condición] | Clasificación: Happy Path / Alterno / Negativo / Borde. Criterio cubierto: <criterio>.  |  |
-|  | @Precondiciones: <estado/datos requeridos antes de ejecutar> |  |
-|  | paso 1: <acción del usuario/sistema> | resultado paso 1: <comportamiento esperado> |
-|  | paso 2: <acción> | resultado paso 2: <resultado> |
-| TC-02-HU-<id> - [Acción] debe [resultado] cuando [condición] | Clasificación: Happy Path / Alterno / Negativo / Borde. Criterio cubierto: <criterio>.  |  |
-|  | @Precondiciones: <estado/datos requeridos antes de ejecutar> |  |
-|  | paso 1: <acción> | resultado paso 1: <resultado> |
+| TC-01-HU-<id> - [Acción] debe [resultado] cuando [condición] | Precondiciones: <estado/datos requeridos antes de ejecutar>. Datos de prueba: <datos relevantes para la ejecución>. Clasificación: Happy Path / Alterno / Negativo / Borde. Criterio cubierto: <criterio>. |  |
+|  | <acción del usuario/sistema> | <comportamiento esperado> |
+|  | <acción> | <resultado> |
+| TC-02-HU-<id> - [Acción] debe [resultado] cuando [condición] | Precondiciones: <estado/datos requeridos antes de ejecutar>. Datos de prueba: <datos relevantes para la ejecución>. Clasificación: Happy Path / Alterno / Negativo / Borde. Criterio cubierto: <criterio>. |  |
+|  | <acción> | <resultado> |
 
-## 6. Matriz de trazabilidad final
+## 5. Matriz de trazabilidad final
 | Criterio de aceptación | Casos que lo cubren | Estado de cobertura |
 | --- | --- | --- |
 | <criterio> | <IDs de caso> | Completo / Parcial |
 
-## 7. Cobertura pendiente
+## 6. Cobertura pendiente
 > Criterios que NO se cubrieron por depender de pendientes/bloqueantes de la clarificación
 > (sugerencias del PO sin validar, datos faltantes, etc.). No inventar casos sobre supuestos.
 
