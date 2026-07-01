@@ -46,11 +46,11 @@ Incluye cobertura positiva, negativa y de borde. Salida en español.
 
 | Title | Step Action | Stept Expected Result |
 | --- | --- | --- |
-| TC-01-HU-<id> - [Acción] debe [resultado] cuando [condición] | Clasificación: Happy Path / Alterno / Negativo / Borde. Criterio cubierto: <criterio>. Técnica ISTQB: <técnica>. Datos de prueba: <datos>. | <resultado esperado general del caso> |
+| TC-01-HU-<id> - [Acción] debe [resultado] cuando [condición] | Clasificación: Happy Path / Alterno / Negativo / Borde. Criterio cubierto: <criterio>.  |  |
 |  | @Precondiciones: <estado/datos requeridos antes de ejecutar> |  |
 |  | paso 1: <acción del usuario/sistema> | resultado paso 1: <comportamiento esperado> |
 |  | paso 2: <acción> | resultado paso 2: <resultado> |
-| TC-02-HU-<id> - [Acción] debe [resultado] cuando [condición] | Clasificación: Happy Path / Alterno / Negativo / Borde. Criterio cubierto: <criterio>. Técnica ISTQB: <técnica>. Datos de prueba: <datos>. | <resultado esperado general del caso> |
+| TC-02-HU-<id> - [Acción] debe [resultado] cuando [condición] | Clasificación: Happy Path / Alterno / Negativo / Borde. Criterio cubierto: <criterio>.  |  |
 |  | @Precondiciones: <estado/datos requeridos antes de ejecutar> |  |
 |  | paso 1: <acción> | resultado paso 1: <resultado> |
 

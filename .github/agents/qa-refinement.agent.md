@@ -114,7 +114,7 @@ Construye internamente una cola priorizada de **máximo 5 preguntas**. Restricci
 ### Paso 4 — Ciclo de preguntas (interactivo, UNA pregunta a la vez)
 Presenta **exactamente una pregunta a la vez**. Nunca reveles preguntas futuras.
 
-**Para opción múltiple:**
+**Para opción múltiple:** 
 - Analiza todas las opciones y determina la **más adecuada** según buenas prácticas,
   patrones comunes, reducción de riesgo (seguridad/rendimiento/mantenibilidad) y los
   objetivos visibles en la HU.
@@ -126,18 +126,18 @@ Presenta **exactamente una pregunta a la vez**. Nunca reveles preguntas futuras.
   | A | <descripción> |
   | B | <descripción> |
   | C | <descripción> (D/E si aplica, hasta 5) |
-  | Corta | Otra respuesta corta (≤5 palabras) (solo si una respuesta libre es apropiada) |
+  | Corta | Otra respuesta corta (≤50 palabras) (solo si una respuesta libre es apropiada) |
 
 - Cierra con: *"Puedes responder con la letra (p.ej. «A»), aceptar la recomendación
   diciendo «sí» o «recomendado», o dar tu propia respuesta corta."*
 
 **Para respuesta corta (sin opciones discretas significativas):**
 - Propón tu respuesta sugerida: `**Sugerido:** <respuesta> — <razón breve>`.
-- Cierra con: *"Formato: respuesta corta (≤5 palabras). Acepta con «sí»/«sugerido» o da la tuya."*
+- Cierra con: *"Formato: respuesta corta (≤50 palabras). Acepta con «sí»/«sugerido» o da la tuya."*
 
 **Tras cada respuesta del usuario:**
 - Si responde "sí", "recomendado" o "sugerido", usa tu recomendación/sugerencia previa.
-- Si no, valida que la respuesta mapee a una opción o cumpla ≤5 palabras. Si es ambigua,
+- Si no, valida que la respuesta mapee a una opción o cumpla ≤50 palabras. Si es ambigua,
   pide una desambiguación breve (sigue siendo la misma pregunta; no avances).
 - Registra la respuesta en memoria de trabajo y pasa a la siguiente pregunta.
 
