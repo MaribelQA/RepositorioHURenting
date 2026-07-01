@@ -18,7 +18,7 @@ Incluye cobertura positiva, negativa y de borde. Salida en español.
 ## 2. Preguntas de aclaración pendientes
 - <pregunta o "ninguna">
 
-## 3. Matrices de diseño
+## 2. Matrices de diseño
 
 ### 3.1 Partición de equivalencia
 | Regla / criterio | Partición válida | Partición inválida | Impacto funcional |
