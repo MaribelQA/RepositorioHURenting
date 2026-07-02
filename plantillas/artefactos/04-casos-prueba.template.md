@@ -41,14 +41,15 @@ Incluye cobertura positiva, negativa y de borde. Salida en español.
 - **Técnicas aplicadas**: <partición de equivalencia / valores límite / tabla de decisión / transición de estados / error guessing>
 
 ## 4. Casos (formato Azure DevOps — Work Item Test Case)
-> Cada `Step Action` ejecutable debe tener su `Stept Expected Result`. La fila `Precondiciones` puede dejarlo vacío.
 
-| Title | Step Action | Stept Expected Result |
+| Title | Step Action | Step Expected Result |
 | --- | --- | --- |
-| TC-01-HU-<id> - [Acción] debe [resultado] cuando [condición] | Precondiciones: <estado/datos requeridos antes de ejecutar>. Datos de prueba: <datos relevantes para la ejecución>. Clasificación: Happy Path / Alterno / Negativo / Borde. Criterio cubierto: <criterio>. |  |
+| TC-01-HU-<id> - [Acción] debe [resultado] cuando [condición] |  |  |
+|  | Precondiciones: <estado/datos requeridos antes de ejecutar>. Datos de prueba: <datos relevantes para la ejecución>. Clasificación: Happy Path / Alterno / Negativo / Borde. Criterio cubierto: <criterio>. |  |
 |  | <acción del usuario/sistema> | <comportamiento esperado> |
 |  | <acción> | <resultado> |
-| TC-02-HU-<id> - [Acción] debe [resultado] cuando [condición] | Precondiciones: <estado/datos requeridos antes de ejecutar>. Datos de prueba: <datos relevantes para la ejecución>. Clasificación: Happy Path / Alterno / Negativo / Borde. Criterio cubierto: <criterio>. |  |
+| TC-02-HU-<id> - [Acción] debe [resultado] cuando [condición] |  |  |
+|  | Precondiciones: <estado/datos requeridos antes de ejecutar>. Datos de prueba: <datos relevantes para la ejecución>. Clasificación: Happy Path / Alterno / Negativo / Borde. Criterio cubierto: <criterio>. |  |
 |  | <acción> | <resultado> |
 
 ## 5. Matriz de trazabilidad final
