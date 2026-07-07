@@ -19,6 +19,7 @@ No generes casos sobre supuestos sin validar.
 
 **Siguiente:** `/qa-registrar`.
 
+
 ## 🔗 Conexiones
 - Ejecuta: [[qa-test-design.agent|qa-test-design]]
 - Siguiente paso: [[qa-4-registrar.prompt|/qa-registrar]]
