@@ -89,25 +89,26 @@ de validación, o (b) sea mejor diferirla a la etapa de diseño/planeación (an�
 A partir del escaneo, **construye y muestra al usuario** una **Matriz de Ambigüedades**
 antes de empezar a preguntar. Es el artefacto central de la clarificación:
 
-| # | Categoría | Hallazgo | Tipo | Severidad | Estado | Pregunta asociada |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1 | <categoría de la taxonomía> | <qué falta, es ambiguo o se contradice> | Ambigüedad / Omisión / Inconsistencia / No testable / Sin sentido / Alcance / Escenario no contemplado | Alta / Media / Baja | Abierto | P1 |
+| # | Categoría | Hallazgo | Tipo | Severidad | Impacta diseño de pruebas | Estado | Pregunta asociada |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | <categoría de la taxonomía> | <qué falta, es ambiguo o se contradice> | Ambigüedad / Omisión / Inconsistencia / No testable / Sin sentido / Alcance / Escenario no contemplado | Alta / Media / Baja | Sí / No | Abierto | P1 |
 
 - **Tipo**: clasificación del defecto estático (ISTQB).
 - **Severidad**: impacto en implementación o en el diseño de pruebas (Alta = bloqueante).
+- **Impacta diseño de pruebas**: `Sí` si el hallazgo sin resolver haría que la suite de casos quede `Parcial` o incorrecta; `No` si es cosmético o administrativo y no afecta la cobertura de pruebas.
 - **Estado**: inicia en `Abierto`; pasa a `Resuelto` o `Pendiente de validación` según las respuestas.
 - **Pregunta asociada**: vincula el hallazgo con la pregunta (P1, P2, …) que lo resolverá.
-- Ordena la matriz por severidad. Las preguntas del Paso 3/4 salen de las filas de mayor severidad.
+- Ordena la matriz: primero por `Impacta diseño de pruebas: Sí`, luego por Severidad descendente. Las preguntas del Paso 3/4 salen de esta priorización.
 - Mantén la matriz actualizada a medida que el usuario responde (esa es la "matriz organizada").
 
 ### Paso 3 — Cola priorizada de preguntas (interno, no mostrar todo)
-Construye internamente una cola priorizada de **máximo 5 preguntas**. Restricciones:
-- Máximo **5 preguntas** en toda la sesión.
+Construye internamente una cola priorizada de preguntas. Restricciones por ronda:
+- Máximo **5 preguntas por ronda**. Sin límite de rondas: el ciclo continúa hasta que todos los hallazgos con `Impacta diseño de pruebas: Sí` estén `Resueltos` o el usuario declare que no puede responderlos.
 - Cada pregunta debe responderse con **opción múltiple (2–5 opciones mutuamente excluyentes)**
   o con **respuesta corta** (constrúyela como: "Responde en ≤ 50 palabras").
 - Incluye solo preguntas cuyas respuestas impacten **arquitectura, modelo de datos,
   diseño de pruebas, comportamiento UX, preparación operativa o cumplimiento**.
-- Prioriza las categorías no resueltas de **mayor impacto** (heurística Impacto × Incertidumbre).
+- **Priorización obligatoria**: primero todos los hallazgos con `Impacta diseño de pruebas: Sí`, ordenados por Severidad descendente; luego los hallazgos con `Impacta diseño de pruebas: No`.
 - Excluye preferencias estilísticas triviales y detalles de ejecución del plan.
 - Favorece aclaraciones que reduzcan retrabajo o eviten criterios de aceptación mal alineados.
 
@@ -144,13 +145,12 @@ Presenta **exactamente una pregunta a la vez**. Nunca reveles preguntas futuras.
 **Detén el ciclo cuando:** se resuelvan temprano todas las ambigüedades críticas, el
 usuario indique fin ("listo", "ya", "suficiente", "continúa"), o llegues a 5 preguntas.
 
-**Segunda ronda (limitada):** si tras la primera ronda persisten vacíos **bloqueantes**
-(impiden entender o validar la HU), haz una segunda ronda de **máximo 3 preguntas**,
-exclusivamente sobre esos vacíos.
-- Si el usuario no conoce una respuesta, **márcala como `Pendiente de validación`** en
-  lugar de repreguntar (no inventes un supuesto como si fuera hecho).
-- Si tras la segunda ronda siguen los bloqueos: reporta **bloqueo** con la lista priorizada
-  de pendientes; el flujo **no debe avanzar** a gaps/casos.
+**Rondas adicionales:** tras cada ronda, evalúa si quedan hallazgos sin resolver con `Impacta diseño de pruebas: Sí` o vacíos **bloqueantes**:
+- Si quedan hallazgos con `Impacta diseño de pruebas: Sí` sin resolver: inicia una nueva ronda de **máximo 5 preguntas** exclusivamente sobre esos hallazgos. Informa al usuario: _"Quedan [N] pendientes que afectarán la completitud del diseño de casos. Continuamos con otra ronda."_
+- Si solo quedan bloqueantes sin resolver: inicia una ronda adicional de **máximo 5 preguntas** sobre esos bloqueantes.
+- Si el usuario no conoce una respuesta, **márcala como `Pendiente de validación`** en lugar de repreguntar (no inventes un supuesto como si fuera hecho).
+- Si el usuario indica que no puede responder un hallazgo con `Impacta diseño de pruebas: Sí`: márcalo como `Pendiente de validación — impacta diseño` y registra en el hand-off que la suite de casos quedará `Parcial` en ese criterio específico.
+- Si tras agotar las respuestas disponibles persisten bloqueantes reales: reporta **bloqueo** con la lista priorizada; el flujo **no debe avanzar** a gaps/casos.
 
 ### Paso 5 — Compilar el Reporte de Clarificación
 Compila el **Reporte de Clarificación** (ver estructura abajo). **No reescribas ni
@@ -181,15 +181,17 @@ para el PO**, claramente marcadas como sugerencias (no como criterios cerrados).
    (¿hay bloqueantes que impidan avanzar, sí/no?).
 2. **Matriz de hallazgos** — la tabla del Paso 2, actualizada (fuente **única**):
 
-   | # | Categoría | Hallazgo | Tipo | Severidad | Estado | Pregunta |
-   | --- | --- | --- | --- | --- | --- | --- |
+   | # | Categoría | Hallazgo | Tipo | Severidad | Impacta diseño de pruebas | Estado | Pregunta |
+   | --- | --- | --- | --- | --- | --- | --- | --- |
 
    Tipo = Ambigüedad / Omisión / Inconsistencia / No testable / Sin sentido / Alcance.
+   Impacta diseño de pruebas = Sí / No.
    Estado = Resuelto / Pendiente de validación / Bloqueante.
 3. **Bitácora de aclaraciones** — `### Sesión AAAA-MM-DD`, una viñeta por respuesta:
    `- P: <pregunta> → R: <respuesta confirmada>`.
-4. **Pendientes (no bloqueantes)** — derivados de la matriz (filas `Pendiente de validación`).
-   Lo que queda sin resolver pero **no impide avanzar**. Quedan marcados en el archivo.
+4. **Pendientes (no bloqueantes)** — derivados de la matriz (filas `Pendiente de validación`). Separar en dos grupos:
+   - **4a. Pendientes que impactan diseño de casos** (`Impacta diseño de pruebas: Sí`): si no se resuelven, la suite quedará `Parcial` en esos criterios. Listar con el criterio afectado.
+   - **4b. Pendientes cosméticos/administrativos** (`Impacta diseño de pruebas: No`): no afectan la cobertura de pruebas. Registrados para el PO.
 5. **Bloqueantes** — si los hay: lo que **impide avanzar** a gaps/casos. Si esta sección
    tiene contenido, el Hand-off va con `Estado: Bloqueado`.
 6. **Sugerencias de criterios de aceptación para el PO** *(opcional)* — propuestas para que

@@ -45,7 +45,13 @@ En cada etapa, además, se actualiza el panel `resultado/HU-<id>/00-estado-HU-<i
    artefacto de entrada:
    - `Estado: Bloqueado` o pendientes que invaliden la etapa → **no avanzar**; informar
      al usuario qué falta y, si aplica, devolver a la etapa anterior.
-   - `Estado: Parcial` → advertir el riesgo y confirmar con el usuario si se continúa.
+   - `Estado: Parcial` → evalúa el impacto según la etapa destino:
+     - Si la siguiente etapa es **`@qa-test-design`**: abre `02-reporte-clarificacion-HU-<id>.md`
+       y verifica si existen pendientes con `Impacta diseño de pruebas: Sí` sin resolver.
+       Si los hay, **recomienda ejecutar otra ronda de `/qa-clarificar`** antes de delegar;
+       solo delega a `@qa-test-design` si el usuario confirma explícitamente que acepta avanzar
+       con cobertura parcial.
+     - Para cualquier otra etapa destino: advertir el riesgo y confirmar con el usuario si se continúa.
    - `Estado: Completado` → proceder.
 4. **Delegar** en el agente especializado de la etapa, pasándole la ruta del artefacto
    de entrada y el contexto relevante (resumen de notas del hand-off previo).
