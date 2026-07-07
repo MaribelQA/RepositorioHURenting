@@ -16,8 +16,8 @@ solo el **número de work item** para traerla por ID. Sin HU disponible, pídela
   `02-reporte-clarificacion-HU-<id>.md` y `00-estado-HU-<id>.md`. El `<id>` se extrae de la HU;
   si no aparece, pregúntalo una vez.
 
-**Siguiente:** sin bloqueantes → `/qa-gaps` o directo a `/qa-casos`. Los pendientes no bloqueantes
-no detienen el flujo.
+**Siguiente:** sin bloqueantes **y** sin pendientes con `Impacta diseño de pruebas: Sí` → `/qa-gaps` o directo a `/qa-casos`.
+Si persisten pendientes con `Impacta diseño de pruebas: Sí`, `/qa-clarificar` puede **re-invocarse** sobre la misma HU: el agente lee el `02` existente y abre una nueva ronda exclusivamente sobre esos pendientes, sin reescribir lo ya resuelto.
 
 ## 🔗 Conexiones
 - Ejecuta: [[qa-refinement.agent|qa-refinement]]

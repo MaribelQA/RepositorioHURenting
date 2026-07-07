@@ -15,9 +15,9 @@ intacta en `01-HU-<id>.md`. Mantén las secciones; usa "ninguno"/"—" donde no 
 ## 2. Matriz de hallazgos
 > Fuente única. Se actualiza a medida que se responden las preguntas.
 
-| # | Categoría | Hallazgo | Tipo | Severidad | Estado | Pregunta |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1 | <categoría> | <qué falta, es ambiguo o se contradice> | Ambigüedad / Omisión / Inconsistencia / No testable / Sin sentido / Alcance / Escenario | Alta / Media / Baja | Resuelto / Pendiente de validación / Bloqueante | P1 |
+| # | Categoría | Hallazgo | Tipo | Severidad | Impacta diseño de pruebas | Estado | Pregunta |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | <categoría> | <qué falta, es ambiguo o se contradice> | Ambigüedad / Omisión / Inconsistencia / No testable / Sin sentido / Alcance / Escenario | Alta / Media / Baja | Sí / No | Resuelto / Pendiente de validación / Bloqueante | P1 |
 
 ## 3. Bitácora de aclaraciones
 ### Sesión <AAAA-MM-DD>
@@ -27,7 +27,15 @@ intacta en `01-HU-<id>.md`. Mantén las secciones; usa "ninguno"/"—" donde no 
 ## 4. Pendientes de validación (no bloqueantes)
 > Filas `Pendiente de validación` de la matriz. No impiden avanzar; quedan registradas.
 
-- <pendiente> — _responsable sugerido: <PO/QA/…>_
+### 4a. Pendientes que impactan diseño de casos (Impacta diseño de pruebas: Sí)
+> Si no se resuelven, la suite de casos quedará `Parcial` en estos criterios. Resolver antes de ejecutar `/qa-casos`.
+
+- <pendiente> — _criterio afectado: <criterio> · responsable sugerido: <PO/QA/…>_
+
+### 4b. Pendientes cosméticos/administrativos (Impacta diseño de pruebas: No)
+> No afectan la cobertura de pruebas. Registrados para el PO.
+
+- <pendiente> — _responsable sugerido: <PO/…>_
 
 ## 5. Bloqueantes (100% requeridos)
 > Solo lo que **impide** entender la HU o haría incorrectos los casos. Si hay contenido aquí,

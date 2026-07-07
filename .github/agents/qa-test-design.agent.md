@@ -52,9 +52,12 @@ Respeta la constitucion del repo en `.github/copilot-instructions.md`. Tu salida
   - informa el error con precision
   - no inventes contenido
   - detente con estado `Bloqueado`
-- Si `02-reporte-clarificacion` esta `Parcial`, eso **no bloquea por defecto**:
-  - disena la cobertura posible
-  - marca como `Cobertura pendiente` lo que dependa de pendientes no resueltos
+- Si `02-reporte-clarificacion` esta `Parcial`:
+  - Revisa si los pendientes contienen hallazgos con `Impacta diseño de pruebas: Sí`:
+    - **Si los hay y no fueron respondidos**: notifica al usuario que esos pendientes afectarán la completitud de la suite y **sugiere ejecutar otra ronda de `/qa-clarificar`** antes de continuar. Solo procede si el usuario confirma explícitamente que quiere avanzar con supuestos.
+    - **Si no los hay** (solo pendientes con `Impacta diseño de pruebas: No`): no bloquea; diseña cobertura completa.
+    - **Si el reporte no tiene la columna** `Impacta diseño de pruebas` (formato anterior): clasifica los pendientes por criterio propio antes de decidir.
+  - En cualquier caso que se avance con pendientes sin resolver: marca los casos afectados como `Cobertura pendiente` con referencia al hallazgo sin resolver.
 - Si `02-reporte-clarificacion` o `03-reportes-gaps` contienen **bloqueantes reales** que impiden definir casos utiles o correctos, no generes la suite final como cerrada:
   - reporta las preguntas o vacios criticos pendientes
   - deja el hand-off en `Bloqueado`
@@ -273,6 +276,8 @@ Se considera completado solo si:
 - Si falta `plantillas/artefactos/04-casos-prueba.template.md`: informa el error preciso, solicita corregir la ruta o restaurar el archivo y no generes casos sin plantilla.
 - Si falta informacion critica de negocio o tecnica: lista preguntas priorizadas y deja el estado en `Bloqueado` solo si la ausencia invalida materialmente la suite.
 - Si hay pendientes no bloqueantes: genera salida `Parcial`, marca `Cobertura pendiente` y permite continuar el flujo.
+
+
 
 ## 🔗 Conexiones
 - Rellena: [[04-casos-prueba.template]]
