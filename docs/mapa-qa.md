@@ -47,23 +47,22 @@ Coordinado y validado por [[qa-orchestrator.agent|qa-orchestrator]] (Agente 0).
 - [[05-registro-ado.template]] — Registro en ADO
 
 ## Referencias de diseño de casos
-- [[test-case-creation-principles]] — principios ISTQB
-- [[test-case-template]] — plantilla de caso
-- [[formato-cp]] — formato de salida para ADO (Test Plan)
+- [[lineamientos-qa]] — principios ISTQB y convenciones del equipo QA
+- [[04-casos-prueba.template]] — plantilla de caso y formato ADO (Work Item Test Case)
 
 ## Contexto de dominio (on-demand)
 - [[glosario-renting]] — términos y estados del negocio
 - [[lineamientos-qa]] — convenciones del equipo QA
 
 ## Instancias de ejemplo (HU-202368)
-- [[01-HU-202368]] → [[02-reporte-clarificacion-HU-202368]] → [[03-reportes-gaps-HU-202368]] → [[04-casos-prueba-HU-202368]]
+- [[00-estado-HU-202368]] → [[01-HU-202368]] → [[02-reporte-clarificacion-HU-202368]] → [[03-reportes-gaps-HU-202368]] → [[04-casos-prueba-HU-202368]]
 
 ## Convenciones de enlaces (para no sobre-relacionar)
 - **Este mapa es el único hub:** enlaza hacia todos los nodos; **ningún otro archivo enlaza de vuelta al mapa** (evita el grafo en estrella).
 - **Cadena hacia adelante:** cada archivo enlaza solo a su **vecino inmediato** (su paso siguiente), nunca a pasos lejanos. Ej.: `/qa-inicio` → `/qa-clarificar` (no a `/qa-gaps`).
 - **Enlaces verticales:** prompt → agente ("ejecuta") y agente → plantilla ("rellena").
 - **Una relación = una arista:** sin recíprocas (si A enlaza a B, B no reenlaza a A).
-- **Nodos terminales** (`/qa-registrar`, `05`, `formato-cp`, último de cada cadena) **no llevan pie de Conexiones**; se alcanzan desde este mapa.
+- **Nodos terminales** (`/qa-registrar`, `05`, último de cada cadena) **no llevan pie de Conexiones**; se alcanzan desde este mapa.
 
 ---
 > **Nota Foam/Obsidian:** los agentes y comandos viven en `.github/`. Foam los indexa;

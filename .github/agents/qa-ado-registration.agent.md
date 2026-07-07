@@ -27,7 +27,7 @@ preservando pasos, datos, prioridad y trazabilidad con la HU.
 - Work Items tipo Test Case creados/actualizados en ADO con: Title, Steps
   (Action + Expected Result), Priority, vínculo a la HU/PBI correspondiente.
 - Reporte de registro en `resultado/HU-<id>/05-registro-ado-HU-<id>.md` (a partir de
-  `plantillas/resultado/05-registro-ado.template.md`): IDs creados, enlaces, y resultado por
+  `plantillas/artefactos/05-registro-ado.template.md`): IDs creados, enlaces, y resultado por
   caso (creado/actualizado/error). Actualizar también `00-estado-HU-<id>.md`.
 - **🔗 Hand-off** (constitución sección 5) → `Estado: Completado` cierra el pipeline.
 

@@ -29,8 +29,7 @@ Una carpeta por HU: `resultado/HU-<id>/`, con archivos numerados por orden del p
 - `.github/copilot-instructions.md` — constitución (reglas comunes; léela primero).
 - `.github/agents/` — agentes especializados (`qa-*`).
 - `.github/prompts/` — comandos `/` del flujo.
-- `plantillas/` — plantillas oficiales (incluye `plantillas/resultado/` con los esqueletos de salida).
-- `promts/` — principios de diseño de casos.
+- `plantillas/` — plantillas oficiales (incluye `plantillas/artefactos/` con los esqueletos de salida).
 - `docs/` — contexto de dominio para QA: `glosario-renting.md` y `lineamientos-qa.md` (complétalos con tu equipo).
 - `resultado/` — salidas por HU.
 

@@ -8,7 +8,7 @@ El registro en ADO es una acción externa: confirmar con el usuario ANTES de esc
 
 ## Destino
 - **Organización / Proyecto**: <org> / <proyecto>
-- **Test Plan / Suite**: <nombre o ID>
+- **Tipo de Work Item**: Test Case (registro directo)
 - **Vínculo de trazabilidad**: HU/PBI <id>
 
 ## Resultado por caso

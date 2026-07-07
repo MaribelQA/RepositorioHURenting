@@ -1,7 +1,7 @@
 ---
 name: qa-gaps
 agent: qa-gap-analysis
-description: '(🟡) Paso 2: compara el código vs la HU + su clarificación y detecta vacíos.'
+description: 'Paso 2: compara el código vs la HU + su clarificación y detecta vacíos.'
 argument-hint: (opcional) rutas o módulos de código a comparar. Sin esto, uso lo que haya en el folder de la HU.
 ---
 

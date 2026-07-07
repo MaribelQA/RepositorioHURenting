@@ -37,9 +37,9 @@ Toda salida vive en `resultado/HU-<id>/`, donde `<id>` es el **número de work i
 | `04` | `04-casos-prueba-HU-<id>.md` | Casos de prueba (plantilla y/o formato ADO). | 3 |
 | `05` | `05-registro-ado-HU-<id>.md` | IDs/enlaces de Work Items creados en ADO. | 4 |
 
-Cada etapa **parte de su plantilla** en `plantillas/resultado/<archivo>.template.md`, la copia
+Cada etapa **parte de su plantilla** en `plantillas/artefactos/<archivo>.template.md`, la copia
 al destino y la rellena (el `01` no tiene plantilla). Referencias para casos:
-`plantillas/test-case-template.md`, `plantillas/formato-cp.md`, `promts/test-case-creation-principles.md`.
+`plantillas/artefactos/04-casos-prueba.template.md`, `docs/lineamientos-qa.md`.
 
 **Contexto de dominio (consulta on-demand, no se auto-carga):** ante términos, estados o reglas
 de negocio de Renting, consulta `docs/glosario-renting.md` y `docs/lineamientos-qa.md`. No los
@@ -76,8 +76,8 @@ es el campo `name:` del prompt, no el del archivo). Cada comando ejecuta su agen
 | — | `/qa-setup` | `@qa-setup` | `proyecto.config.md` (config del proyecto) | `Claude Haiku 4.5` → `Claude Sonnet 4.6` | ✅ |
 | — | `/qa-inicio` | — (display) | Roadmap del flujo | `ask` (sin modelo) | ✅ |
 | 1 | `/qa-clarificar` | `@qa-refinement` | `01`, `02`, `00` | `Claude Opus 4.8` → `Claude Opus 4.6` → `Claude Sonnet 4.6` | ✅ |
-| 2 | `/qa-gaps` | `@qa-gap-analysis` | `03` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | 🟡 |
-| 3 | `/qa-casos` | `@qa-test-design` | `04` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | 🟡 |
+| 2 | `/qa-gaps` | `@qa-gap-analysis` | `03` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
+| 3 | `/qa-casos` | `@qa-test-design` | `04` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
 | 4 | `/qa-registrar` | `@qa-ado-registration` | `05` + Work Items ADO | `Claude Haiku 4.5` → `Claude Sonnet 4.6` | 🟡 |
 | 0 | — | `@qa-orchestrator` | Coordina y valida la cadena | `Claude Sonnet 4.6` → `GPT-5.4` | ✅ |
 
