@@ -189,10 +189,10 @@ Cada caso debe cumplir lo siguiente:
 
 **Formato del artefacto**
 - Usa estrictamente la estructura de `plantillas/artefactos/04-casos-prueba.template.md`
-- Respeta la tabla ADO `Title | Step Action | Stept Expected Result`
+- Respeta la tabla ADO `Title | Step Action | Step Expected Result`
 - No omitas las secciones canonicas de la plantilla
 - Puedes enriquecer el artefacto con subsecciones de analisis y matrices siempre que preserves la estructura base
-- La fila de precondiciones puede dejar vacio `Stept Expected Result`; todos los pasos ejecutables deben tener resultado esperado.
+- La fila de precondiciones deja `Step Expected Result` **vacio**; todos los pasos ejecutables deben tener resultado esperado.
 
 ### Paso 8 - Matriz de trazabilidad final
 Incluye una matriz final con:
@@ -203,8 +203,27 @@ Incluye una matriz final con:
 La trazabilidad debe ser explicita. No entregues casos sin vinculo visible a criterio o regla.
 
 ### Paso 9 - Persistencia obligatoria en disco
-Debes escribir siempre el artefacto final en:
+Debes escribir siempre los artefactos finales en:
 - `resultado/HU-<id>/04-casos-prueba-HU-<id>.md`
+- `resultado/HU-<id>/04-casos-prueba-HU-<id>.csv` — version tabular para Excel de todos los casos de prueba
+
+**Formato del CSV (compatible con importacion directa a Azure DevOps):**
+- Separador: barra vertical (`|`) — evita conflictos con comas en el contenido
+- Encoding: UTF-8
+- Primera fila: encabezados
+- Columnas: `ID|Work_Item_Type|Title|Assigned_To|State|Step_Action|Step_Expected_Result`
+- `ID`: dejar vacio (ADO asigna el ID al importar)
+- `Work_Item_Type`: valor `Test Case` solo en la primera fila de cada caso; vacio en el resto
+- `Title`: titulo completo del caso solo en la primera fila; vacio en el resto
+- `Assigned_To`: nombre del QA asignado (p. ej. `prueba`) solo en la primera fila; vacio en el resto
+- `State`: valor `Design` solo en la primera fila; vacio en el resto
+- `Step_Action` y `Step_Expected_Result`: presentes en cada fila de paso
+- `Step_Action` y `Step_Expected_Result`: presentes en cada fila de paso
+- `Step_Action` y `Step_Expected_Result`: presentes en cada fila de paso
+- La precondicion se incluye como **Primer paso ejecutable** describiendo el estado/datos requeridos; `Step_Expected_Result` se deja **vacio**
+- No hay fila de precondicion con resultado: solo los pasos ejecutables tienen resultado esperado
+- No incluir acentos ni caracteres especiales en los encabezados
+- Al importar en Excel: Datos → Texto en columnas → Delimitado → Otro: `|`
 
 Ademas debes:
 - partir de `plantillas/artefactos/04-casos-prueba.template.md`
@@ -232,7 +251,7 @@ El siguiente agente sugerido es `@qa-ado-registration`, salvo que el estado qued
 4. Si falta informacion critica, reportarla antes de suponer y detener el cierre final.
 5. Si falta una plantilla o no puede leerse, informar el error preciso y detener la generacion.
 6. Los casos deben ser claros, ejecutables y verificables.
-7. Todos los pasos ejecutables deben tener resultado esperado; la precondicion puede ir sin resultado esperado.
+7. Todos los pasos ejecutables deben tener resultado esperado. La fila de precondicion deja `Step Expected Result` vacio.
 8. Evitar casos duplicados o de bajo valor.
 
 ## Definition of Done del agente
@@ -246,6 +265,7 @@ Se considera completado solo si:
 - se incorporaron validaciones punto a punto donde aplique
 - se actualizo `00-estado-HU-<id>.md`
 - se genero o actualizo `resultado/HU-<id>/04-casos-prueba-HU-<id>.md`
+- se genero `resultado/HU-<id>/04-casos-prueba-HU-<id>.csv` con los casos en formato tabular
 - se escribio el bloque de hand-off con estado correcto
 
 ## Manejo de errores

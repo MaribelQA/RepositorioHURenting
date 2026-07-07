@@ -76,8 +76,8 @@ es el campo `name:` del prompt, no el del archivo). Cada comando ejecuta su agen
 | — | `/qa-setup` | `@qa-setup` | `proyecto.config.md` (config del proyecto) | `Claude Haiku 4.5` → `Claude Sonnet 4.6` | ✅ |
 | — | `/qa-inicio` | — (display) | Roadmap del flujo | `ask` (sin modelo) | ✅ |
 | 1 | `/qa-clarificar` | `@qa-refinement` | `01`, `02`, `00` | `Claude Opus 4.8` → `Claude Opus 4.6` → `Claude Sonnet 4.6` | ✅ |
-| 2 | `/qa-gaps` | `@qa-gap-analysis` | `03` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | 🟡 |
-| 3 | `/qa-casos` | `@qa-test-design` | `04` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | 🟡 |
+| 2 | `/qa-gaps` | `@qa-gap-analysis` | `03` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
+| 3 | `/qa-casos` | `@qa-test-design` | `04` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
 | 4 | `/qa-registrar` | `@qa-ado-registration` | `05` + Work Items ADO | `Claude Haiku 4.5` → `Claude Sonnet 4.6` | 🟡 |
 | 0 | — | `@qa-orchestrator` | Coordina y valida la cadena | `Claude Sonnet 4.6` → `GPT-5.4` | ✅ |
 

@@ -19,8 +19,8 @@
 ## Convenciones de casos de prueba
 - Un caso valida **un solo comportamiento**.
 - Cobertura mínima por criterio: <positivo + negativo + borde>.
-- Naming del título: `[Acción] debería [resultado] cuando [condición]`.
-- Cada `Step Action` ejecutable debe tener su `Stept Expected Result` (formato ADO, ver `plantillas/artefactos/04-casos-prueba.template.md`). La fila de `@Precondiciones` puede dejarlo vacío.
+- Naming del título: `[Acción] debe [resultado] cuando [condición]`.
+- Cada `Step Action` ejecutable debe tener su `Step Expected Result` (formato ADO, ver `plantillas/artefactos/04-casos-prueba.template.md`). La fila de precondición deja `Step Expected Result` vacío.
 - <otra convención del equipo>
 
 ## Definición de Hecho (DoD) de una HU lista para casos
