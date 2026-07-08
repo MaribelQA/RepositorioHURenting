@@ -3,60 +3,59 @@
 ## 1. Resumen del análisis
 - **HU analizada**: 136903 — CI EXPRESS OPTIMIZAR TIEMPO DE CARGA
 - **Veredicto**: Sin bloqueantes, se puede avanzar
-- **Preguntas hechas / respondidas**: 5 / 5
+- **Preguntas hechas / respondidas**: 8 / 8
 
 ## 2. Matriz de hallazgos
 
-| # | Categoría | Hallazgo | Tipo | Severidad | Estado | Pregunta |
-|---|---|---|---|---|---|---|
-| 1 | Interacción y flujo (UX) | La HU indica que la ventana de carga debe ser "cancelable" pero no define qué ocurre al cancelar: ¿se cierra? ¿datos parciales? ¿volver atrás? | Omisión | **Alta** | ✅ Resuelto | P1 |
-| 2 | Terminología y consistencia | El rol es "Usuario del sistema CI y CI Express". No queda claro si ambos comparten el mismo formulario `FRMcargar` o son módulos independientes. | Ambigüedad | **Alta** | ✅ Resuelto | P2 |
-| 3 | Atributos de calidad (no funcionales) | Baseline de ~29s sin formalizar: entorno de medición, volumen de datos, condiciones de red. Sin baseline controlado, el criterio del 50% no es verificable objetivamente. | Omisión | **Media** | ✅ Resuelto | P3 |
-| 4 | Dominio y datos | Se requiere "log de métricas (usuario, fecha y hora)" pero no se indica dónde se almacena: ¿tabla BD? ¿archivo? ¿event log? | Omisión | **Media** | ✅ Resuelto | P4 |
-| 5 | Misc / Placeholders | Se referencia "Captura de pantalla 2026-05-05 095857.png" como evidencia del cuello de botella, pero no fue adjunta ni está disponible. | Omisión | **Media** | ✅ Resuelto | P5 |
-| 6 | Señales de completitud | Varios ítems son **tareas de implementación** ("Analizar el código actual", "Optimizar consultas a BD", "Agregar logs") mezclados con criterios de aceptación. Dificulta distinguir qué se valida vs. qué se implementa. | Ambigüedad | **Media** | 🟡 Pendiente de validación | — |
-| 7 | Casos borde y manejo de fallos | No se contemplan escenarios de fallo durante la carga: BD sin respuesta, timeout de conexión, datos incompletos. | Omisión | **Media** | 🟡 Pendiente de validación | — |
-| 8 | Alcance funcional | "La funcionalidad del módulo debe mantenerse intacta" sin especificar cuáles funcionalidades o flujos deben probarse en regresión. | No testable | **Media** | 🟡 Pendiente de validación | — |
-| 9 | Terminología | "bombillo CI": término entre paréntesis sin definición formal. ¿Es un componente visual estándar del sistema CI? | Ambigüedad | **Baja** | 🟡 Pendiente de validación | — |
-| 10 | Misc / Placeholders | Dos secciones tituladas "Criterios de Aceptación". La primera parece ser contexto/problema y la segunda los criterios reales. Estructura confusa. | Inconsistencia | **Baja** | 🟡 Pendiente de validación | — |
+| # | Categoría | Hallazgo | Tipo | Severidad | Impacta diseño de pruebas | Estado | Pregunta |
+|---|-----------|----------|------|-----------|--------------------------|--------|----------|
+| 1 | Atributos de calidad | Criterio de rendimiento con dos umbrales: ≥50% vs <10s. ¿Cuál es pass/fail? | Ambigüedad | Alta | Sí | Resuelto | P1 |
+| 2 | Atributos de calidad | Punto de medición del tiempo no definido (desde/hasta qué evento) | Omisión | Alta | Sí | Resuelto | P2 |
+| 3 | Interacción y flujo (UX) | Comportamiento post-cancelación no definido | Omisión | Alta | Sí | Resuelto | P3 |
+| 4 | Señales de completitud | Tareas de desarrollo mezcladas con criterios de aceptación | Inconsistencia | Media | Sí | Resuelto | P4 |
+| 5 | Integraciones / Dependencias | Imagen referenciada no disponible | Omisión | Media | Sí | Resuelto | P5 |
+| 6 | Alcance funcional | CI y CI Express: ¿módulos distintos? ¿Pruebas en ambos? | Ambigüedad | Media | Sí | Resuelto | P6 |
+| 7 | Integraciones / Dependencias | Log de métricas: ubicación y formato no definidos | Omisión | Media | Sí | Resuelto (supuesto provisional) | P7 |
+| 8 | Atributos de calidad | Umbral de tiempo: ¿mismo en todos los entornos? | Ambigüedad | Media | Sí | Resuelto | P8 |
+| 9 | Dominio y datos | Entorno descrito como "probablemente" .NET/C# | Ambigüedad | Media | No | Pendiente de validación | — |
+| 10 | Casos borde | Escenario si la optimización no alcanza el umbral | Escenario no contemplado | Baja | No | Pendiente de validación | — |
 
 ## 3. Bitácora de aclaraciones
-### Sesión 2026-07-07
-- P1: ¿Qué ocurre cuando el usuario cancela la carga del formulario? → R: Se muestra un **diálogo de confirmación** ("¿Desea cancelar la carga?") y, si el usuario acepta, se cierra el formulario.
-- P2: ¿CI y CI Express comparten el mismo formulario `FRMcargar` o son módulos distintos? → R: Son **formularios distintos con código similar**. La optimización debe aplicarse y probarse en ambos.
-- P3: ¿En qué entorno y condiciones se midió el baseline de ~29 segundos? → R: Medido en **producción** con datos reales y carga normal de usuarios.
-- P4: ¿Dónde se almacenan los logs de métricas de tiempo de carga? → R: En una **tabla en base de datos**.
-- P5: ¿Está disponible la imagen referenciada del cuello de botella? → R: La imagen **ya no está disponible**; el equipo de desarrollo conoce el cuello de botella.
+
+### Sesión 2026-07-08
+- P1: ¿Cuál es el umbral de pass/fail: ≤14.5s o <10s? → R: **≤14.5s** (50% de 29s). Menos de 10s es meta deseable, no bloqueante.
+- P2: ¿Desde/hasta qué evento se mide el tiempo? → R: Desde **clic del usuario** hasta formulario **completamente cargado e interactivo** (datos visibles, controles habilitados).
+- P3: ¿Qué pasa al cancelar la carga? → R: El formulario **se cierra**, vuelve al estado anterior y se **registra la cancelación en el log** (usuario, fecha/hora).
+- P4: ¿Cómo tratar las tareas de desarrollo listadas como criterios? → R: **Excluidas** como criterios verificables. QA valida solo resultados observables (tiempo, funcionalidad, logs).
+- P5: ¿La imagen aporta información adicional? → R: Solo muestra el formulario con ~29s ya descrito. **No aporta contexto adicional**.
+- P6: ¿CI y CI Express son módulos distintos? → R: Sí, son **módulos/aplicaciones distintas** con formularios separados. Casos se ejecutan en **ambos**.
+- P7: ¿Dónde y en qué formato se almacena el log? → R: Aún no definido por desarrollo. **Supuesto provisional**: tabla en BD (usuario, fecha/hora, tiempo ms, módulo, resultado). *Pendiente confirmación del PO/equipo.*
+- P8: ¿Mismo umbral en todos los entornos? → R: Se hará **medición baseline en QA antes** de implementar; luego se valida que el tiempo **se reduce** con la solución. Comparación antes/después.
 
 ## 4. Pendientes de validación (no bloqueantes)
-> No impiden avanzar; quedan registrados para validación futura.
 
-- **Mezcla criterios/tareas**: Separar formalmente los criterios de aceptación verificables de las tareas de implementación técnica. — _responsable sugerido: PO_
-- **Escenarios de fallo**: Definir comportamiento ante fallos durante la carga (BD no responde, timeout, datos incompletos). Se abordará en el diseño de casos de prueba (escenarios negativos). — _responsable sugerido: PO/QA_
-- **Alcance de regresión**: Listar las funcionalidades específicas del módulo `FRMcargar` que deben mantenerse intactas. Se cubrirá en diseño de casos. — _responsable sugerido: PO/Dev_
-- **"bombillo CI"**: Confirmar si es un componente visual estándar del sistema CI (ícono de bombillo/indicador de carga propio). — _responsable sugerido: Dev/UX_
-- **Secciones duplicadas**: La HU tiene dos bloques "Criterios de Aceptación"; el primero es contexto del problema. Considerar reorganizar en la HU original. — _responsable sugerido: PO_
+### 4a. Pendientes que impactan diseño de casos (Impacta diseño de pruebas: Sí)
+- **Log de métricas — ubicación y formato**: supuesto provisional = tabla en BD. Los casos de verificación del log están diseñados sobre este supuesto. Si cambia la implementación, ajustar los casos. — _criterio afectado: verificación de log de métricas · responsable sugerido: PO/Dev_
+
+### 4b. Pendientes cosméticos/administrativos (Impacta diseño de pruebas: No)
+- **Plataforma tecnológica**: descrita como "probablemente" .NET/C#. No afecta pruebas funcionales. — _responsable sugerido: Dev_
+- **Escenario de fallo de optimización**: no definido qué ocurre si no se alcanza el umbral tras los cambios. — _responsable sugerido: PO_
 
 ## 5. Bloqueantes (100% requeridos)
-
-- ninguno
+ninguno
 
 ## 6. Sugerencias de criterios de aceptación para el PO _(opcional)_
 
-- **SUGERENCIA — requiere validación del PO**: Al cancelar la carga (vía botón cancelar o X), el sistema debe mostrar un diálogo de confirmación. Si el usuario confirma, el formulario se cierra sin guardar datos parciales. Si rechaza, la carga continúa.
-- **SUGERENCIA — requiere validación del PO**: La optimización y las pruebas de rendimiento deben ejecutarse tanto en el formulario `FRMcargar` de CI como en el de CI Express, dado que son módulos distintos con código similar.
-- **SUGERENCIA — requiere validación del PO**: El baseline oficial para medir la mejora del 50% debe tomarse en el entorno de producción (donde se registraron los ~29s). Las pruebas en QA y desarrollo validan estabilidad, pero la métrica de aceptación se mide en producción.
-- **SUGERENCIA — requiere validación del PO**: La tabla de logs de métricas debe registrar al menos: usuario, fecha/hora de inicio, fecha/hora de fin, tiempo total de carga (ms), módulo (CI o CI Express), entorno, y resultado (éxito/cancelado/error).
+- **SUGERENCIA — requiere validación del PO**: Agregar criterio explícito sobre el comportamiento al cancelar: _"Si el usuario cancela la carga, el formulario se cierra, se retorna al estado anterior y se registra la cancelación en el log."_
+- **SUGERENCIA — requiere validación del PO**: Separar las tareas de implementación (analizar código, optimizar consultas) de los criterios de aceptación verificables. Moverlas a la descripción técnica o tareas hijas.
+- **SUGERENCIA — requiere validación del PO**: Especificar que los casos de prueba se ejecutan en **ambos módulos** (CI y CI Express) de forma independiente.
 
 ---
 ## 🔗 Hand-off
 - **Artefacto**: `resultado/HU-136903/02-reporte-clarificacion-HU-136903.md`
 - **Producido por**: qa-refinement
 - **Estado**: Completado
-- **Pendientes de validación**: 5 pendientes no bloqueantes (mezcla criterios/tareas, escenarios de fallo, alcance regresión, "bombillo CI", secciones duplicadas)
-- **Siguiente agente sugerido**: @qa-gap-analysis (o @qa-test-design)
-- **Notas para el siguiente agente**: CI y CI Express tienen formularios FRMcargar separados (probar ambos). Cancelación con diálogo de confirmación. Baseline en producción (~29s). Logs en tabla BD. Considerar escenarios negativos (fallo BD, timeout) en diseño de casos.
+- **Pendientes de validación**: Log de métricas (supuesto provisional — tabla BD); plataforma tecnológica; escenario de fallo de optimización
+- **Siguiente agente sugerido**: @qa-gap-analysis o @qa-test-design
+- **Notas para el siguiente agente**: HU de rendimiento. Umbral ≤14.5s, medición clic→interactivo, validación antes/después en QA. CI y CI Express son módulos separados, probar ambos. Log de métricas asumido en BD (supuesto provisional).
 ---
-
-## 🔗 Conexiones
-- Siguiente artefacto: [[03-reportes-gaps.template]]
