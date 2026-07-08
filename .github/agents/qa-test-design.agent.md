@@ -54,7 +54,7 @@ Respeta la constitucion del repo en `.github/copilot-instructions.md`. Tu salida
   - detente con estado `Bloqueado`
 - Si `02-reporte-clarificacion` esta `Parcial`:
   - Revisa si los pendientes contienen hallazgos con `Impacta diseño de pruebas: Sí`:
-    - **Si los hay y no fueron respondidos**: notifica al usuario que esos pendientes afectarán la completitud de la suite y **sugiere ejecutar otra ronda de `/qa-clarificar`** antes de continuar. Solo procede si el usuario confirma explícitamente que quiere avanzar con supuestos.
+    - **Si los hay y no fueron respondidos**: **no redirijas al usuario a `/qa-clarificar`**. Realiza una **mini-ronda de clarificación inline** (una pregunta a la vez con opciones, igual que `qa-refinement`, máximo los ítems pendientes con `Impacta diseño: Sí`). Actualiza el `02` con las respuestas obtenidas antes de diseñar. Solo procede al diseño —marcando los casos afectados como «basado en supuesto provisional — pendiente PO»— si el usuario no puede responder ninguna de las preguntas de la mini-ronda o confirma explícitamente avanzar sin ellas.
     - **Si no los hay** (solo pendientes con `Impacta diseño de pruebas: No`): no bloquea; diseña cobertura completa.
     - **Si el reporte no tiene la columna** `Impacta diseño de pruebas` (formato anterior): clasifica los pendientes por criterio propio antes de decidir.
   - En cualquier caso que se avance con pendientes sin resolver: marca los casos afectados como `Cobertura pendiente` con referencia al hallazgo sin resolver.

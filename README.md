@@ -33,6 +33,9 @@ Una carpeta por HU: `resultado/HU-<id>/`, con archivos numerados por orden del p
 - `docs/` — contexto de dominio para QA: `glosario-renting.md` y `lineamientos-qa.md` (complétalos con tu equipo).
 - `resultado/` — salidas por HU.
 
+
+esta es una prueba
+
 ## 🔗 Conexiones
 - 🧠 Grafo completo del repo: [[mapa-qa|Mapa de la Suite QA]]
 - Reglas comunes: [[copilot-instructions|Constitución]]

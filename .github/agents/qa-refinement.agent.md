@@ -148,9 +148,17 @@ usuario indique fin ("listo", "ya", "suficiente", "continúa"), o llegues a 5 pr
 **Rondas adicionales:** tras cada ronda, evalúa si quedan hallazgos sin resolver con `Impacta diseño de pruebas: Sí` o vacíos **bloqueantes**:
 - Si quedan hallazgos con `Impacta diseño de pruebas: Sí` sin resolver: inicia una nueva ronda de **máximo 5 preguntas** exclusivamente sobre esos hallazgos. Informa al usuario: _"Quedan [N] pendientes que afectarán la completitud del diseño de casos. Continuamos con otra ronda."_
 - Si solo quedan bloqueantes sin resolver: inicia una ronda adicional de **máximo 5 preguntas** sobre esos bloqueantes.
-- Si el usuario no conoce una respuesta, **márcala como `Pendiente de validación`** en lugar de repreguntar (no inventes un supuesto como si fuera hecho).
-- Si el usuario indica que no puede responder un hallazgo con `Impacta diseño de pruebas: Sí`: márcalo como `Pendiente de validación — impacta diseño` y registra en el hand-off que la suite de casos quedará `Parcial` en ese criterio específico.
+- Si el usuario no conoce una respuesta de un hallazgo con `Impacta diseño de pruebas: No`, **márcala como `Pendiente de validación`** y continúa sin repreguntar.
+- Si el usuario indica que no puede responder un hallazgo con `Impacta diseño de pruebas: Sí` (p.ej. "lo valida el PO", "no sé"): **no la marques como Pendiente inmediatamente**. Ofrece primero una opción de **supuesto provisional**: presenta 2-3 alternativas de comportamiento razonables derivadas de la HU y pregunta: _"Para que QA diseñe casos completos, ¿puedes elegir un **supuesto provisional** como referencia hasta que el PO lo confirme? Los casos afectados quedarán marcados como «basado en supuesto provisional — pendiente PO»."_ Si el usuario tampoco puede elegir un supuesto, ENTONCES márcala como `Pendiente de validación — impacta diseño` y registra que la suite quedará `Parcial`.
 - Si tras agotar las respuestas disponibles persisten bloqueantes reales: reporta **bloqueo** con la lista priorizada; el flujo **no debe avanzar** a gaps/casos.
+
+### Paso 4b — Verificación pre-cierre (no omitir)
+Antes de compilar el reporte, verifica si aún quedan hallazgos con `Impacta diseño de pruebas: Sí` en estado `Pendiente de validación`:
+- Si los hay: **no cierres la sesión todavía**. Pregunta activamente al usuario:
+  _"Quedan [N] pendientes que harán que la suite de casos quede Parcial: [lista breve]. ¿Continuamos resolviendo estos ahora? (responde «sí» para otra ronda o «no» para guardar y avanzar)"_
+  - «sí» → inicia una ronda adicional exclusivamente sobre esos pendientes (máximo 5 preguntas).
+  - «no» → guarda el reporte como `Parcial` e informa: _"La suite de /qa-casos quedará incompleta en estos criterios. Cuando el PO responda, re-invoca /qa-clarificar para resolverlos antes de regenerar los casos."_
+- Si no quedan pendientes con `Impacta diseño de pruebas: Sí`: cierra con estado `Completado` y sugiere `/qa-gaps` o `/qa-casos`.
 
 ### Paso 5 — Compilar el Reporte de Clarificación
 Compila el **Reporte de Clarificación** (ver estructura abajo). **No reescribas ni
