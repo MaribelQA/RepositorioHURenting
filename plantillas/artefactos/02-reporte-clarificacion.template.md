@@ -28,7 +28,7 @@ intacta en `01-HU-<id>.md`. Mantén las secciones; usa "ninguno"/"—" donde no 
 > Filas `Pendiente de validación` de la matriz. No impiden avanzar; quedan registradas.
 
 ### 4a. Pendientes que impactan diseño de casos (Impacta diseño de pruebas: Sí)
-> Si no se resuelven, la suite de casos quedará `Parcial` en estos criterios. Resolver antes de ejecutar `/qa-casos`.
+> Si no se resuelven, la suite de casos quedará `Parcial` en estos criterios. Resolver antes de ejecutar `/qa-diseñar-casos-prueba`.
 
 - <pendiente> — _criterio afectado: <criterio> · responsable sugerido: <PO/QA/…>_
 

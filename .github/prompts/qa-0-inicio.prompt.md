@@ -18,7 +18,7 @@ en otra sesión sin perder el hilo.
 | --- | --- | --- | --- |
 | 1 | `/qa-clarificar «pega tu HU»` | Matriz de hallazgos + preguntas | Reporte de Clarificación |
 | 2 | `/qa-gaps «rutas de código» (opcional)` | Compara código vs HU | Reporte de gaps |
-| 3 | `/qa-casos` | Diseña los casos de prueba | Casos de prueba |
+| 3 | `/qa-diseñar-casos-prueba` | Diseña los casos de prueba | Casos de prueba |
 | 4 | `/qa-registrar «org/proyecto/plan ADO»` | Registra los casos en ADO | Work Items |
 
 > `« »` = texto que tú agregas. Sin `« »`, el comando va solo: lee lo que ya hay en disco.

@@ -15,7 +15,7 @@ trabajo se retoma en otra sesión sin depender del chat.
 | --- | --- | --- |
 | 1 | `/qa-clarificar` | Reporte de Clarificación |
 | 2 | `/qa-gaps` | Reporte de gaps (opcional) |
-| 3 | `/qa-casos` | Casos de prueba |
+| 3 | `/qa-diseñar-casos-prueba` | Casos de prueba |
 | 4 | `/qa-registrar` | Work Items en Azure DevOps |
 
 `/qa-inicio` muestra el roadmap completo.

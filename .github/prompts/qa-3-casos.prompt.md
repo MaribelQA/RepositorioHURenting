@@ -1,5 +1,5 @@
 ---
-name: qa-casos
+name: qa-diseñar-casos-prueba
 agent: qa-test-design
 description: 'Paso 3: diseña casos de prueba desde la HU + clarificación (+ gaps). Salida lista para ADO.'
 argument-hint: (opcional) enfoque o alcance. Sin esto, diseño desde la clarificación (y gaps) del folder de la HU.
