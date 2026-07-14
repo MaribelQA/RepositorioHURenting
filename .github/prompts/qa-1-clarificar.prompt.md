@@ -16,8 +16,8 @@ solo el **número de work item** para traerla por ID. Sin HU disponible, pídela
   `02-reporte-clarificacion-HU-<id>.md` y `00-estado-HU-<id>.md`. El `<id>` se extrae de la HU;
   si no aparece, pregúntalo una vez.
 
-**Siguiente:** sin bloqueantes **y** sin pendientes con `Impacta diseño de pruebas: Sí` → `/qa-gaps` o directo a `/qa-casos`.
-Si al finalizar persisten pendientes con `Impacta diseño de pruebas: Sí`, el agente **no espera re-invocación**: ofrece activamente continuar con otra ronda en el mismo chat (_"¿Continuamos resolviendo los [N] pendientes que afectan el diseño? sí/no"_). Solo si el usuario dice «no» guarda el `02` como `Parcial` y advierte que `/qa-casos` generará casos incompletos. Para sesiones futuras, `/qa-clarificar` puede re-invocarse y el agente leerá el `02` existente para continuar desde donde quedó.
+**Siguiente:** sin bloqueantes **y** sin pendientes con `Impacta diseño de pruebas: Sí` → `/qa-gaps` o directo a `/qa-diseñar-casos-prueba`.
+Si al finalizar persisten pendientes con `Impacta diseño de pruebas: Sí`, el agente **no espera re-invocación**: ofrece activamente continuar con otra ronda en el mismo chat (_"¿Continuamos resolviendo los [N] pendientes que afectan el diseño? sí/no"_). Solo si el usuario dice «no» guarda el `02` como `Parcial` y advierte que `/qa-diseñar-casos-prueba` generará casos incompletos. Para sesiones futuras, `/qa-clarificar` puede re-invocarse y el agente leerá el `02` existente para continuar desde donde quedó.
 
 ## 🔗 Conexiones
 - Ejecuta: [[qa-refinement.agent|qa-refinement]]

@@ -157,8 +157,8 @@ Antes de compilar el reporte, verifica si aún quedan hallazgos con `Impacta dis
 - Si los hay: **no cierres la sesión todavía**. Pregunta activamente al usuario:
   _"Quedan [N] pendientes que harán que la suite de casos quede Parcial: [lista breve]. ¿Continuamos resolviendo estos ahora? (responde «sí» para otra ronda o «no» para guardar y avanzar)"_
   - «sí» → inicia una ronda adicional exclusivamente sobre esos pendientes (máximo 5 preguntas).
-  - «no» → guarda el reporte como `Parcial` e informa: _"La suite de /qa-casos quedará incompleta en estos criterios. Cuando el PO responda, re-invoca /qa-clarificar para resolverlos antes de regenerar los casos."_
-- Si no quedan pendientes con `Impacta diseño de pruebas: Sí`: cierra con estado `Completado` y sugiere `/qa-gaps` o `/qa-casos`.
+  - «no» → guarda el reporte como `Parcial` e informa: _"La suite de /qa-diseñar-casos-prueba quedará incompleta en estos criterios. Cuando el PO responda, re-invoca /qa-clarificar para resolverlos antes de regenerar los casos."_
+- Si no quedan pendientes con `Impacta diseño de pruebas: Sí`: cierra con estado `Completado` y sugiere `/qa-gaps` o `/qa-diseñar-casos-prueba`.
 
 ### Paso 5 — Compilar el Reporte de Clarificación
 Compila el **Reporte de Clarificación** (ver estructura abajo). **No reescribas ni

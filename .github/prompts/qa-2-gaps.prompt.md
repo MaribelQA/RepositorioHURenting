@@ -14,8 +14,8 @@ Ejecuta el agente `qa-gap-analysis`. Lee primero `00-estado-HU-<id>.md`, `01` y 
 
 Sin `02` disponible, vuelve a `/qa-clarificar`. Un `02` Parcial no bloquea.
 
-**Siguiente:** `/qa-casos`.
+**Siguiente:** `/qa-diseñar-casos-prueba`.
 
 ## 🔗 Conexiones
 - Ejecuta: [[qa-gap-analysis.agent|qa-gap-analysis]]
-- Siguiente paso: [[qa-3-casos.prompt|/qa-casos]]
+- Siguiente paso: [[qa-3-casos.prompt|/qa-diseñar-casos-prueba]]

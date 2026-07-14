@@ -12,7 +12,7 @@ Nodo central del repositorio para visualizar el **grafo** de todos los `.md` en
 /qa-inicio
    │
    ▼
-/qa-clarificar ──► /qa-gaps (opcional) ──► /qa-casos ──► /qa-registrar
+/qa-clarificar ──► /qa-gaps (opcional) ──► /qa-diseñar-casos-prueba ──► /qa-registrar
 @qa-refinement     @qa-gap-analysis        @qa-test-design   @qa-ado-registration
    │                   │                       │                  │
  01,02                03                      04             05 + Work Items ADO
@@ -28,7 +28,7 @@ Coordinado y validado por [[qa-orchestrator.agent|qa-orchestrator]] (Agente 0).
 - [[qa-0-inicio.prompt|/qa-inicio]] — roadmap y bienvenida
 - [[qa-1-clarificar.prompt|/qa-clarificar]] → ejecuta [[qa-refinement.agent|qa-refinement]]
 - [[qa-2-gaps.prompt|/qa-gaps]] → ejecuta [[qa-gap-analysis.agent|qa-gap-analysis]]
-- [[qa-3-casos.prompt|/qa-casos]] → ejecuta [[qa-test-design.agent|qa-test-design]]
+- [[qa-3-casos.prompt|/qa-diseñar-casos-prueba]] → ejecuta [[qa-test-design.agent|qa-test-design]]
 - [[qa-4-registrar.prompt|/qa-registrar]] → ejecuta [[qa-ado-registration.agent|qa-ado-registration]]
 
 ## Agentes
