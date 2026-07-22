@@ -1,4 +1,4 @@
----
+﻿---
 proyecto: "<nombre del proyecto>"
 descripcion: "<una línea: qué hace el producto>"
 repos:
@@ -12,8 +12,8 @@ azure_devops:
 mcp:
   servidor_ado: ""   # sin MCP configurado — registro en ADO es manual
 contexto:
-  glosario: "docs/glosario-renting.md"
-  lineamientos: "docs/lineamientos-qa.md"
+  glosario: ".github/docs/glosario-renting.md"
+  lineamientos: ".github/docs/lineamientos-qa.md"
 estado_setup: "pendiente"   # pendiente | completo
 ---
 

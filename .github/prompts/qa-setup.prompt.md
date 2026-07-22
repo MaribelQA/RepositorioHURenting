@@ -1,4 +1,4 @@
----
+﻿---
 name: qa-setup
 agent: qa-setup
 description: 'Setup inicial: configura la suite para tu proyecto (nombre, repos, Azure DevOps, MCP) y lo guarda en proyecto.config.md. Una sola vez por clon.'

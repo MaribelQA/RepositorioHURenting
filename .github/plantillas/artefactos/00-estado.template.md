@@ -12,7 +12,7 @@ No borres las secciones; marca lo no aplicable como "—".
 - **Carpeta**: `resultado/HU-<id>/`
 - **Fecha de inicio**: <AAAA-MM-DD>
 - **Última actualización**: <AAAA-MM-DD>
-- **Veredicto global**: <En progreso | Bloqueado (100% requerido) | Listo para registrar en ADO | Cerrado>
+- **Veredicto global**: <En progreso | Bloqueado (100% requerido) | Listo para registrar en ADO | Listo para certificar | Certificado | Certificado con riesgos | Cerrado>
 
 ## Pipeline
 
@@ -23,6 +23,7 @@ No borres las secciones; marca lo no aplicable como "—".
 | 2 | Análisis de gaps | [`03-reportes-gaps-HU-<id>.md`](03-reportes-gaps-HU-<id>.md) | ⏳ / 🟡 / ✅ |
 | 3 | Diseño de casos | [`04-casos-prueba-HU-<id>.md`](04-casos-prueba-HU-<id>.md) | ⏳ / 🟡 / ✅ |
 | 4 | Registro en ADO | [`05-registro-ado-HU-<id>.md`](05-registro-ado-HU-<id>.md) | ⏳ / ✅ |
+| 5 | Certificación | [`06-carta-certificacion-HU-<id>.md`](06-carta-certificacion-HU-<id>.md) | ⏳ / ✅ |
 
 > Estados: ⏳ Pendiente · 🟡 Parcial (con pendientes no bloqueantes) · ✅ Completado · ⛔ Bloqueado (100% requerido)
 
@@ -42,4 +43,4 @@ No borres las secciones; marca lo no aplicable como "—".
 
 ---
 ## 🔗 Conexiones
-- Indexa los artefactos: [[02-reporte-clarificacion.template]] · [[03-reportes-gaps.template]] · [[04-casos-prueba.template]] · [[05-registro-ado.template]]
+- Indexa los artefactos: [[02-reporte-clarificacion.template]] · [[03-reportes-gaps.template]] · [[04-casos-prueba.template]] · [[05-registro-ado.template]] · [[06-carta-certificacion.template]]

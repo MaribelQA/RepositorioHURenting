@@ -1,4 +1,4 @@
----
+﻿---
 name: qa-diseñar-casos-prueba
 agent: qa-test-design
 description: 'Paso 3: diseña casos de prueba desde la HU + clarificación (+ gaps). Salida lista para ADO.'
@@ -9,8 +9,8 @@ argument-hint: (opcional) enfoque o alcance. Sin esto, diseño desde la clarific
 
 Ejecuta el agente `qa-test-design`. Lee primero `00-estado-HU-<id>.md`, `01`, `02` (y `03` si existe).
 
-- **Entrada**: `resultado/HU-<id>/` (`01`, `02`, opcional `03`).
-- **Salida**: `resultado/HU-<id>/04-casos-prueba-HU-<id>.md` (se guarda siempre) + `resultado/HU-<id>/04-casos-prueba-HU-<id>.csv` (tabular para Excel) + actualizar `00`.
+- **Entrada**: `qa-analisis-casos/HU-<id>/` (`01`, `02`, opcional `03`).
+- **Salida**: `qa-analisis-casos/HU-<id>/04-casos-prueba-HU-<id>.md` (se guarda siempre) + actualizar `00`.
 
 Sin `02` disponible, vuelve a `/qa-clarificar`. Si el `02` está `Parcial`:
 - Con pendientes `Impacta diseño de pruebas: Sí` sin resolver → el agente **realiza una mini-ronda de clarificación inline** (una pregunta a la vez con opciones, sobre esos ítems específicos) antes de diseñar. Actualiza el `02` con las respuestas y solo entonces genera la suite completa. Solo si el usuario no puede responder ninguna, diseña marcando esos casos como «basado en supuesto provisional — pendiente PO». No redirige al usuario a re-invocar `/qa-clarificar`.
