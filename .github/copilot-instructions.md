@@ -1,4 +1,4 @@
-# Constitución — Suite de Agentes QA Renting
+﻿# Constitución — Suite de Agentes QA Renting
 
 > Copilot inyecta este archivo en **todos** los chats. Define lo común a todos los agentes:
 > idioma, estructura de artefactos, contrato de hand-off y principios. El comportamiento
@@ -25,8 +25,8 @@ comunican por **artefactos en disco**.
 - No inventar. Falta un dato → preguntar (solo si es 100% requerido) o marcar `Pendiente de validación`.
 
 ## 3. Artefactos en disco (contrato de ubicaciones)
-Toda salida vive en `resultado/HU-<id>/`, donde `<id>` es el **número de work item de Azure**
-(p. ej. `resultado/HU-202368/`). Nombres **canónicos**, con prefijo numérico que marca el orden:
+Toda salida vive en `qa-analisis-casos/HU-<id>/`, donde `<id>` es el **número de work item de Azure**
+(p. ej. `qa-analisis-casos/HU-202368/`). Nombres **canónicos**, con prefijo numérico que marca el orden:
 
 | Orden | Archivo | Contenido | Etapa |
 | --- | --- | --- | --- |
@@ -36,13 +36,14 @@ Toda salida vive en `resultado/HU-<id>/`, donde `<id>` es el **número de work i
 | `03` | `03-reportes-gaps-HU-<id>.md` | Gaps código vs HU, presentable a la PO. | 2 |
 | `04` | `04-casos-prueba-HU-<id>.md` | Casos de prueba (plantilla y/o formato ADO). | 3 |
 | `05` | `05-registro-ado-HU-<id>.md` | IDs/enlaces de Work Items creados en ADO. | 4 |
+| `06` | `06-carta-certificacion-HU-<id>.md` | Carta de Certificación de Pruebas. | 5 |
 
-Cada etapa **parte de su plantilla** en `plantillas/artefactos/<archivo>.template.md`, la copia
+Cada etapa **parte de su plantilla** en `.github/plantillas/artefactos/<archivo>.template.md`, la copia
 al destino y la rellena (el `01` no tiene plantilla). Referencias para casos:
-`plantillas/artefactos/04-casos-prueba.template.md`, `docs/lineamientos-qa.md`.
+`.github/plantillas/artefactos/04-casos-prueba.template.md`, `.github/docs/lineamientos-qa.md`.
 
 **Contexto de dominio (consulta on-demand, no se auto-carga):** ante términos, estados o reglas
-de negocio de Renting, consulta `docs/glosario-renting.md` y `docs/lineamientos-qa.md`. No los
+de negocio de Renting, consulta `.github/docs/glosario-renting.md` y `.github/docs/lineamientos-qa.md`. No los
 leas completos por defecto; ábrelos solo cuando la HU use un término o regla que necesites aclarar.
 
 ### 3.1 Identificación y origen de la HU
@@ -79,11 +80,15 @@ es el campo `name:` del prompt, no el del archivo). Cada comando ejecuta su agen
 | 2 | `/qa-gaps` | `@qa-gap-analysis` | `03` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
 | 3 | `/qa-diseñar-casos-prueba` | `@qa-test-design` | `04` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
 | 4 | `/qa-registrar` | `@qa-ado-registration` | `05` + Work Items ADO | `Claude Haiku 4.5` → `Claude Sonnet 4.6` | 🟡 |
+| 5 | `/qa-certificar` | `@qa-certify` | `06` Carta de Certificación | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
+
+> ⚠️ `/qa-certificar` inicia con una **entrevista interactiva** (ID de HU + 7 preguntas sobre la ejecución) antes de leer artefactos.
 | 0 | — | `@qa-orchestrator` | Coordina y valida la cadena | `Claude Sonnet 4.6` → `GPT-5.4` | ✅ |
 
-Flujo: `@qa-refinement → @qa-gap-analysis → @qa-test-design → @qa-ado-registration`, con
+Flujo: `@qa-refinement → @qa-gap-analysis → @qa-test-design → @qa-ado-registration → @qa-certify`, con
 `@qa-orchestrator` validando cada hand-off. `/qa-gaps` es opcional: se puede ir de `/qa-clarificar`
-directo a `/qa-diseñar-casos-prueba`.
+directo a `/qa-diseñar-casos-prueba`. `/qa-certificar` es el paso de cierre; puede invocarse tras
+`/qa-diseñar-casos-prueba` (sin registro ADO) o tras `/qa-registrar`.
 
 > **Modelos**: lista priorizada; Copilot usa el primero disponible en tu plan. Lógica: razonamiento
 > alto (clarificación) → modelo más capaz; tareas mecánicas (registro ADO) → modelo más económico.

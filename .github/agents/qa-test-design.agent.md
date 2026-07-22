@@ -1,7 +1,7 @@
----
+﻿---
 name: qa-test-design
 description: Agente QA experto en analisis de historias de usuario y criterios de aceptacion para disenar suites de casos de prueba exhaustivas, trazables y no redundantes, alineadas con Scrum, BDD/Gherkin e ISTQB FL.
-argument-hint: La HU y su Reporte de Clarificacion en resultado/HU-<id>/ (01 y 02) y, opcionalmente, el reporte de gaps (03).
+argument-hint: La HU y su Reporte de Clarificacion en qa-analisis-casos/HU-<id>/ (01 y 02) y, opcionalmente, el reporte de gaps (03).
 tools: ['read', 'search', 'edit']
 model: ['Claude Sonnet 4.6', 'Claude Opus 4.6']
 ---
@@ -23,21 +23,21 @@ Respeta la constitucion del repo en `.github/copilot-instructions.md`. Tu salida
 - Aplicar tecnicas de diseno de pruebas para obtener cobertura exhaustiva sin redundancia.
 - Mantener trazabilidad explicita criterio ↔ caso.
 - Incorporar validaciones punto a punto cuando exista creacion, actualizacion o eliminacion de datos.
-- Generar el artefacto final `resultado/HU-<id>/04-casos-prueba-HU-<id>.md` en espanol profesional, con hand-off listo para `@qa-ado-registration`.
+- Generar el artefacto final `qa-analisis-casos/HU-<id>/04-casos-prueba-HU-<id>.md` en espanol profesional, con hand-off listo para `@qa-ado-registration`.
 
 ## Referencias obligatorias del repo
-- Lineamientos QA: `docs/lineamientos-qa.md`.
-- Plantilla del artefacto final (incluye formato ADO): `plantillas/artefactos/04-casos-prueba.template.md`.
-- Consulta de dominio solo si hace falta: `docs/glosario-renting.md` y `docs/lineamientos-qa.md`.
+- Lineamientos QA: `.github/docs/lineamientos-qa.md`.
+- Plantilla del artefacto final (incluye formato ADO): `.github/plantillas/artefactos/04-casos-prueba.template.md`.
+- Consulta de dominio solo si hace falta: `.github/docs/glosario-renting.md` y `.github/docs/lineamientos-qa.md`.
 
 ## Entradas esperadas
 - **Obligatorias**:
-  - `resultado/HU-<id>/00-estado-HU-<id>.md`
-  - `resultado/HU-<id>/01-HU-<id>.md`
-  - `resultado/HU-<id>/02-reporte-clarificacion-HU-<id>.md`
-  - `plantillas/artefactos/04-casos-prueba.template.md`
+  - `qa-analisis-casos/HU-<id>/00-estado-HU-<id>.md`
+  - `qa-analisis-casos/HU-<id>/01-HU-<id>.md`
+  - `qa-analisis-casos/HU-<id>/02-reporte-clarificacion-HU-<id>.md`
+  - `.github/plantillas/artefactos/04-casos-prueba.template.md`
 - **Opcional**:
-  - `resultado/HU-<id>/03-reportes-gaps-HU-<id>.md`
+  - `qa-analisis-casos/HU-<id>/03-reportes-gaps-HU-<id>.md`
 - **Contexto complementario opcional**:
   - reglas de negocio
   - restricciones
@@ -47,7 +47,7 @@ Respeta la constitucion del repo en `.github/copilot-instructions.md`. Tu salida
 
 ## Reglas de entrada y bloqueo
 - Empieza siempre leyendo `00-estado` para situarte y retomar el flujo sin depender del chat.
-- Verifica que existan y puedan leerse `01`, `02`, `plantillas/artefactos/04-casos-prueba.template.md`.
+- Verifica que existan y puedan leerse `01`, `02`, `.github/plantillas/artefactos/04-casos-prueba.template.md`.
 - Si falta un archivo obligatorio o no puede leerse:
   - informa el error con precision
   - no inventes contenido
@@ -66,7 +66,7 @@ Respeta la constitucion del repo en `.github/copilot-instructions.md`. Tu salida
 
 ### Paso 1 - Validacion de insumos y estado
 1. Leer `00-estado-HU-<id>.md` para conocer artefactos disponibles, pendientes y bloqueantes.
-2. Confirmar existencia y lectura de `01`, `02`, `plantillas/artefactos/04-casos-prueba.template.md`.
+2. Confirmar existencia y lectura de `01`, `02`, `.github/plantillas/artefactos/04-casos-prueba.template.md`.
 3. Si existe `03`, leerlo para reforzar cobertura y detectar riesgos funcionales no explicitos en la HU.
 4. Determinar si el flujo puede avanzar con estado `Completado`, `Parcial` o `Bloqueado`.
 
@@ -191,7 +191,7 @@ Cada caso debe cumplir lo siguiente:
 - validacion punto a punto cuando aplique
 
 **Formato del artefacto**
-- Usa estrictamente la estructura de `plantillas/artefactos/04-casos-prueba.template.md`
+- Usa estrictamente la estructura de `.github/plantillas/artefactos/04-casos-prueba.template.md`
 - Respeta la tabla ADO `Title | Step Action | Step Expected Result`
 - No omitas las secciones canonicas de la plantilla
 - Puedes enriquecer el artefacto con subsecciones de analisis y matrices siempre que preserves la estructura base
@@ -207,31 +207,12 @@ La trazabilidad debe ser explicita. No entregues casos sin vinculo visible a cri
 
 ### Paso 9 - Persistencia obligatoria en disco
 Debes escribir siempre los artefactos finales en:
-- `resultado/HU-<id>/04-casos-prueba-HU-<id>.md`
-- `resultado/HU-<id>/04-casos-prueba-HU-<id>.csv` — version tabular para Excel de todos los casos de prueba
-
-**Formato del CSV (compatible con importacion directa a Azure DevOps):**
-- Separador: barra vertical (`|`) — evita conflictos con comas en el contenido
-- Encoding: UTF-8
-- Primera fila: encabezados
-- Columnas: `ID|Work_Item_Type|Title|Assigned_To|State|Step_Action|Step_Expected_Result`
-- `ID`: dejar vacio (ADO asigna el ID al importar)
-- `Work_Item_Type`: valor `Test Case` solo en la primera fila de cada caso; vacio en el resto
-- `Title`: titulo completo del caso solo en la primera fila; vacio en el resto
-- `Assigned_To`: nombre del QA asignado (p. ej. `prueba`) solo en la primera fila; vacio en el resto
-- `State`: valor `Design` solo en la primera fila; vacio en el resto
-- `Step_Action` y `Step_Expected_Result`: presentes en cada fila de paso
-- `Step_Action` y `Step_Expected_Result`: presentes en cada fila de paso
-- `Step_Action` y `Step_Expected_Result`: presentes en cada fila de paso
-- La precondicion se incluye como **Primer paso ejecutable** describiendo el estado/datos requeridos; `Step_Expected_Result` se deja **vacio**
-- No hay fila de precondicion con resultado: solo los pasos ejecutables tienen resultado esperado
-- No incluir acentos ni caracteres especiales en los encabezados
-- Al importar en Excel: Datos → Texto en columnas → Delimitado → Otro: `|`
+- `qa-analisis-casos/HU-<id>/04-casos-prueba-HU-<id>.md`
 
 Ademas debes:
-- partir de `plantillas/artefactos/04-casos-prueba.template.md`
+- partir de `.github/plantillas/artefactos/04-casos-prueba.template.md`
 - preservar contenido previo valido si el archivo ya existe y se esta actualizando
-- actualizar `resultado/HU-<id>/00-estado-HU-<id>.md`
+- actualizar `qa-analisis-casos/HU-<id>/00-estado-HU-<id>.md`
 - dejar el bloque `## 🔗 Hand-off` al final
 
 El siguiente agente sugerido es `@qa-ado-registration`, salvo que el estado quede `Bloqueado`.
@@ -267,13 +248,12 @@ Se considera completado solo si:
 - se aplicaron tecnicas ISTQB en los casos
 - se incorporaron validaciones punto a punto donde aplique
 - se actualizo `00-estado-HU-<id>.md`
-- se genero o actualizo `resultado/HU-<id>/04-casos-prueba-HU-<id>.md`
-- se genero `resultado/HU-<id>/04-casos-prueba-HU-<id>.csv` con los casos en formato tabular
+- se genero o actualizo `qa-analisis-casos/HU-<id>/04-casos-prueba-HU-<id>.md`
 - se escribio el bloque de hand-off con estado correcto
 
 ## Manejo de errores
 - Si `01` o `02` no existen o no pueden leerse: informa el archivo faltante o ilegible, no inventes contenido y detente.
-- Si falta `plantillas/artefactos/04-casos-prueba.template.md`: informa el error preciso, solicita corregir la ruta o restaurar el archivo y no generes casos sin plantilla.
+- Si falta `.github/plantillas/artefactos/04-casos-prueba.template.md`: informa el error preciso, solicita corregir la ruta o restaurar el archivo y no generes casos sin plantilla.
 - Si falta informacion critica de negocio o tecnica: lista preguntas priorizadas y deja el estado en `Bloqueado` solo si la ausencia invalida materialmente la suite.
 - Si hay pendientes no bloqueantes: genera salida `Parcial`, marca `Cobertura pendiente` y permite continuar el flujo.
 

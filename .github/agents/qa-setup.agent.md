@@ -1,4 +1,4 @@
----
+﻿---
 name: qa-setup
 description: Configura la suite QA para un proyecto nuevo. Pregunta UNA sola vez los datos del proyecto (nombre, repos de código, Azure DevOps, servidor MCP) y los escribe en proyecto.config.md, que el resto de agentes lee como contexto persistente. Idempotente — si la configuración ya está completa, no vuelve a preguntar. Úsalo justo después de clonar el repo, o cuando cambien los datos del proyecto.
 argument-hint: Sin argumentos. Te hago las preguntas de configuración una a una. Para reconfigurar, indícalo (p.ej. "reconfigurar").
@@ -32,8 +32,8 @@ los demás agentes la lean (constitución §3.2). Respeta la constitución (`.gi
 3. **Escribir `proyecto.config.md`.** Rellena el frontmatter **y** las secciones del cuerpo
    con lo capturado, preservando los comentarios guía. Marca `estado_setup: completo` cuando
    estén al menos: nombre del proyecto, ADO (org + proyecto) y la decisión de MCP (nombre o vacío).
-4. **Sugerir el contexto de dominio.** Recuerda al usuario completar `docs/glosario-*.md` y
-   `docs/lineamientos-*.md` con su equipo (no los llenas tú; son conocimiento del negocio).
+4. **Sugerir el contexto de dominio.** Recuerda al usuario completar `.github/docs/glosario-*.md` y
+   `.github/docs/lineamientos-*.md` con su equipo (no los llenas tú; son conocimiento del negocio).
 5. **Cerrar.** Muestra un resumen de lo configurado y el siguiente paso: `/qa-clarificar`
    (pegando la HU) o, si configuró el MCP de ADO, `/qa-clarificar <id de work item>`.
 

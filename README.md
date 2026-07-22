@@ -1,4 +1,4 @@
-# Suite de Agentes QA — Renting
+﻿# Suite de Agentes QA — Renting
 
 Herramienta de QA asistida por **GitHub Copilot** para procesar Historias de Usuario (HU):
 clarificarlas, analizar gaps código↔HU, diseñar casos de prueba y registrarlos en
@@ -21,7 +21,7 @@ trabajo se retoma en otra sesión sin depender del chat.
 `/qa-inicio` muestra el roadmap completo.
 
 ## Dónde queda todo
-Una carpeta por HU: `resultado/HU-<id>/`, con archivos numerados por orden del proceso
+Una carpeta por HU: `qa-analisis-casos/HU-<id>/`, con archivos numerados por orden del proceso
 (`00-estado`, `01-HU`, `02-clarificacion`, `03-gaps`, `04-casos`, `05-registro-ado`).
 
 ## Estructura del repo
@@ -29,9 +29,9 @@ Una carpeta por HU: `resultado/HU-<id>/`, con archivos numerados por orden del p
 - `.github/copilot-instructions.md` — constitución (reglas comunes; léela primero).
 - `.github/agents/` — agentes especializados (`qa-*`).
 - `.github/prompts/` — comandos `/` del flujo.
-- `plantillas/` — plantillas oficiales (incluye `plantillas/artefactos/` con los esqueletos de salida).
-- `docs/` — contexto de dominio para QA: `glosario-renting.md` y `lineamientos-qa.md` (complétalos con tu equipo).
-- `resultado/` — salidas por HU.
+- `.github/plantillas/` — plantillas oficiales (incluye `.github/plantillas/artefactos/` con los esqueletos de salida).
+- `.github/docs/` — contexto de dominio para QA: `glosario-renting.md` y `lineamientos-qa.md` (complétalos con tu equipo).
+- `qa-analisis-casos/` — salidas por HU.
 
 
 esta es una prueba

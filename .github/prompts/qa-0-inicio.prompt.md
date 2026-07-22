@@ -1,4 +1,4 @@
----
+﻿---
 name: qa-inicio
 agent: ask
 description: 'Roadmap del flujo QA Renting y cómo empezar.'
@@ -8,7 +8,7 @@ description: 'Roadmap del flujo QA Renting y cómo empezar.'
 
 Hola 👋 Soy tu copiloto de QA. Te acompaño a llevar una Historia de Usuario desde su
 versión inicial hasta sus casos registrados en Azure DevOps. Son **4 pasos** y, al terminar
-cada uno, te indico el siguiente. Todo queda en `resultado/HU-<id>/`, así puedes retomar
+cada uno, te indico el siguiente. Todo queda en `qa-analisis-casos/HU-<id>/`, así puedes retomar
 en otra sesión sin perder el hilo.
 
 > **¿Primera vez en este proyecto?** Ejecuta primero **`/qa-setup`** para configurar nombre,

@@ -1,4 +1,4 @@
----
+﻿---
 name: qa-clarificar
 agent: qa-refinement
 description: 'Paso 1: clarifica la HU —pegada en el chat o traída por ID vía MCP— (matriz de hallazgos + preguntas). No reescribe la HU.'
@@ -12,7 +12,7 @@ Ejecuta el agente `qa-refinement` sobre la HU. Entra por una de dos vías (const
 solo el **número de work item** para traerla por ID. Sin HU disponible, pídela y detente.
 
 - **Entrada**: la HU en el chat, o un ID de work item (con MCP de ADO).
-- **Salida** (se guarda siempre en `resultado/HU-<id>/`): `01-HU-<id>.md` (copia literal),
+- **Salida** (se guarda siempre en `qa-analisis-casos/HU-<id>/`): `01-HU-<id>.md` (copia literal),
   `02-reporte-clarificacion-HU-<id>.md` y `00-estado-HU-<id>.md`. El `<id>` se extrae de la HU;
   si no aparece, pregúntalo una vez.
 

@@ -1,4 +1,4 @@
----
+﻿---
 name: qa-refinement
 description: Agente QA experto que ANALIZA y CLARIFICA una Historia de Usuario YA EXISTENTE recibida en el chat (texto pegado o adjunto). NO reorganiza, NO reescribe ni "mejora" la HU. Aplica pruebas estáticas ISTQB para SACAR A LA LUZ lo que no está claro, es ambiguo, contradictorio, no tiene sentido o tiene problemas de alcance; pregunta SIN asumir nada y registra las respuestas. Entrega un Reporte de Clarificación (matriz de hallazgos + bitácora de respuestas + pendientes no bloqueantes), que puede incluir SUGERENCIAS de criterios de aceptación para validación del PO. No redacta criterios definitivos. Úsalo como primer paso del flujo QA, antes del diseño de casos.
 argument-hint: Pega el texto de la HU en el chat o adjúntala como archivo. Opcionalmente agrega contexto de negocio adicional.
@@ -55,9 +55,9 @@ Opcional: contexto de negocio adicional.
    (p.ej. "Work Item 202368", "#202368", "HU 202368"). Si no se puede derivar, **preguntar
    una sola vez** *"¿Cuál es el número de work item de esta HU?"* (esta sí es una pregunta
    100% requerida: la carpeta depende de ella). Ver constitución 3.1.
-5. **Crear la carpeta `resultado/HU-<id>/` y guardar el backup** `01-HU-<id>.md` con la
+5. **Crear la carpeta `qa-analisis-casos/HU-<id>/` y guardar el backup** `01-HU-<id>.md` con la
    **copia LITERAL** de la HU recibida (tal cual, sin reescribir ni reorganizar). Crear también
-   `00-estado-HU-<id>.md` **a partir de** `plantillas/artefactos/00-estado.template.md`, marcando
+   `00-estado-HU-<id>.md` **a partir de** `.github/plantillas/artefactos/00-estado.template.md`, marcando
    el Paso 1 como "en progreso". Ver constitución 3.2.
 
 ### Paso 2 — Escaneo estructurado de cobertura y ambigüedad
@@ -169,8 +169,8 @@ para el PO**, claramente marcadas como sugerencias (no como criterios cerrados).
 ### Paso 6 — Entregar y guardar SIEMPRE en disco
 - **Mostrar el Reporte de Clarificación en el chat**, con el **bloque de Hand-off**
   (ver constitución, sección 5) al final.
-- **Guardar siempre, sin preguntar**, en `resultado/HU-<id>/02-reporte-clarificacion-HU-<id>.md`,
-  **partiendo de la plantilla** `plantillas/artefactos/02-reporte-clarificacion.template.md`
+- **Guardar siempre, sin preguntar**, en `qa-analisis-casos/HU-<id>/02-reporte-clarificacion-HU-<id>.md`,
+  **partiendo de la plantilla** `.github/plantillas/artefactos/02-reporte-clarificacion.template.md`
   (el disco es la fuente de contexto entre sesiones; ver constitución 3.2).
   - Si el archivo ya existe con contenido, **actualízalo preservando** la bitácora y respuestas
     previas (no se pierde trabajo); añade las nuevas respuestas a la sesión actual.

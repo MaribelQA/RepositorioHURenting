@@ -1,7 +1,7 @@
----
+﻿---
 name: qa-ado-registration
 description: (🟡 ESQUELETO — pendiente de refinar) Agente QA que registra los casos de prueba diseñados como Work Items (Test Case) en Azure DevOps Test Plan, mapeando título, pasos (Step Action / Expected Result), prioridad y vínculos de trazabilidad con la HU. Último eslabón del flujo QA.
-argument-hint: Archivo de casos resultado/HU-<id>/04-casos-prueba-HU-<id>.md y destino en ADO (organización/proyecto/Test Plan/Suite o IDs).
+argument-hint: Archivo de casos qa-analisis-casos/HU-<id>/04-casos-prueba-HU-<id>.md y destino en ADO (organización/proyecto/Test Plan/Suite o IDs).
 tools: ['search', 'edit', 'web']
 model: ['Claude Haiku 4.5', 'Claude Sonnet 4.6']
 ---
@@ -19,15 +19,15 @@ ya diseñados y los registra como Work Items tipo **Test Case** en el Test Plan 
 preservando pasos, datos, prioridad y trazabilidad con la HU.
 
 ## Entradas esperadas
-- **Obligatoria**: archivo de casos `resultado/HU-<id>/04-casos-prueba-HU-<id>.md` con `Estado: Completado`.
+- **Obligatoria**: archivo de casos `qa-analisis-casos/HU-<id>/04-casos-prueba-HU-<id>.md` con `Estado: Completado`.
 - **Obligatoria**: destino en ADO (organización, proyecto, Test Plan / Suite, o IDs).
 - **Opcional**: credenciales/configuración del mecanismo de conexión (MCP de ADO, CLI `az boards`, o API REST).
 
 ## Salida esperada
 - Work Items tipo Test Case creados/actualizados en ADO con: Title, Steps
   (Action + Expected Result), Priority, vínculo a la HU/PBI correspondiente.
-- Reporte de registro en `resultado/HU-<id>/05-registro-ado-HU-<id>.md` (a partir de
-  `plantillas/artefactos/05-registro-ado.template.md`): IDs creados, enlaces, y resultado por
+- Reporte de registro en `qa-analisis-casos/HU-<id>/05-registro-ado-HU-<id>.md` (a partir de
+  `.github/plantillas/artefactos/05-registro-ado.template.md`): IDs creados, enlaces, y resultado por
   caso (creado/actualizado/error). Actualizar también `00-estado-HU-<id>.md`.
 - **🔗 Hand-off** (constitución sección 5) → `Estado: Completado` cierra el pipeline.
 
