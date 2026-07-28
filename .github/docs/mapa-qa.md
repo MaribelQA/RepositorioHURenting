@@ -12,10 +12,10 @@ Nodo central del repositorio para visualizar el **grafo** de todos los `.md` en
 /qa-inicio
    │
    ▼
-/qa-clarificar ──► /qa-gaps (opcional) ──► /qa-diseñar-casos-prueba ──► /qa-registrar
-@qa-refinement     @qa-gap-analysis        @qa-test-design   @qa-ado-registration
-   │                   │                       │                  │
- 01,02                03                      04             05 + Work Items ADO
+/qa-1-clarificar ──► /qa-2-gaps (opcional) ──► /qa-3-diseñar-casos-prueba ──► /qa-4-registrar ──► /qa-5-certificar
+@qa-clarify          @qa-gap-analysis          @qa-test-design                @qa-ado-registration    @qa-certify
+   │                      │                          │                             │                      │
+ 01,02                   03                         04                   05 + Work Items ADO             06
 ```
 
 Coordinado y validado por [[qa-orchestrator.agent|qa-orchestrator]] (Agente 0).
@@ -26,18 +26,20 @@ Coordinado y validado por [[qa-orchestrator.agent|qa-orchestrator]] (Agente 0).
 ## Comandos (`/`)
 - [[qa-setup.prompt|/qa-setup]] → ejecuta [[qa-setup.agent|qa-setup]] (configura el proyecto)
 - [[qa-0-inicio.prompt|/qa-inicio]] — roadmap y bienvenida
-- [[qa-1-clarificar.prompt|/qa-clarificar]] → ejecuta [[qa-refinement.agent|qa-refinement]]
-- [[qa-2-gaps.prompt|/qa-gaps]] → ejecuta [[qa-gap-analysis.agent|qa-gap-analysis]]
-- [[qa-3-casos.prompt|/qa-diseñar-casos-prueba]] → ejecuta [[qa-test-design.agent|qa-test-design]]
-- [[qa-4-registrar.prompt|/qa-registrar]] → ejecuta [[qa-ado-registration.agent|qa-ado-registration]]
+- [[qa-1-clarificar.prompt|/qa-1-clarificar]] → ejecuta [[qa-clarify.agent|qa-clarify]]
+- [[qa-2-gaps.prompt|/qa-2-gaps]] → ejecuta [[qa-gap-analysis.agent|qa-gap-analysis]]
+- [[qa-3-diseñar-casos-prueba.prompt|/qa-3-diseñar-casos-prueba]] → ejecuta [[qa-test-design.agent|qa-test-design]]
+- [[qa-4-registrar.prompt|/qa-4-registrar]] → ejecuta [[qa-ado-registration.agent|qa-ado-registration]]
+- [[qa-5-certificar.prompt|/qa-5-certificar]] → ejecuta [[qa-certify.agent|qa-certify]]
 
 ## Agentes
 - [[qa-setup.agent|qa-setup]] — configura el proyecto (Paso 0)
 - [[qa-orchestrator.agent|qa-orchestrator]] — director del proceso
-- [[qa-refinement.agent|qa-refinement]] — clarifica la HU (Paso 1)
+- [[qa-clarify.agent|qa-clarify]] — clarifica la HU (Paso 1)
 - [[qa-gap-analysis.agent|qa-gap-analysis]] — gaps código vs HU (Paso 2)
 - [[qa-test-design.agent|qa-test-design]] — diseño de casos (Paso 3)
 - [[qa-ado-registration.agent|qa-ado-registration]] — registro en ADO (Paso 4)
+- [[qa-certify.agent|qa-certify]] — carta de certificación (Paso 5)
 
 ## Plantillas de salida (una por paso)
 - [[00-estado.template]] — panel de estado e índice
@@ -45,6 +47,7 @@ Coordinado y validado por [[qa-orchestrator.agent|qa-orchestrator]] (Agente 0).
 - [[03-reportes-gaps.template]] — Reporte de gaps
 - [[04-casos-prueba.template]] — Casos de prueba
 - [[05-registro-ado.template]] — Registro en ADO
+- [[06-carta-certificacion.template]] — Carta de Certificación
 
 ## Referencias de diseño de casos
 - [[lineamientos-qa]] — principios ISTQB y convenciones del equipo QA
@@ -59,10 +62,10 @@ Coordinado y validado por [[qa-orchestrator.agent|qa-orchestrator]] (Agente 0).
 
 ## Convenciones de enlaces (para no sobre-relacionar)
 - **Este mapa es el único hub:** enlaza hacia todos los nodos; **ningún otro archivo enlaza de vuelta al mapa** (evita el grafo en estrella).
-- **Cadena hacia adelante:** cada archivo enlaza solo a su **vecino inmediato** (su paso siguiente), nunca a pasos lejanos. Ej.: `/qa-inicio` → `/qa-clarificar` (no a `/qa-gaps`).
+- **Cadena hacia adelante:** cada archivo enlaza solo a su **vecino inmediato** (su paso siguiente), nunca a pasos lejanos. Ej.: `/qa-inicio` → `/qa-1-clarificar` (no a `/qa-2-gaps`).
 - **Enlaces verticales:** prompt → agente ("ejecuta") y agente → plantilla ("rellena").
 - **Una relación = una arista:** sin recíprocas (si A enlaza a B, B no reenlaza a A).
-- **Nodos terminales** (`/qa-registrar`, `05`, último de cada cadena) **no llevan pie de Conexiones**; se alcanzan desde este mapa.
+- **Nodos terminales** (`/qa-5-certificar`, `06`, último de cada cadena) **no llevan pie de Conexiones**; se alcanzan desde este mapa.
 
 ---
 > **Nota Foam/Obsidian:** los agentes y comandos viven en `.github/`. Foam los indexa;

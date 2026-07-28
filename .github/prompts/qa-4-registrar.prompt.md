@@ -1,5 +1,5 @@
 ﻿---
-name: qa-registrar
+name: qa-4-registrar
 agent: qa-ado-registration
 description: '(🟡) Paso 4: registra los casos como Test Case en Azure DevOps. Acción externa: confirma antes de escribir.'
 argument-hint: Destino ADO — organización/proyecto/Test Plan/Suite. Te pido confirmación antes de crear nada.

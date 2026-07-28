@@ -36,7 +36,7 @@ Producir `qa-analisis-casos/HU-<id>/06-carta-certificacion-HU-<id>.md` copiando 
 
 - Empieza leyendo `00-estado-HU-<id>.md` para situarte en el estado actual del folder.
 - Si no existe `01-HU-<id>.md` → detente con estado `Bloqueado`: no hay HU de referencia.
-- Si no existe `04-casos-prueba-HU-<id>.md` o su estado es `Bloqueado` → detente con estado `Bloqueado`: informa que la carta requiere la suite de casos ejecutada y sugiere invocar `/qa-diseñar-casos-prueba`.
+- Si no existe `04-casos-prueba-HU-<id>.md` o su estado es `Bloqueado` → detente con estado `Bloqueado`: informa que la carta requiere la suite de casos ejecutada y sugiere invocar `/qa-3-diseñar-casos-prueba`.
 - Si `06-carta-certificacion-HU-<id>.md` ya existe → léelo, actualiza preservando lo válido y avisa los cambios aplicados.
 - Si el analista QA, el ambiente o el estado de certificación no están en los artefactos ni los proporcionó el usuario → usa los valores por defecto indicados en la plantilla y márcalos como `Pendiente de validación`.
 
