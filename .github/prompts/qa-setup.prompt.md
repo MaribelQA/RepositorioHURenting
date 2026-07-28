@@ -12,10 +12,10 @@ escribe en `proyecto.config.md`, que el resto de agentes lee como contexto persi
 (no se vuelve a preguntar en cada sesión).
 
 - **Cuándo**: justo después de clonar la suite para un proyecto nuevo, o si cambian los datos.
-- **Salida**: `proyecto.config.md` completado y `estado_setup: completo`.
+- **Salida**: `proyecto.config.md` completado y `estado_setup: completado`.
 
-**Siguiente:** `/qa-clarificar` pegando tu HU, o —si configuraste el MCP de Azure DevOps—
-`/qa-clarificar <id de work item>` para traerla por ID.
+**Siguiente:** `/qa-1-clarificar` pegando tu HU, o —si configuraste el MCP de Azure DevOps—
+`/qa-1-clarificar <id de work item>` para traerla por ID.
 
 ## 🔗 Conexiones
 - Ejecuta: [[qa-setup.agent|qa-setup]]

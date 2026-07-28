@@ -1,5 +1,5 @@
 ﻿---
-name: qa-certificar
+name: qa-5-certificar
 agent: qa-certify
 description: 'Paso 5: genera la Carta de Certificación de Pruebas. Inicia con una entrevista interactiva (ID de HU + 7 preguntas de ejecución) y luego produce el artefacto 06.'
 argument-hint: 'Número de work item de la HU a certificar (ej.: 158938). Si no lo indicas, el agente te lo pedirá como primer paso.'
@@ -19,10 +19,10 @@ Ejecuta el agente `qa-certify`.
 - **Entradas leídas**: `00-estado`, `01-HU`, `04-casos-prueba` (obligatorios) + `02-reporte-clarificacion` (recomendado).
 - **Plantilla**: `.github/plantillas/artefactos/06-carta-certificacion.template.md`.
 
-Si `04-casos-prueba` no existe o está `Bloqueado`, el agente no genera la carta: informa y sugiere ejecutar primero `/qa-diseñar-casos-prueba`.
+Si `04-casos-prueba` no existe o está `Bloqueado`, el agente no genera la carta: informa y sugiere ejecutar primero `/qa-3-diseñar-casos-prueba`.
 
 **Siguiente:** artefacto de cierre del flujo. Sin pasos posteriores obligatorios.
 
 ## 🔗 Conexiones
 - Ejecuta: [[qa-certify.agent|qa-certify]]
-- Paso previo: [[qa-3-casos.prompt|/qa-diseñar-casos-prueba]]
+- Paso previo: [[qa-3-diseñar-casos-prueba.prompt|/qa-3-diseñar-casos-prueba]]

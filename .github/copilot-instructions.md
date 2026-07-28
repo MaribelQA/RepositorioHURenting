@@ -76,19 +76,21 @@ es el campo `name:` del prompt, no el del archivo). Cada comando ejecuta su agen
 | --- | --- | --- | --- | --- | --- |
 | — | `/qa-setup` | `@qa-setup` | `proyecto.config.md` (config del proyecto) | `Claude Haiku 4.5` → `Claude Sonnet 4.6` | ✅ |
 | — | `/qa-inicio` | — (display) | Roadmap del flujo | `ask` (sin modelo) | ✅ |
-| 1 | `/qa-clarificar` | `@qa-refinement` | `01`, `02`, `00` | `Claude Opus 4.8` → `Claude Opus 4.6` → `Claude Sonnet 4.6` | ✅ |
-| 2 | `/qa-gaps` | `@qa-gap-analysis` | `03` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
-| 3 | `/qa-diseñar-casos-prueba` | `@qa-test-design` | `04` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
-| 4 | `/qa-registrar` | `@qa-ado-registration` | `05` + Work Items ADO | `Claude Haiku 4.5` → `Claude Sonnet 4.6` | 🟡 |
-| 5 | `/qa-certificar` | `@qa-certify` | `06` Carta de Certificación | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
+| 1 | `/qa-1-clarificar` | `@qa-clarify` | `01`, `02`, `00` | `Claude Opus 4.8` → `Claude Opus 4.6` → `Claude Sonnet 4.6` | ✅ |
+| 2 | `/qa-2-gaps` | `@qa-gap-analysis` | `03` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
+| 3 | `/qa-3-diseñar-casos-prueba` | `@qa-test-design` | `04` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
+| 4 | `/qa-4-registrar` | `@qa-ado-registration` | `05` + Work Items ADO | `Claude Haiku 4.5` → `Claude Sonnet 4.6` | 🟡 |
+| 5 | `/qa-5-certificar` | `@qa-certify` | `06` Carta de Certificación | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
 
-> ⚠️ `/qa-certificar` inicia con una **entrevista interactiva** (ID de HU + 7 preguntas sobre la ejecución) antes de leer artefactos.
+> ⚠️ `/qa-5-certificar` inicia con una **entrevista interactiva** (ID de HU + 7 preguntas sobre la ejecución) antes de leer artefactos.
 | 0 | — | `@qa-orchestrator` | Coordina y valida la cadena | `Claude Sonnet 4.6` → `GPT-5.4` | ✅ |
 
-Flujo: `@qa-refinement → @qa-gap-analysis → @qa-test-design → @qa-ado-registration → @qa-certify`, con
-`@qa-orchestrator` validando cada hand-off. `/qa-gaps` es opcional: se puede ir de `/qa-clarificar`
-directo a `/qa-diseñar-casos-prueba`. `/qa-certificar` es el paso de cierre; puede invocarse tras
-`/qa-diseñar-casos-prueba` (sin registro ADO) o tras `/qa-registrar`.
+Flujo: `@qa-clarify → @qa-gap-analysis → @qa-test-design → @qa-ado-registration → @qa-certify`, con
+`@qa-orchestrator` validando cada hand-off. `/qa-2-gaps` es opcional: se puede ir de `/qa-1-clarificar`
+directo a `/qa-3-diseñar-casos-prueba`. **La recomendación del siguiente paso tras `/qa-1-clarificar`
+depende de `codigo_disponible` en `proyecto.config.md`**: `true` → sugerir `/qa-2-gaps`; `false` →
+sugerir directo `/qa-3-diseñar-casos-prueba`. `/qa-5-certificar` es el paso de cierre; puede invocarse tras
+`/qa-3-diseñar-casos-prueba` (sin registro ADO) o tras `/qa-4-registrar`.
 
 > **Modelos**: lista priorizada; Copilot usa el primero disponible en tu plan. Lógica: razonamiento
 > alto (clarificación) → modelo más capaz; tareas mecánicas (registro ADO) → modelo más económico.

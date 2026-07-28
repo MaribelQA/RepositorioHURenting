@@ -43,8 +43,6 @@ Incluye cobertura positiva, negativa y de borde. Salida en español.
 ## 4. Casos (formato Azure DevOps — Work Item Test Case)
 
 > **Estructura de la tabla:** `Title` aparece solo en la **primera fila** de cada caso. Las filas siguientes dejan `Title` vacío. La fila de precondición lleva `Step Action` (configurar entorno/datos) y `Step Expected Result` **vacío**. Solo los pasos ejecutables llevan resultado esperado.
->
-> **CSV generado junto a este archivo:** `04-casos-prueba-HU-<id>.csv` — columnas `ID|Work_Item_Type|Title|Assigned_To|State|Step_Action|Step_Expected_Result`, separador `|`.
 
 | Title | Step Action | Step Expected Result |
 | --- | --- | --- |

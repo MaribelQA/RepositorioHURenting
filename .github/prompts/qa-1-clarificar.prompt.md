@@ -1,13 +1,13 @@
 ﻿---
-name: qa-clarificar
-agent: qa-refinement
+name: qa-1-clarificar
+agent: qa-clarify
 description: 'Paso 1: clarifica la HU —pegada en el chat o traída por ID vía MCP— (matriz de hallazgos + preguntas). No reescribe la HU.'
 argument-hint: Pega tu HU (texto o adjunto), o da solo el número de work item si tienes MCP de ADO configurado.
 ---
 
 # Paso 1 — Clarificar la HU
 
-Ejecuta el agente `qa-refinement` sobre la HU. Entra por una de dos vías (constitución §3.1):
+Ejecuta el agente `qa-clarify` sobre la HU. Entra por una de dos vías (constitución §3.1):
 **pegada/adjunta en este mensaje**, o —si configuraste el MCP de ADO en `/qa-setup`— dando
 solo el **número de work item** para traerla por ID. Sin HU disponible, pídela y detente.
 
@@ -16,9 +16,11 @@ solo el **número de work item** para traerla por ID. Sin HU disponible, pídela
   `02-reporte-clarificacion-HU-<id>.md` y `00-estado-HU-<id>.md`. El `<id>` se extrae de la HU;
   si no aparece, pregúntalo una vez.
 
-**Siguiente:** sin bloqueantes **y** sin pendientes con `Impacta diseño de pruebas: Sí` → `/qa-gaps` o directo a `/qa-diseñar-casos-prueba`.
-Si al finalizar persisten pendientes con `Impacta diseño de pruebas: Sí`, el agente **no espera re-invocación**: ofrece activamente continuar con otra ronda en el mismo chat (_"¿Continuamos resolviendo los [N] pendientes que afectan el diseño? sí/no"_). Solo si el usuario dice «no» guarda el `02` como `Parcial` y advierte que `/qa-diseñar-casos-prueba` generará casos incompletos. Para sesiones futuras, `/qa-clarificar` puede re-invocarse y el agente leerá el `02` existente para continuar desde donde quedó.
+**Siguiente:** sin bloqueantes **y** sin pendientes con `Impacta diseño de pruebas: Sí` → la
+recomendación depende de `codigo_disponible` en `proyecto.config.md`: si es `true` → `/qa-2-gaps`;
+si es `false` → directo a `/qa-3-diseñar-casos-prueba`.
+Si al finalizar persisten pendientes con `Impacta diseño de pruebas: Sí`, el agente **no espera re-invocación**: ofrece activamente continuar con otra ronda en el mismo chat (_"¿Continuamos resolviendo los [N] pendientes que afectan el diseño? sí/no"_). Solo si el usuario dice «no» guarda el `02` como `Parcial` y advierte que `/qa-3-diseñar-casos-prueba` generará casos incompletos. Para sesiones futuras, `/qa-1-clarificar` puede re-invocarse y el agente leerá el `02` existente para continuar desde donde quedó.
 
 ## 🔗 Conexiones
-- Ejecuta: [[qa-refinement.agent|qa-refinement]]
-- Siguiente paso: [[qa-2-gaps.prompt|/qa-gaps]]
+- Ejecuta: [[qa-clarify.agent|qa-clarify]]
+- Siguiente paso: [[qa-2-gaps.prompt|/qa-2-gaps]]

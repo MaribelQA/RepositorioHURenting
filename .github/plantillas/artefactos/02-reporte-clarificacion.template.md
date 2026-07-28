@@ -1,5 +1,5 @@
 <!--
-TEMPLATE — Reporte de Clarificación (Paso 1, agente qa-refinement).
+TEMPLATE — Reporte de Clarificación (Paso 1, agente qa-clarify).
 Cópialo a `resultado/HU-<id>/02-reporte-clarificacion-HU-<id>.md` y reemplaza los <placeholders>.
 NO es una HU reescrita: registra hallazgos, respuestas y pendientes. La HU original vive
 intacta en `01-HU-<id>.md`. Mantén las secciones; usa "ninguno"/"—" donde no aplique.
@@ -28,7 +28,7 @@ intacta en `01-HU-<id>.md`. Mantén las secciones; usa "ninguno"/"—" donde no 
 > Filas `Pendiente de validación` de la matriz. No impiden avanzar; quedan registradas.
 
 ### 4a. Pendientes que impactan diseño de casos (Impacta diseño de pruebas: Sí)
-> Si no se resuelven, la suite de casos quedará `Parcial` en estos criterios. Resolver antes de ejecutar `/qa-diseñar-casos-prueba`.
+> Si no se resuelven, la suite de casos quedará `Parcial` en estos criterios. Resolver antes de ejecutar `/qa-3-diseñar-casos-prueba`.
 
 - <pendiente> — _criterio afectado: <criterio> · responsable sugerido: <PO/QA/…>_
 
@@ -51,7 +51,7 @@ intacta en `01-HU-<id>.md`. Mantén las secciones; usa "ninguno"/"—" donde no 
 ---
 ## 🔗 Hand-off
 - **Artefacto**: `resultado/HU-<id>/02-reporte-clarificacion-HU-<id>.md`
-- **Producido por**: qa-refinement
+- **Producido por**: qa-clarify
 - **Estado**: Completado | Parcial (pendientes no bloqueantes) | Bloqueado
 - **Pendientes de validación**: <lista o "ninguno">
 - **Siguiente agente sugerido**: @qa-gap-analysis (o @qa-test-design)
