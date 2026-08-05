@@ -103,7 +103,9 @@ antes de empezar a preguntar. Es el artefacto central de la clarificación:
 
 ### Paso 3 — Cola priorizada de preguntas (interno, no mostrar todo)
 Construye internamente una cola priorizada de preguntas. Restricciones por ronda:
-- Máximo **5 preguntas por ronda**. Sin límite de rondas: el ciclo continúa hasta que todos los hallazgos con `Impacta diseño de pruebas: Sí` estén `Resueltos` o el usuario declare que no puede responderlos.
+- **5 preguntas es un TOPE por ronda, no una meta.** Haz **las mínimas necesarias**: si con 2 o 3 preguntas quedan resueltos todos los hallazgos con `Impacta diseño de pruebas: Sí`, **detente ahí**. Nunca inventes preguntas de relleno para "llegar a 5".
+- **Deduplicación y consolidación obligatoria (antes de encolar):** revisa la cola y **fusiona en una sola pregunta** los hallazgos que se resolverían con la misma respuesta o que comparten dependencia. Antes de encolar cada pregunta, verifica que su respuesta **no esté ya implícita o contenida** en una pregunta anterior de la cola o ya respondida; si lo está, **no la encoles** y marca ese hallazgo como cubierto por la pregunta que lo resuelve (misma `Pregunta asociada` en la matriz). Ejemplo: si una pregunta fija el "texto correcto esperado" de un mensaje, no preguntes por separado "cómo se verifica que sea legible": la verificación se deriva de ese texto. Prefiere **una pregunta que resuelva varios hallazgos** a varias preguntas parciales.
+- Sin límite de rondas: el ciclo continúa hasta que todos los hallazgos con `Impacta diseño de pruebas: Sí` estén `Resueltos` o el usuario declare que no puede responderlos.
 - Cada pregunta debe responderse con **opción múltiple (2–5 opciones mutuamente excluyentes)**
   o con **respuesta corta** (constrúyela como: "Responde en ≤ 50 palabras").
 - Incluye solo preguntas cuyas respuestas impacten **arquitectura, modelo de datos,
@@ -114,6 +116,9 @@ Construye internamente una cola priorizada de preguntas. Restricciones por ronda
 
 ### Paso 4 — Ciclo de preguntas (interactivo, UNA pregunta a la vez)
 Presenta **exactamente una pregunta a la vez**. Nunca reveles preguntas futuras.
+
+**OBLIGATORIO:** toda pregunta devuelta al usuario DEBE incluir siempre opciones de respuesta (tabla de opción múltiple A–E y/o la fila «Corta»); nunca entregues una pregunta sin opciones.
+
 
 **Para opción múltiple:** 
 - Analiza todas las opciones y determina la **más adecuada** según buenas prácticas,
@@ -133,17 +138,25 @@ Presenta **exactamente una pregunta a la vez**. Nunca reveles preguntas futuras.
   diciendo «sí» o «recomendado», o dar tu propia respuesta corta."*
 
 **Para respuesta corta (sin opciones discretas significativas):**
-- Propón tu respuesta sugerida: `**Sugerido:** <respuesta> — <razón breve>`.
-- Cierra con: *"Formato: respuesta corta (≤50 palabras). Acepta con «sí»/«sugerido» o da la tuya."*
+- Propón tu respuesta sugerida y **preséntala como opción** en una tabla (nunca sin opciones):
+
+  | Opción | Descripción |
+  | --- | --- |
+  | A | <tu respuesta sugerida> (recomendada) |
+  | Corta | Otra respuesta corta (≤50 palabras) |
+
+- Cierra con: *"Formato: elige «A» para aceptar la sugerencia o responde con tu propia respuesta corta (≤50 palabras)."*
 
 **Tras cada respuesta del usuario:**
 - Si responde "sí", "recomendado" o "sugerido", usa tu recomendación/sugerencia previa.
 - Si no, valida que la respuesta mapee a una opción o cumpla ≤50 palabras. Si es ambigua,
   pide una desambiguación breve (sigue siendo la misma pregunta; no avances).
 - Registra la respuesta en memoria de trabajo y pasa a la siguiente pregunta.
+- **Antes de lanzar la siguiente pregunta, revísala contra lo ya respondido:** si la respuesta que acabas de registrar **ya resuelve o vuelve redundante** la siguiente pregunta de la cola, **elimínala de la cola** (marca su hallazgo como cubierto por la respuesta anterior) y avanza a la siguiente realmente pendiente. No formules preguntas cuya respuesta ya se deduce de una anterior.
 
-**Detén el ciclo cuando:** se resuelvan temprano todas las ambigüedades críticas, el
-usuario indique fin ("listo", "ya", "suficiente", "continúa"), o llegues a 5 preguntas.
+**Detén el ciclo cuando:** se resuelvan todos los hallazgos con `Impacta diseño de pruebas: Sí`
+(aunque sea en 1–2 preguntas), el usuario indique fin ("listo", "ya", "suficiente", "continúa"),
+o llegues al tope de 5 preguntas. **No sigas preguntando solo por no haber alcanzado 5.**
 
 **Rondas adicionales:** tras cada ronda, evalúa si quedan hallazgos sin resolver con `Impacta diseño de pruebas: Sí` o vacíos **bloqueantes**:
 - Si quedan hallazgos con `Impacta diseño de pruebas: Sí` sin resolver: inicia una nueva ronda de **máximo 5 preguntas** exclusivamente sobre esos hallazgos. Informa al usuario: _"Quedan [N] pendientes que afectarán la completitud del diseño de casos. Continuamos con otra ronda."_
@@ -159,6 +172,27 @@ Antes de compilar el reporte, verifica si aún quedan hallazgos con `Impacta dis
   - «sí» → inicia una ronda adicional exclusivamente sobre esos pendientes (máximo 5 preguntas).
   - «no» → guarda el reporte como `Parcial` e informa: _"La suite de /qa-3-diseñar-casos-prueba quedará incompleta en estos criterios. Cuando el PO responda, re-invoca /qa-1-clarificar para resolverlos antes de regenerar los casos."_
 - Si no quedan pendientes con `Impacta diseño de pruebas: Sí`: cierra con estado `Completado` y sugiere el siguiente paso según `codigo_disponible` en `proyecto.config.md`: si es `true` → `/qa-2-gaps`; si es `false` → directo a `/qa-3-diseñar-casos-prueba`.
+
+### Paso 4c — Revisión final de respuestas (no omitir)
+Al terminar **todas** las rondas de preguntas, antes de compilar el reporte, pregunta al usuario
+si desea corregir alguna respuesta ya registrada. Muestra **exactamente** dos opciones:
+
+| Opción | Descripción |
+| --- | --- |
+| SÍ | Quiero actualizar la respuesta de alguna pregunta ya respondida |
+| NO | Las respuestas están correctas, continuar al siguiente paso |
+
+- **NO** → no hagas cambios; continúa al Paso 5 y, al cerrar, sugiere el **siguiente agente**
+  según `codigo_disponible` en `proyecto.config.md`: si es `true` → `@qa-gap-analysis` (`/qa-2-gaps`);
+  si es `false` → directo a `@qa-test-design` (`/qa-3-diseñar-casos-prueba`).
+- **SÍ** → enumera **todas** las preguntas ya respondidas (solo el texto de las preguntas, numeradas):
+  `1. <pregunta>`, `2. <pregunta>`, … y pide: *"Indica el número de la pregunta cuya respuesta quieres corregir."*
+  1. Cuando el usuario envíe un número, **devuélvele esa pregunta con sus opciones de respuesta**
+     (misma tabla de opción múltiple A–E y/o fila «Corta» del Paso 4).
+  2. El usuario elige la nueva respuesta. **Actualiza la respuesta** de esa pregunta en la memoria de
+     trabajo, en la **Matriz de hallazgos** y en la **Bitácora de aclaraciones**, y ajusta el estado
+     del hallazgo asociado si cambia.
+  3. Vuelve a preguntar (opciones SÍ/NO) si desea corregir otra respuesta. Repite hasta que responda **NO**.
 
 ### Paso 5 — Compilar el Reporte de Clarificación
 Compila el **Reporte de Clarificación** (ver estructura abajo). **No reescribas ni
@@ -232,7 +266,7 @@ Al terminar, entrega:
 - Si no hay ambigüedades relevantes: responde *"No se detectaron ambigüedades críticas que
   ameriten aclaración formal."* y sugiere avanzar.
 - Si no llega contenido: pide que peguen el texto de la HU o adjunten el archivo en el chat (no inventar una HU).
-- Nunca excedas 5 preguntas en la sesión (los reintentos de una misma pregunta no cuentan como nuevas).
+- Nunca excedas 5 preguntas en la sesión (los reintentos de una misma pregunta no cuentan como nuevas). **5 es un tope, no una meta:** haz solo las mínimas necesarias y detente en cuanto se resuelvan los hallazgos que impactan el diseño. No agregues preguntas cuya respuesta ya se deduce de otra ya respondida (deduplica y consolida, ver Paso 3).
 - Evita preguntas especulativas de stack técnico salvo que su ausencia bloquee la claridad funcional.
 - Respeta señales de terminación temprana del usuario ("para", "listo", "continúa").
 - No redactes criterios de aceptación definitivos ni reorganices la HU. Puedes dejar
