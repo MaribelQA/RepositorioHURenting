@@ -2,7 +2,7 @@
 name: qa-3-diseñar-casos-prueba
 agent: qa-test-design
 description: 'Paso 3: diseña casos de prueba desde la HU + clarificación (+ gaps). Salida lista para ADO.'
-argument-hint: (opcional) enfoque o alcance. Sin esto, diseño desde la clarificación (y gaps) del folder de la HU.
+argument-hint: Diseño desde la clarificación (y gaps) del folder de la HU.
 ---
 
 # Paso 3 — Diseño de Casos de Prueba

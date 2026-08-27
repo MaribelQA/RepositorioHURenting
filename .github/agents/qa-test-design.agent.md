@@ -28,6 +28,8 @@ Respeta la constitucion del repo en `.github/copilot-instructions.md`. Tu salida
 ## Referencias obligatorias del repo
 - Lineamientos QA: `.github/docs/lineamientos-qa.md`.
 - Plantilla del artefacto final (incluye formato ADO): `.github/plantillas/artefactos/04-casos-prueba.template.md`.
+- **Ejemplo golden (few-shot)**: `.github/docs/ejemplo-golden-casos.md`. **Léelo UNA vez al iniciar el diseño** (Paso 1) para fijar el estándar de "caso bien hecho" (oracle explícito, un comportamiento por caso, texto exacto de mensajes, validación de persistencia, valores límite). Imita el **patrón y nivel de detalle**, no su contenido (es ficticio). Esto reduce retrabajo y variabilidad.
+- **Heurísticas de defectos**: `.github/docs/heuristicas-defectos.md`. Batería de disparadores (fronteras, estados, concurrencia, persistencia, seguridad, integraciones, mensajes) para no dejar huecos negativos/borde. **Consúltala en el Paso 5** recorriendo las 8 secciones por cada criterio; genera casos solo donde haya riesgo real, no uno por ítem.
 - Consulta de dominio solo si hace falta: `.github/docs/glosario-renting.md` y `.github/docs/lineamientos-qa.md`.
 
 ## Entradas esperadas
@@ -36,6 +38,7 @@ Respeta la constitucion del repo en `.github/copilot-instructions.md`. Tu salida
   - `qa-analisis-casos/HU-<id>/01-HU-<id>.md`
   - `qa-analisis-casos/HU-<id>/02-reporte-clarificacion-HU-<id>.md`
   - `.github/plantillas/artefactos/04-casos-prueba.template.md`
+  - `.github/docs/ejemplo-golden-casos.md` (referencia few-shot del estandar de caso; leer una vez)
 - **Opcional**:
   - `qa-analisis-casos/HU-<id>/03-reportes-gaps-HU-<id>.md`
 - **Contexto complementario opcional**:
@@ -67,8 +70,9 @@ Respeta la constitucion del repo en `.github/copilot-instructions.md`. Tu salida
 ### Paso 1 - Validacion de insumos y estado
 1. Leer `00-estado-HU-<id>.md` para conocer artefactos disponibles, pendientes y bloqueantes.
 2. Confirmar existencia y lectura de `01`, `02`, `.github/plantillas/artefactos/04-casos-prueba.template.md`.
-3. Si existe `03`, leerlo para reforzar cobertura y detectar riesgos funcionales no explicitos en la HU.
-4. Determinar si el flujo puede avanzar con estado `Completado`, `Parcial` o `Bloqueado`.
+3. Leer **una sola vez** `.github/docs/ejemplo-golden-casos.md` para fijar el estandar de caso (oracle explicito, un comportamiento por caso, texto exacto de mensajes, persistencia, valores limite). No lo releas en pasos posteriores.
+4. Si existe `03`, leerlo para reforzar cobertura y detectar riesgos funcionales no explicitos en la HU.
+5. Determinar si el flujo puede avanzar con estado `Completado`, `Parcial` o `Bloqueado`.
 
 ### Paso 2 - Analisis estructurado de la HU
 Analiza la HU y sus criterios en estas dimensiones:
@@ -90,6 +94,25 @@ Si el reporte de clarificacion dejo preguntas o sugerencias del PO sin validar:
 - no las promociones a hechos cerrados
 - usalas solo como insumo condicional
 - cualquier caso dependiente debe quedar marcado como cobertura pendiente si falta confirmacion
+
+#### Evaluacion de riesgo por criterio (Testing Basado en Riesgo)
+Para **cada criterio de aceptacion** estima un nivel de riesgo que guiara la profundidad de pruebas:
+- **Probabilidad de fallo** (Alta/Media/Baja): complejidad de la regla, cantidad de condiciones que interactuan, integraciones externas, codigo nuevo vs. estable, historial de defectos si se conoce.
+- **Impacto de negocio** (Alto/Medio/Bajo): consecuencia si falla en produccion (perdida economica, dato incorrecto persistido, bloqueo operativo, riesgo legal/cumplimiento, experiencia critica del usuario).
+- **Nivel de riesgo** = combinacion de ambos:
+
+  | | Impacto Bajo | Impacto Medio | Impacto Alto |
+  | --- | --- | --- | --- |
+  | **Prob. Alta** | Medio | Alto | Crítico |
+  | **Prob. Media** | Bajo | Medio | Alto |
+  | **Prob. Baja** | Bajo | Bajo | Medio |
+
+- Registra el resultado en una **tabla de priorizacion por riesgo** (criterio · probabilidad · impacto · nivel de riesgo · profundidad de pruebas asignada).
+- La profundidad guia el Paso 5:
+  - **Crítico/Alto**: cobertura exhaustiva — happy path + todos los negativos relevantes + valores limite + pairwise si hay interaccion + persistencia. Prioridad de caso `Alta`.
+  - **Medio**: cobertura estandar — happy path + negativos criticos + al menos un borde. Prioridad `Media`.
+  - **Bajo**: cobertura minima — happy path + un negativo representativo. Prioridad `Baja`.
+- No inventes riesgo: si falta informacion para estimar, usa juicio conservador (tiende a mayor riesgo) y registra el supuesto.
 
 ### Paso 3 - Deteccion de vacios criticos
 Antes de construir la suite, valida si faltan datos criticos para disenar casos correctos. Considera critico solo aquello que vuelve inutil o incorrecto el artefacto final, por ejemplo:
@@ -125,7 +148,14 @@ Debes construir, aunque sea de forma compacta, estas salidas de diseno:
    - combinaciones
    - accion esperada
    - si no aplica, escribir `No aplica` y justificar
-6. **Tecnicas adicionales** solo si agregan valor:
+6. **Matriz combinatoria (pairwise)** cuando **dos o mas parametros o condiciones independientes interactuan** (p. ej. tipo de servicio × estado del vehiculo × rol de usuario):
+   - lista los parametros y sus valores posibles (particiones)
+   - en lugar de probar el producto cartesiano completo, aplica **cobertura de pares (all-pairs / pairwise)**: genera el conjunto minimo de combinaciones donde **cada par de valores de dos parametros distintos aparezca al menos una vez**
+   - presenta las combinaciones seleccionadas en una tabla; cada fila deriva en un caso de prueba
+   - anade por separado las combinaciones de **alto riesgo o prohibidas** que pairwise podria omitir (usar juicio experto / tabla de decision para esas)
+   - justifica la reduccion: N combinaciones seleccionadas vs. producto cartesiano completo
+   - si solo hay un parametro variable o las condiciones no son independientes, escribe `No aplica` y usa tabla de decision o particion
+7. **Tecnicas adicionales** solo si agregan valor:
    - transicion de estados
    - error guessing
    - pruebas basadas en experiencia
@@ -138,6 +168,10 @@ Genera escenarios sin redundancia en estas categorias:
 - Alternos
 - Negativos
 - Borde
+
+Antes de cerrar los escenarios negativos y de borde, recorre el cheat sheet `.github/docs/heuristicas-defectos.md`: por cada criterio de aceptacion marca las heuristicas aplicables (fronteras, estados/transiciones, concurrencia, persistencia/integridad, reglas/calculos, autorizacion/seguridad, integraciones, mensajes/UX) y genera un caso solo donde haya riesgo real. No generes un caso por cada item ni fuerces heuristicas que no aplican.
+
+Modula la **profundidad segun el nivel de riesgo** estimado en el Paso 2: los criterios `Crítico`/`Alto` reciben cobertura exhaustiva (mas negativos, valores limite, pairwise, persistencia); los `Bajo` reciben cobertura minima. Asigna a cada caso la **Prioridad** (`Alta`/`Media`/`Baja`) heredada del riesgo de su criterio.
 
 Cobertura minima esperada:
 - minimo 1 caso Happy Path por criterio principal
@@ -200,10 +234,13 @@ Cada caso debe cumplir lo siguiente:
 ### Paso 8 - Matriz de trazabilidad final
 Incluye una matriz final con:
 - criterio de aceptacion
+- nivel de riesgo del criterio
 - IDs de casos que lo cubren
 - estado de cobertura: `Completo` o `Parcial`
 
 La trazabilidad debe ser explicita. No entregues casos sin vinculo visible a criterio o regla.
+
+Calcula y reporta en el Resumen de cobertura la **metrica de cobertura de criterios** = (criterios con al menos un caso `Completo`) / (total de criterios), expresada como fraccion y porcentaje. La meta por defecto es 100%; todo criterio no cubierto debe aparecer en `Cobertura pendiente` con su motivo. Reporta tambien la distribucion de casos (positivos/negativos/borde) y el conteo de criterios por nivel de riesgo.
 
 ### Paso 9 - Persistencia obligatoria en disco
 Debes escribir siempre los artefactos finales en:
@@ -220,13 +257,15 @@ El siguiente agente sugerido es `@qa-ado-registration`, salvo que el estado qued
 ## Orden de entregables dentro del artefacto
 1. Resumen de analisis de la HU.
 2. Preguntas de aclaracion pendientes, si aplican.
-3. Matriz de particion de equivalencia.
-4. Matriz de valores limite.
-5. Tabla de decision o `No aplica` con justificacion.
-6. Suite final de casos clasificados en Happy Path, Alternos, Negativos y Borde.
-7. Matriz de trazabilidad final criterio ↔ caso.
-8. Cobertura pendiente.
-9. Hand-off.
+3. Tabla de priorizacion por riesgo (criterio · probabilidad · impacto · nivel de riesgo · profundidad).
+4. Matriz de particion de equivalencia.
+5. Matriz de valores limite.
+6. Tabla de decision o `No aplica` con justificacion.
+7. Matriz combinatoria (pairwise) o `No aplica` con justificacion.
+8. Suite final de casos clasificados en Happy Path, Alternos, Negativos y Borde.
+9. Matriz de trazabilidad final criterio ↔ caso.
+10. Cobertura pendiente.
+11. Hand-off.
 
 ## Reglas criticas de salida
 1. Toda salida debe estar en **espanol profesional**.
@@ -245,6 +284,7 @@ Se considera completado solo si:
 - se generaron matrices de diseno de pruebas
 - se entrego una suite final clasificada y no redundante
 - se incluyo trazabilidad completa o se marco claramente como parcial
+- se reporto la metrica de cobertura de criterios (fraccion y %) en el Resumen de cobertura
 - se aplicaron tecnicas ISTQB en los casos
 - se incorporaron validaciones punto a punto donde aplique
 - se actualizo `00-estado-HU-<id>.md`
