@@ -18,6 +18,14 @@ Incluye cobertura positiva, negativa y de borde. Salida en español.
 
 ## 2. Matrices de diseño
 
+### 2.0 Priorización por riesgo (Testing Basado en Riesgo)
+> Estima el riesgo de cada criterio para modular la profundidad de pruebas. Nivel de riesgo =
+> Probabilidad de fallo × Impacto de negocio. A mayor riesgo, mayor profundidad y prioridad.
+
+| Criterio de aceptación | Probabilidad (A/M/B) | Impacto (A/M/B) | Nivel de riesgo | Profundidad asignada |
+| --- | --- | --- | --- | --- |
+| <criterio> | <A/M/B> | <A/M/B> | Crítico / Alto / Medio / Bajo | <exhaustiva / estándar / mínima> |
+
 ### 2.1 Partición de equivalencia
 | Regla / criterio | Partición válida | Partición inválida | Impacto funcional |
 | --- | --- | --- | --- |
@@ -33,12 +41,28 @@ Incluye cobertura positiva, negativa y de borde. Salida en español.
 | --- | --- | --- |
 | <condición o "No aplica"> | <combinación o "No aplica"> | <acción o justificación> |
 
+### 2.4 Matriz combinatoria (pairwise)
+> Úsala cuando 2+ parámetros/condiciones independientes interactúan. Selecciona el conjunto
+> mínimo de combinaciones donde cada par de valores aparezca al menos una vez. Si no aplica
+> (un solo parámetro variable o condiciones no independientes), escribe "No aplica" y justifica.
+
+**Parámetros y valores**: <Param A: [v1, v2] · Param B: [v1, v2, v3] · … o "No aplica">
+
+| # | <Param A> | <Param B> | <Param C> | Resultado esperado | Caso asociado |
+| --- | --- | --- | --- | --- | --- |
+| 1 | <valor> | <valor> | <valor> | <resultado> | TC-NN |
+
+- **Reducción**: <N combinaciones seleccionadas> vs. <producto cartesiano completo>.
+- **Combinaciones de alto riesgo/prohibidas añadidas aparte**: <lista o "ninguna">.
+
 ## 3. Resumen de cobertura
 - **HU**: <id> — <título>
 - **Total de casos**: <n>  (Positivos: <n> · Negativos: <n> · Borde: <n>)
+- **Cobertura de criterios**: <criterios cubiertos> / <total de criterios> = <%> (meta: 100%)
+- **Criterios por nivel de riesgo**: Crítico/Alto: <n> · Medio: <n> · Bajo: <n>
 - **Prioridad**: <Alta | Media | Baja>
 - **Insumos usados**: clarificación (`02`), gaps (`03`) si aplica
-- **Técnicas aplicadas**: <partición de equivalencia / valores límite / tabla de decisión / transición de estados / error guessing>
+- **Técnicas aplicadas**: <partición de equivalencia / valores límite / tabla de decisión / pairwise / transición de estados / error guessing>
 
 ## 4. Casos (formato Azure DevOps — Work Item Test Case)
 
@@ -53,9 +77,9 @@ Incluye cobertura positiva, negativa y de borde. Salida en español.
 |  | <acción> | <resultado> |
 
 ## 5. Matriz de trazabilidad final
-| Criterio de aceptación | Casos que lo cubren | Estado de cobertura |
-| --- | --- | --- |
-| <criterio> | <IDs de caso> | Completo / Parcial |
+| Criterio de aceptación | Nivel de riesgo | Casos que lo cubren | Estado de cobertura |
+| --- | --- | --- | --- |
+| <criterio> | Crítico / Alto / Medio / Bajo | <IDs de caso> | Completo / Parcial |
 
 ## 6. Cobertura pendiente
 > Criterios que NO se cubrieron por depender de pendientes/bloqueantes de la clarificación

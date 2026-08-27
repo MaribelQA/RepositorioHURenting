@@ -128,6 +128,8 @@ Un agente **no avanza** si su entrada está `Bloqueado`. El orquestador valida l
 - La HU llega **pegada/adjunta en el chat**: no buscarla en el repo.
 - No repetir en el chat el contenido que ya quedó en disco; resumir y enlazar.
 - Una etapa por invocación; respuestas concisas.
+- **Presupuesto de contexto por agente** (qué leer siempre, qué on-demand, qué no releer):
+  ver la tabla en `.github/docs/lineamientos-qa.md` → «Presupuesto de contexto».
 
 ## 🔗 Conexiones
 - 🧠 Grafo del repo: [[mapa-qa|Mapa de la Suite QA]] · Visión general: [[README]]

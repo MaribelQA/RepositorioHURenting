@@ -2,7 +2,7 @@
 name: qa-1-clarificar
 agent: qa-clarify
 description: 'Paso 1: clarifica la HU —pegada en el chat o traída por ID vía MCP— (matriz de hallazgos + preguntas). No reescribe la HU.'
-argument-hint: Pega tu HU (texto o adjunto), o da solo el número de work item si tienes MCP de ADO configurado.
+argument-hint: En este mismo chat, ingresa la información de la HU. ID, título, descripción y criterios de aceptación.
 ---
 
 # Paso 1 — Clarificar la HU
