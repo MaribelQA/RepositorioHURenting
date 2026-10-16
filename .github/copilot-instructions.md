@@ -81,8 +81,10 @@ es el campo `name:` del prompt, no el del archivo). Cada comando ejecuta su agen
 | 3 | `/qa-3-diseñar-casos-prueba` | `@qa-test-design` | `04` | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
 | 4 | `/qa-4-registrar` | `@qa-ado-registration` | `05` + Work Items ADO | `Claude Haiku 4.5` → `Claude Sonnet 4.6` | 🟡 |
 | 5 | `/qa-5-certificar` | `@qa-certify` | `06` Carta de Certificación | `Claude Sonnet 4.6` → `Claude Opus 4.6` | ✅ |
+| — | `/qa-informe-semanal` | `@qa-weekly-report` | `informes/informe-semanal-<YYYY-MM-DD>.md` | `Claude Sonnet 4.6` → `Claude Haiku 4.5` | ✅ |
 
 > ⚠️ `/qa-5-certificar` inicia con una **entrevista interactiva** (ID de HU + 7 preguntas sobre la ejecución) antes de leer artefactos.
+> ℹ️ `/qa-informe-semanal` es un **utilitario transversal** (no es un paso del pipeline de la HU): redacta/actualiza el Informe Semanal de Tareas a partir de lo que narras y del estado real de las HUs en disco.
 | 0 | — | `@qa-orchestrator` | Coordina y valida la cadena | `Claude Sonnet 4.6` → `GPT-5.4` | ✅ |
 
 Flujo: `@qa-clarify → @qa-gap-analysis → @qa-test-design → @qa-ado-registration → @qa-certify`, con
